@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
-    <meta property="og:url" content="{{route('home')}}" />
+    <meta property="og:url" content="{{route('login')}}" />
     <meta property="og:site_name" content="Мир туризма 46" />
     <meta property="og:image" content="{{asset('img/og_img.jpg')}}" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -32,6 +32,7 @@
     ])
 </head>
 <body>
+    @include("allicon")
     <main id="main">
         @yield('main')
     </main>

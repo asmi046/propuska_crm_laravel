@@ -28,5 +28,12 @@ section{
     margin: 0 auto;
 }
 
+.sprite_icon {
+    width: 24px;
+    height: 24px;
+    fill: $black_color;
+    stroke: $black_color;
+}
+
 // Схема с сайдбаром
 // @import "sidebar-schem";
