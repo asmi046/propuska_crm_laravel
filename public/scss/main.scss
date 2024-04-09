@@ -1,0 +1,32 @@
+@import "vars";
+@import "null";
+@import "fonts";
+@import "scroll";
+@import "text-styles";
+@import "pagination";
+@import "standart";
+@import "form/all-form";
+@import "elements/all-elements";
+
+
+body{
+    font-family: $main_fonts;
+    font-size: 16px;
+}
+
+header,
+footer,
+section{
+    width: 100%;
+    padding-top: $section_space;
+    padding-bottom: $section_space;
+}
+
+.container{
+    width:100%;
+    max-width: $conteiner_max_w;
+    margin: 0 auto;
+}
+
+// Схема с сайдбаром
+// @import "sidebar-schem";

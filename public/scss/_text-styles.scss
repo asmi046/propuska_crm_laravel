@@ -1,0 +1,39 @@
+.text_styles {
+
+    p{
+        margin: 20px 0;
+    }
+
+    ul li {
+        margin: 10px 0;
+        position: relative;
+        padding-left: 20px;
+    }
+
+    ol{
+
+        padding-left: 20px;
+
+        li {
+            margin: 10px 0;
+        }
+
+        li::marker{
+            color: $main_color;
+            font-weight: bold;
+            position: absolute!important;
+            left: 0;
+        }
+    }
+
+    ul li:before{
+        content:"";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        left: 0;
+        top:7px;
+        border-radius: 2px;
+        background-color: $main_color;
+    }
+}
