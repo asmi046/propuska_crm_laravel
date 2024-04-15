@@ -9,6 +9,6 @@
 @section('description', $description)
 
 @section('main')
-
+<h1>H!</h1>
 @endsection
 

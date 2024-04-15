@@ -8,7 +8,7 @@ use App\Services\ChecNumberServices;
 class IndexController extends Controller
 {
     public function index() {
-        return view('index');
+        return view('dashboard');
     }
 
     public function test($number, ChecNumberServices $cn_service) {
