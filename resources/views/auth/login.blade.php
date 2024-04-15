@@ -16,9 +16,7 @@
         <form action="{{route('login_do')}}" method="post" class="box start-form">
             @csrf
 
-            <header>
-
-            </header>
+            <h1>CRM - пропуска</h1>
 
             <div class="field">
               <label class="label">E-mail</label>

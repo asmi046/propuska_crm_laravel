@@ -1,3 +1,16 @@
 header{
-    
+    display: flex;
+    width:96%;
+    padding: 15px 2%;
+    box-shadow: $box_shadow;
+    background-color: $gray_bg_color;
+
+    justify-content: space-between;
+
+    h1 {
+        margin: auto auto auto 30px;
+        font-weight: 400;
+        line-height: 1.5;
+        font-size: 28px;
+    }
 }
