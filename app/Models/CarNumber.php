@@ -12,7 +12,7 @@ class CarNumber extends Model
     public $fillable = [
         'truc_number',
         'email',
-        'email_pop',
+        'email_dop',
         'phone',
         'time',
         'pass_time',

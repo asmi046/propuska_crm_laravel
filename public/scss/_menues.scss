@@ -28,7 +28,7 @@
     .side_menue {
         background-color: white;
         width: 100%;
-        max-width: 420px;
+        max-width: 350px;
         height: 100%;
         position: absolute;
         left:-500px;
@@ -36,6 +36,38 @@
         z-index: 21;
         transition: $main_transition;
         box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
+    }
+
+    nav {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .side_nav_item {
+        height: 30px;
+        display: flex;
+        font-size: 18px;
+        padding: 5px 10px;
+        border-radius: $border_rad;
+        margin-bottom: 10px;
+        svg {
+            margin: auto 20px auto 0;
+        }
+
+        span {
+            margin: auto auto auto 0;
+        }
+
+        &:hover {
+            color:$main_color;
+            background-color: $gray_bg_color;
+        }
+
+        &:hover svg{
+            stroke:$main_color;
+            fill:$main_color;
+        }
 
     }
 

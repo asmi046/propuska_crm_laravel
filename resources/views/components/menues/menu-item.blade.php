@@ -1,4 +1,4 @@
-<a href="{{ route($route) }}">
+<a @class(['side_nav_item', 'active' => false]) href="{{ route($route) }}">
     <svg class="sprite_icon">
         <use xlink:href="#{{$icon}}"></use>
     </svg>
