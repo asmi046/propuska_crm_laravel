@@ -1,0 +1,28 @@
+.control_item {
+    display: flex;
+    padding: 5px 20px;
+    border-radius: $border_rad;
+    margin-bottom: 3px;
+    svg {
+        margin: auto 10px auto 0;
+    }
+
+    span {
+        margin: auto auto auto 0;
+    }
+
+    &:hover {
+        color:$main_color;
+        background-color: $sub_color;
+    }
+
+    &:hover span{
+        color: white;
+    }
+
+    &:hover svg{
+        stroke:white;
+        fill:white;
+    }
+
+}

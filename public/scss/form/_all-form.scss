@@ -10,6 +10,31 @@ form {
     }
 
     header{
-        background-color: unset;  
+        background-color: unset;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+}
+
+
+.form-status {
+    border-radius: 4px;
+    padding: 20px;
+    border: 2px solid var(--grey);
+    margin-bottom: 2rem;
+
+    &--success {
+        border: 2px solid $sub_color;
+        color: $sub_color;
+        border: 2px solid $sub_color;
+        background-color: #16a4a41a;
+    }
+
+    &--error {
+        border: 2px solid $alert_color;
+        color: $alert_color;
+        background-color: #ef45451a;
     }
 }

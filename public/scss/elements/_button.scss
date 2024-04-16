@@ -11,6 +11,8 @@ button,
     font-family: $main_fonts;
     font-size: 16px;
 
+    border-radius: $box_border_rad;
+
     &:hover {
         background-color: $hover_color;
     }

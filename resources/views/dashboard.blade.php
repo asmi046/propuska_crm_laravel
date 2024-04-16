@@ -29,7 +29,13 @@
                         <td>{{ $item->email_dop }}</td>
                         <td>{{ $item->phone }}</td>
                         <td></td>
-                        <td></td>
+                        <td>
+
+                            <x-controls.lnk-icon title="Подробнее" icon="information" route="home"></x-controls.lnk-icon>
+                            <x-controls.lnk-icon title="Обновить" icon="refresh" route="home"></x-controls.lnk-icon>
+                            <x-controls.lnk-icon title="Редактировать" icon="edit_pen" :route="route('edit_number_info', $item->id)"></x-controls.lnk-icon>
+                            <x-controls.lnk-icon title="Удалить" icon="trash" route="home"></x-controls.lnk-icon>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
