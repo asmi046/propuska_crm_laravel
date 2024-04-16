@@ -39,4 +39,12 @@ class NumberEditController extends Controller
 
         return redirect()->route('edit_number_info', $item->id)->with('number_info_save', "Номер добавлен");
     }
+
+    public function add_many_numbers() {
+        return view('add_many_numbers');
+    }
+
+    public function create_many_numbers() {
+        return view('add_many_numbers');
+    }
 }
