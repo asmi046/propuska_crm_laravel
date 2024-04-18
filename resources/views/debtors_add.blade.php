@@ -1,8 +1,8 @@
 @extends('layouts.all_interface')
 
 @php
-    $title = "Проверить информацию по номеру";
-    $description = "Проверить информацию по номеру";
+    $title = "Добавление должников в базу";
+    $description = "Добавление должников в базу";
 @endphp
 
 @section('title', $title)

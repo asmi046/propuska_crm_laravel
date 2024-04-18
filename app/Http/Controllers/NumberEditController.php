@@ -47,4 +47,8 @@ class NumberEditController extends Controller
     public function create_many_numbers() {
         return view('add_many_numbers');
     }
+
+    public function email_chenge() {
+        return view('email_chenge');
+    }
 }

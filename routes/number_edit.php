@@ -13,4 +13,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/add_many_numbers', [NumberEditController::class, "add_many_numbers"])->name('add_many_numbers');
     Route::post('/create_many_numbers', [NumberEditController::class, "create_many_numbers"])->name('create_many_numbers');
+
+    Route::get('/email_chenge', [NumberEditController::class, "email_chenge"])->name('email_chenge');
 });
