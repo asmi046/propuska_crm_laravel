@@ -38,3 +38,28 @@ form {
         background-color: #ef45451a;
     }
 }
+
+.check_truc_number_form {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .field {
+        flex: 1;
+        margin: 0;
+        padding: 0;
+        margin-right: 10px;
+    }
+    .control {
+        height: 100%;
+        input {
+            height: 100%;
+        }
+    }
+
+    button {
+        margin-top: 0;
+        width:100%;
+        max-width: 200px;
+    }
+}
