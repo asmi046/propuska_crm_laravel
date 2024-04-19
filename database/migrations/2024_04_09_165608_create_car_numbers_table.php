@@ -18,19 +18,6 @@ return new class extends Migration
             $table->string('email')->comment('e-mail');
             $table->string('email_dop')->nullable()->comment('Дополнительный e-mail');
             $table->string('phone')->nullable()->comment('Телефон');
-            $table->string('time')->nullable()->comment('Телефон');
-            $table->string('pass_time')->nullable()->comment('Время пропуска');
-            $table->string('status')->nullable()->comment('Статус пропуска');
-            $table->string('sys_status')->nullable()->comment('Системный статус пропуска');
-            $table->date('chec_time')->nullable()->comment('Последняя проверка');
-            $table->date('start_data')->nullable()->comment('Дата начала проверка');
-            $table->date('end_data')->nullable()->comment('Дата окончания проверка');
-            $table->date('anul_data')->nullable()->comment('Дата анулиции проверка');
-
-            $table->string('seria', 10)->nullable()->comment('Серия пропуска');
-            $table->string('pass_number', 20)->nullable()->comment('Серия пропуска');
-            $table->string('pass_type', 10)->nullable()->comment('Тип пропуска');
-            $table->integer('dey_count')->nullable()->comment('Осталось дней');
 
         });
     }

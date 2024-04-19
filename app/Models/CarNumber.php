@@ -13,18 +13,13 @@ class CarNumber extends Model
         'truc_number',
         'email',
         'email_dop',
-        'phone',
-        'time',
-        'pass_time',
-        'status',
-        'sys_status',
-        'chec_time',
-        'start_data',
-        'end_data',
-        'anul_data',
-        'seria',
-        'pass_number',
-        'pass_type',
-        'dey_count',
+        'phone'
     ];
+
+
+    public function active_numbers(): HasMany
+    {
+        return $this->hasMany(ActivePass::class);
+    }
+
 }
