@@ -51,4 +51,14 @@ class NumberEditController extends Controller
     public function email_chenge() {
         return view('email_chenge');
     }
+
+    public function delete_number($id) {
+
+        $item = CarNumber::where('id', $id)->first();
+        if(!$item) abort('404');
+
+        $item->delete();
+
+        return redirect()->back()->with('number_deleted', "Номер удален!");
+    }
 }

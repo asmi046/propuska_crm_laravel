@@ -12,5 +12,13 @@
     <section class="table_section">
         <h1>{{ $title }}</h1>
         <x-forms.check-truck-numbet-form :number="$number" :action="route('check_number')"></x-forms.check-truck-numbet-form>
+
+        @if ($info)
+            <br>
+            <x-tables.number-info-table :info="$info"></x-tables.number-info-table>
+        @endif
+
+
+
     </section>
 @endsection
