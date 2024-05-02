@@ -32,10 +32,21 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->email_dop }}</td>
                         <td>{{ $item->phone }}</td>
-                        <td></td>
+                        <td>
+
+                                <div class="an_wrapper">
+                                    @foreach ($item->active_numbers as $an)
+                                         <div class="an">
+                                            {{ $an->type_pass }} {{ $an->series }}-{{ $an->pass_number }} до {{ date("d.m.Y", strtotime($an->valid_to)) }}
+                                         </div>
+
+                                    @endforeach
+                                </div>
+
+                        </td>
                         <td>
                             <x-controls.lnk-icon title="Подробнее" icon="information" :route="route('check_number', $item->truc_number )"></x-controls.lnk-icon>
-                            <x-controls.lnk-icon title="Обновить" icon="refresh" route="home"></x-controls.lnk-icon>
+                            <x-controls.lnk-icon title="Обновить" icon="refresh" :route="route('update_number_info', $item->id)"></x-controls.lnk-icon>
                             <x-controls.lnk-icon title="Редактировать" icon="edit_pen" :route="route('edit_number_info', $item->id)"></x-controls.lnk-icon>
                             <x-controls.lnk-icon-delete title="Удалить" icon="trash" :route="route('delete_number', $item->id)"></x-controls.lnk-icon-delete>
                         </td>

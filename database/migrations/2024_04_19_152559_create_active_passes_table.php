@@ -14,23 +14,23 @@ return new class extends Migration
         Schema::create('active_passes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('car_numbers_id')
+            $table->foreignId('car_number_id')
                     ->constrained()
                     ->cascadeOnUpdate()
                     ->cascadeOnDelete();
 
-            $table->string('pass_time')->nullable()->comment('Время пропуска');
+            $table->string('type_pass')->nullable()->comment('Время пропуска');
             $table->string('status')->nullable()->comment('Статус пропуска');
             $table->string('sys_status')->nullable()->comment('Системный статус пропуска');
-            $table->date('chec_time')->nullable()->comment('Последняя проверка');
-            $table->date('start_data')->nullable()->comment('Дата начала проверка');
-            $table->date('end_data')->nullable()->comment('Дата окончания проверка');
-            $table->date('anul_data')->nullable()->comment('Дата анулиции проверка');
+            $table->timestamp('chec_time')->nullable()->comment('Последняя проверка')->useCurrent();
+            $table->dateTime('valid_from')->nullable()->comment('Дата начала проверка');
+            $table->dateTime('valid_to')->nullable()->comment('Дата окончания проверка');
+            $table->dateTime('anul_data')->nullable()->comment('Дата анулиции проверка');
 
-            $table->string('seria', 10)->nullable()->comment('Серия пропуска');
-            $table->string('pass_number', 20)->nullable()->comment('Серия пропуска');
-            $table->string('pass_type', 10)->nullable()->comment('Тип пропуска');
-            $table->integer('dey_count')->nullable()->comment('Осталось дней');
+            $table->string('series', 10)->nullable()->comment('Серия пропуска');
+            $table->string('pass_number', 20)->nullable()->comment('Номер пропуска');
+            $table->string('pass_zone', 10)->nullable()->comment('Зона пропуска');
+            $table->integer('deycount')->nullable()->comment('Осталось дней');
 
         });
     }

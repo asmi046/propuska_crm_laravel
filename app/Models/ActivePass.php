@@ -2,24 +2,44 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ActivePass extends Model
 {
     use HasFactory;
 
     public $fillable = [
-        'pass_time',
+        'car_numbers_id',
+        'type_pass',
         'status',
         'sys_status',
         'chec_time',
-        'start_data',
-        'end_data',
+        'valid_from',
+        'valid_to',
         'anul_data',
-        'seria',
+        'series',
         'pass_number',
-        'pass_type',
-        'dey_count',
+        'pass_zone',
+        'deycount',
     ];
+
+    protected function validFrom(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => $value,
+            set: fn (string $value) => date("Y-m-d H:i:s", strtotime($value)),
+        );
+    }
+
+    protected function setValidToAttribute($value)
+    {
+        $this->attributes['valid_to'] = date("Y-m-d H:i:s", strtotime($value));
+    }
+
+    protected function setAnulDataAttribute($value)
+    {
+        $this->attributes['anul_data'] = date("Y-m-d H:i:s", strtotime($value));
+    }
 }

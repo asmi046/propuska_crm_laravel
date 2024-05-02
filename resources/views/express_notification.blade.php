@@ -9,9 +9,9 @@
 @section('description', $description)
 
 @section('main')
-    <section class="table_section">
+    <section id="mass_alert_app" class="table_section">
         <h1>{{ $title }}</h1>
-
+        <mass-alert></mass-alert>
     </section>
 @endsection
 

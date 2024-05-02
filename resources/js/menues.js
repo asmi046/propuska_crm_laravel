@@ -3,6 +3,8 @@ export default class SideMenu {
         this.menue = document.querySelector(menue_id)
         this.menue_activate_buttons = document.querySelectorAll(menue_activate_btn);
 
+        if (!this.menue) return;
+
         this.menue.querySelector('.shadow').addEventListener('click', () => {
             this.menue_toggle();
         })

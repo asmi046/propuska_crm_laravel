@@ -2,3 +2,27 @@ import './bootstrap';
 import SideMenu from './menues.js';
 
 let side_menue = new SideMenu('#main_side_menue', '.show_menue_button');
+
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+import {createApp} from 'vue/dist/vue.esm-bundler';
+
+import MassAlert from "./components/MassAlert.vue"
+
+const mass_alert_app = createApp({
+    components:{
+        MassAlert
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+
+if (document.getElementById('mass_alert_app')) {
+    mass_alert_app.use(VueAxios, axios)
+    mass_alert_app.mount("#mass_alert_app")
+}
