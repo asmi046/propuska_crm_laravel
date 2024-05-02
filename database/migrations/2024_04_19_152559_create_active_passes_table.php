@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('type_pass')->nullable()->comment('Время пропуска');
             $table->string('status')->nullable()->comment('Статус пропуска');
             $table->string('sys_status')->nullable()->comment('Системный статус пропуска');
+            $table->string('sys_color')->nullable()->comment('Системный цвет');
             $table->timestamp('chec_time')->nullable()->comment('Последняя проверка')->useCurrent();
             $table->dateTime('valid_from')->nullable()->comment('Дата начала проверка');
             $table->dateTime('valid_to')->nullable()->comment('Дата окончания проверка');

@@ -33,16 +33,7 @@
                         <td>{{ $item->email_dop }}</td>
                         <td>{{ $item->phone }}</td>
                         <td>
-
-                                <div class="an_wrapper">
-                                    @foreach ($item->active_numbers as $an)
-                                         <div class="an">
-                                            {{ $an->type_pass }} {{ $an->series }}-{{ $an->pass_number }} до {{ date("d.m.Y", strtotime($an->valid_to)) }}
-                                         </div>
-
-                                    @endforeach
-                                </div>
-
+                            <x-active-numbers.all-number :item="$item"></x-active-numbers.all-number>
                         </td>
                         <td>
                             <x-controls.lnk-icon title="Подробнее" icon="information" :route="route('check_number', $item->truc_number )"></x-controls.lnk-icon>

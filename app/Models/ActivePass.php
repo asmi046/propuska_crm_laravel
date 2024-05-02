@@ -15,6 +15,7 @@ class ActivePass extends Model
         'type_pass',
         'status',
         'sys_status',
+        'sys_color',
         'chec_time',
         'valid_from',
         'valid_to',
