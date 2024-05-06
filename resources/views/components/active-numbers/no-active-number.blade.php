@@ -1,5 +1,5 @@
 <div class="an_wrapper">
-    @foreach ($item->active_numbers as $an)
+    @foreach ($item->no_active_numbers as $an)
          <div class="an {{$an->sys_color}}">
             <div class="b_head">
                 @if ($an->type_pass === "Дневной")

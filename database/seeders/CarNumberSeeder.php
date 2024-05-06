@@ -17,6 +17,7 @@ class CarNumberSeeder extends Seeder
         include 'old_data/service_number.php';
 
         foreach ($service_number as $item) {
+            if (empty($item['number'])) continue;
             DB::table("car_numbers")->insert(
                 [
                     'truc_number' => $item['number'],

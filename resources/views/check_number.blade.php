@@ -16,6 +16,9 @@
         @if ($info)
             <br>
             <x-tables.number-info-table :info="$info"></x-tables.number-info-table>
+        @else
+            <br>
+            <strong>По вашему запросу ничего не найдено</strong>
         @endif
 
 

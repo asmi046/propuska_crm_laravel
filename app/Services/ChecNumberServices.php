@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CarNumber;
 use Illuminate\Support\Facades\Http;
 
 class ChecNumberServices {
@@ -79,4 +80,31 @@ class ChecNumberServices {
         return $passes;
     }
 
+
+    public function fill_number_info(CarNumber $item) {
+
+        if (!$item) return;
+
+        $result = $this->chec_number($item->truc_number);
+        $an_services = new ActiveNumberServices();
+
+        $an = $an_services->get_active_numbers($result, $item->id);
+        $n_an = $an_services->get_no_active_numbers($result, $item->id);
+
+        // dd($an, $n_an);
+
+        $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
+        $item->no_active_numbers()->delete(['car_numbers_id' => $item->id]);
+
+        foreach ($an as $elem)
+            $item->active_numbers()->create($elem);
+
+        foreach ($n_an as $elem)
+            $item->no_active_numbers()->create($elem);
+
+        return [
+            'active_number' => $an,
+            'no_active_number' => $n_an,
+        ];
+    }
 }

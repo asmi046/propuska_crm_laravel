@@ -21,7 +21,8 @@
                     <th>e-mail</th>
                     <th>e-mail доп.</th>
                     <th>Телефон</th>
-                    <th>Активные номера</th>
+                    <th>Активные пропуска</th>
+                    <th>Последние пропуска</th>
                     <th>Управление</th>
                 </tr>
             </thead>
@@ -34,6 +35,9 @@
                         <td>{{ $item->phone }}</td>
                         <td>
                             <x-active-numbers.all-number :item="$item"></x-active-numbers.all-number>
+                        </td>
+                        <td>
+                            <x-active-numbers.no-active-number :item="$item"></x-active-numbers.no-active-number>
                         </td>
                         <td>
                             <x-controls.lnk-icon title="Подробнее" icon="information" :route="route('check_number', $item->truc_number )"></x-controls.lnk-icon>

@@ -29,9 +29,21 @@ section{
     margin: 0 auto;
 }
 
+.loader_icon {
+    height: 50px;
+    width: 100%;
+}
+
 .sprite_icon {
     width: 24px;
     height: 24px;
+    fill: $black_color;
+    stroke: $black_color;
+}
+
+.time_icon {
+    width: 14px;
+    height: 14px;
     fill: $black_color;
     stroke: $black_color;
 }
@@ -62,10 +74,23 @@ section{
         flex-direction: column;
         flex-wrap: wrap;
         font-size: 14px;
-        padding: 5px 10px;
         border: 1px solid $gray_border_color;
         border-radius: 5px;
         margin-right: 5px;
+
+        .b_head {
+            padding: 5px 10px;
+            display: flex;
+            svg{
+                margin: auto 10px auto 0;
+            }
+        }
+
+        .b_body {
+            display: flex;
+            flex-direction: column;
+            padding: 5px 10px;
+        }
     }
 }
 

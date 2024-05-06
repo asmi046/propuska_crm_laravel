@@ -26,13 +26,15 @@ class NumberDetailController extends Controller
         $item = CarNumber::where('id', $id)->first();
         if(!$item) abort('404');
 
-        $result = $cn_service->chec_number($item->truc_number);
-        $an = $an_services->get_active_numbers($result, $item->id);
+        // $result = $cn_service->chec_number($item->truc_number);
+        // $an = $an_services->get_active_numbers($result, $item->id);
 
-        $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
+        // $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
 
-        foreach ($an as $elem)
-            $item->active_numbers()->create($elem);
+        // foreach ($an as $elem)
+        //     $item->active_numbers()->create($elem);
+
+        $cn_service->fill_number_info($item);
 
         return redirect()->back();
 

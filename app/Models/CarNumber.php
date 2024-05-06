@@ -17,10 +17,20 @@ class CarNumber extends Model
         'phone'
     ];
 
+    protected $with = [
+        'active_numbers',
+        'no_active_numbers'
+    ];
+
 
     public function active_numbers(): HasMany
     {
         return $this->hasMany(ActivePass::class);
+    }
+
+    public function no_active_numbers(): HasMany
+    {
+        return $this->hasMany(NoActivePasses::class);
     }
 
 }
