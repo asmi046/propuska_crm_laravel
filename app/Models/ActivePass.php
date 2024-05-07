@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ActivePass extends Model
@@ -11,7 +12,7 @@ class ActivePass extends Model
     use HasFactory;
 
     public $fillable = [
-        'car_numbers_id',
+        'car_number_id',
         'type_pass',
         'status',
         'sys_status',
@@ -42,5 +43,10 @@ class ActivePass extends Model
     protected function setAnulDataAttribute($value)
     {
         $this->attributes['anul_data'] = date("Y-m-d H:i:s", strtotime($value));
+    }
+
+    public function truc(): BelongsTo
+    {
+        return $this->belongsTo(CarNumber::class, 'car_number_id', 'id');
     }
 }

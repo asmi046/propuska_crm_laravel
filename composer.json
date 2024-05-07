@@ -9,10 +9,12 @@
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "sentry/sentry-laravel": "^4.5"
     },
     "require-dev": {
         "asmi046/site_skelet": "^1.0",
+        "buggregator/trap": "^1.6",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

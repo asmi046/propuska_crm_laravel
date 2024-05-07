@@ -19,21 +19,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>Зона</th>
-                    <th>Номер</th>
+                    <th>Пропуск</th>
+                    <th>Госномер</th>
+                    <th>Email</th>
                     <th>Время</th>
-                    <th>Действует с</th>
-                    <th>Действует по</th>
-                    <th>Статус</th>
+                    <th>Оповещение</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(item, i) in list" :key="i">
-                    <td>{{ item[0] }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ item.pass }}</td>
+                    <td>{{ item.truc_number }}</td>
+                    <td>{{ item.time }}</td>
+                    <td>{{ item.email }}</td>
                     <td></td>
                 </tr>
             </tbody>
@@ -45,12 +43,14 @@
 <script setup>
     import { ref } from 'vue'
 
-    let list_text = ref('БА-0686465, БА-1470909, БА-1397420, БА-1351589, БА-1531232')
+    let list_text = ref('БА-1516048, БА-1351981, БА-1351369, БА-0534768, БА-0904913')
     let list = ref([])
     let loader = ref(false)
 
     let do_check = () => {
         loader.value = true
+        list.value = []
+
         let mainnumbers = list_text.value.split(/(?:\r\n|\r|\n|,|, )+/g)
         console.log(mainnumbers)
 
@@ -60,6 +60,7 @@
             })
             .then((resp) => {
                 list.value.push(resp.data)
+                console.log(resp.data)
                 if (list.value.length == mainnumbers.length)
                     loader.value = false
             })

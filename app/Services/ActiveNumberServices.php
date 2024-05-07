@@ -38,8 +38,9 @@ class ActiveNumberServices {
                 $rez[] = (array)$item;
         }
 
-        if (empty($rez))
-            $rez[] = (array)$numbers[0];
+        $last = (array)$numbers[0];
+        if (empty($rez) && ($last['sys_status'] === 'Закончился'))
+            $rez[] = $last;
 
         return $rez;
     }
