@@ -51,8 +51,8 @@ class NumberDetailController extends Controller
         $state="Выдан другой датой";
 
         foreach ($result as $item) {
-            if (!empty($result->record_updated_on) && ($result->series === "БА")){
-                $dataUp = date("Y-m-d",strtotime($result->record_updated_on));
+            if (!empty($item->record_updated_on) && ($item->series === "БА")){
+                $dataUp = date("Y-m-d",strtotime($item->record_updated_on));
                 if ($dataUp == $nData) {
                     $state = "Выдан сегодня";
                     break;

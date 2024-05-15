@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarNumber;
+use App\Filters\PassFilter;
 use Illuminate\Http\Request;
 use App\Services\ChecNumberServices;
 
 class IndexController extends Controller
 {
-    public function index() {
-        $numbers = CarNumber::paginate(50);
+    public function index(PassFilter $request) {
+        $numbers = CarNumber::select()->filter($request)->paginate(50);
         return view('dashboard', ['numbers' => $numbers]);
     }
 
