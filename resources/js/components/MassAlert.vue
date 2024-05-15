@@ -32,7 +32,7 @@
                     <td>{{ item.truc_number }}</td>
                     <td>{{ item.time }}</td>
                     <td>{{ item.email }}</td>
-                    <td></td>
+                    <td>{{ (item.result == "1")?'Отправлено':'Не отправлено' }}</td>
                 </tr>
             </tbody>
         </table>

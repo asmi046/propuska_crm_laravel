@@ -44,8 +44,16 @@ class NumberEditController extends Controller
         return view('add_many_numbers');
     }
 
-    public function create_many_numbers() {
-        return view('add_many_numbers');
+    public function add_many_numbers_line(NumberEditRequest $request) {
+        $data = $request->validated();
+
+        $element = CarNumber::where('truc_number', $data['truc_number'])->first();
+
+        if ($element) return ["state" => "Уже в базе"];
+
+        $item = CarNumber::create($data);
+
+        return ["state" => "Добавлен в базу"];
     }
 
     public function email_chenge() {

@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\ActivePass;
 use App\Mail\Alert\AnnulMail;
+use Illuminate\Mail\Mailable;
 use App\Models\NoActivePasses;
+use Illuminate\Support\Facades\Mail;
 
 class MassAlertServices {
 
@@ -19,6 +21,7 @@ class MassAlertServices {
 
     public function do_alert(string $alert_pass) {
 
+
         $pass = str_replace(["-"," ","_"],"", $alert_pass);
 
         $serias = mb_substr($pass, 0, 2);
@@ -32,15 +35,18 @@ class MassAlertServices {
             'truc_number' => "",
             'email' => "",
             'time' => "",
+            'result' => 0,
         ];
 
-        Mail::to($an->email)->send(new AnnulMail($an->truc_number, $serias.$number));
+        Mail::to($an->truc->email)->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
+        // Mail::to("asmi046@gmail.com")->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
 
         return [
             'pass' => $serias.$number,
             'truc_number' => $an->truc->truc_number,
             'email' => $an->truc->email,
             'time' => $an->type_pass,
+            'result' => 1,
         ];
     }
 

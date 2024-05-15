@@ -12,7 +12,9 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@sentry/vue": "^7.40.0",
         "@vitejs/plugin-vue": "^5.0.4",
-        "vue-axios": "^3.5.2"
+        "vue-axios": "^3.5.2",
+        "vue-papa-parse": "^3.1.0"
     }
 }

@@ -93,6 +93,8 @@ class ChecNumberServices {
 
         // dd($an, $n_an);
 
+        report( new \Exception("111"));
+
         $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
         $item->no_active_numbers()->delete(['car_numbers_id' => $item->id]);
 

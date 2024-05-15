@@ -10,10 +10,12 @@ import VueAxios from 'vue-axios'
 import {createApp} from 'vue/dist/vue.esm-bundler';
 
 import MassAlert from "./components/MassAlert.vue"
+import MassAdd from "./components/MassAdd.vue"
 
 const mass_alert_app = createApp({
     components:{
-        MassAlert
+        MassAlert,
+        MassAdd
     },
 
     setup() {
@@ -21,8 +23,25 @@ const mass_alert_app = createApp({
     },
 })
 
-
 if (document.getElementById('mass_alert_app')) {
     mass_alert_app.use(VueAxios, axios)
     mass_alert_app.mount("#mass_alert_app")
 }
+
+const mass_add = createApp({
+    components:{
+        MassAdd
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('mass_add')) {
+    mass_add.use(VueAxios, axios)
+    mass_add.mount("#mass_add")
+}
+
+
+

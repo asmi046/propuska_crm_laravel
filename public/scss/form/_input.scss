@@ -29,3 +29,19 @@ textarea{
     padding: 5px 15px;
     height: unset;
 }
+
+label.file {
+    border: 1px solid $gray_border_color;
+    display: block;
+    padding: 20px 30px;
+    border-radius: $border_rad;
+    display: flex;
+    cursor: pointer;
+
+    p {
+        margin: auto auto auto 10px;
+    }
+    input[type=file] {
+        display: none;
+    }
+}
