@@ -11,6 +11,6 @@
 @section('main')
     <section class="table_section">
         <h1>{{ $title }}</h1>
-
+        <x-forms.mail-replace :action="route('email_chenge_do')"></x-forms.mail-replace>
     </section>
 @endsection

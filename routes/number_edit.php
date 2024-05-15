@@ -15,4 +15,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/add_many_numbers_line', [NumberEditController::class, "add_many_numbers_line"])->name('add_many_numbers_line');
 
     Route::get('/email_chenge', [NumberEditController::class, "email_chenge"])->name('email_chenge');
+    Route::post('/email_chenge_do', [NumberEditController::class, "email_chenge_do"])->name('email_chenge_do');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Http\Requests\NumberEditRequest;
+use App\Http\Requests\EmailReplaceRequest;
 
 class NumberEditController extends Controller
 {
@@ -58,6 +59,22 @@ class NumberEditController extends Controller
 
     public function email_chenge() {
         return view('email_chenge');
+    }
+
+    public function email_chenge_do(EmailReplaceRequest $request) {
+        $data = $request->validated();
+
+        $items = CarNumber::where('email', $data['email'])->get();
+
+        foreach ($items as $item) {
+            $item->update(
+                [
+                    'email' => $data['new_email']
+                ]
+            );
+        }
+
+        return redirect()->back()->with('email_chenget', "Найдено и заменено: ".count($items)." позиций");
     }
 
     public function delete_number($id) {
