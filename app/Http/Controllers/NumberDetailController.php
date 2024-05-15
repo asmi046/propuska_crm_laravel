@@ -40,6 +40,33 @@ class NumberDetailController extends Controller
 
     }
 
+    public function mass_check_pass_info(ChecNumberServices $cn_service, ActiveNumberServices $an_services, string $number) {
+
+        $result = $cn_service->chec_number($number);
+
+        $an = $an_services->get_active_numbers($result);
+        $n_an = $an_services->get_no_active_numbers($result);
+
+        $nData = date("Y-m-d");
+        $state="Выдан другой датой";
+
+        foreach ($result as $item) {
+            if (!empty($result->record_updated_on) && ($result->series === "БА")){
+                $dataUp = date("Y-m-d",strtotime($result->record_updated_on));
+                if ($dataUp == $nData) {
+                    $state = "Выдан сегодня";
+                    break;
+                }
+            }
+        }
+
+        return [
+            "state" => $state,
+            "an" => $an,
+            "n_an" => $n_an,
+        ];
+    }
+
     public function check_many_numbers(Request $request) {
         return view('check_many_numbers');
     }

@@ -9,9 +9,9 @@
 @section('description', $description)
 
 @section('main')
-    <section class="table_section">
+    <section id="mass_n_check" class="table_section">
         <h1>{{ $title }}</h1>
-
+        <mass-number-check></mass-number-check>
     </section>
 @endsection
 

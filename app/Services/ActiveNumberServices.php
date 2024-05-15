@@ -16,19 +16,18 @@ class ActiveNumberServices {
         "Анулирован",
     ];
 
-    public function get_active_numbers(array $numbers, int $car_number_id) {
+    public function get_active_numbers(array $numbers) {
         $active_numbers = [];
         foreach ($numbers as $item) {
             if (in_array($item->sys_status, $this->active_stauses))
                {
-                    $item->car_number_id = $car_number_id;
                     $active_numbers[] = (array)$item;
                }
         }
 
         return $active_numbers;
     }
-    public function get_no_active_numbers(array $numbers, int $car_number_id) {
+    public function get_no_active_numbers(array $numbers) {
         $rez = [];
 
         if (empty($numbers)) return $rez;

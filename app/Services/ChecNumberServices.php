@@ -37,7 +37,6 @@ class ChecNumberServices {
         $deycount = $this->countDaysBetweenDates($element->valid_to, date("Y-m-d H:i:s"));
         $deycount = (($deycount+1)<0)?0:($deycount+1);
 
-
         $status = "Действует";
 
         if (!empty($element->cancel_date)) $status = "Анулирован";
@@ -88,12 +87,10 @@ class ChecNumberServices {
         $result = $this->chec_number($item->truc_number);
         $an_services = new ActiveNumberServices();
 
-        $an = $an_services->get_active_numbers($result, $item->id);
-        $n_an = $an_services->get_no_active_numbers($result, $item->id);
+        $an = $an_services->get_active_numbers($result);
+        $n_an = $an_services->get_no_active_numbers($result);
 
         // dd($an, $n_an);
-
-        report( new \Exception("111"));
 
         $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
         $item->no_active_numbers()->delete(['car_numbers_id' => $item->id]);

@@ -11,6 +11,7 @@ import {createApp} from 'vue/dist/vue.esm-bundler';
 
 import MassAlert from "./components/MassAlert.vue"
 import MassAdd from "./components/MassAdd.vue"
+import MassNumberCheck from "./components/MassNumberCheck.vue"
 
 const mass_alert_app = createApp({
     components:{
@@ -41,6 +42,21 @@ const mass_add = createApp({
 if (document.getElementById('mass_add')) {
     mass_add.use(VueAxios, axios)
     mass_add.mount("#mass_add")
+}
+
+const mass_n_check = createApp({
+    components:{
+        MassNumberCheck
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('mass_n_check')) {
+    mass_n_check.use(VueAxios, axios)
+    mass_n_check.mount("#mass_n_check")
 }
 
 
