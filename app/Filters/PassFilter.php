@@ -43,10 +43,6 @@ class PassFilter extends QueryFilter {
                     $query->where('series', $series);
                 });
             }
-
-
-
-
         }
 
     }
