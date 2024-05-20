@@ -14,6 +14,10 @@
 
         <x-forms.debtor-filter></x-forms.debtor-filter>
 
+        @if (session('number_deleted'))
+            <div class="form-status form-status--success">{{ session('number_deleted') }}</div>
+        @endif
+
         <div class="table_wrapper">
             <table>
                 <thead>
@@ -22,6 +26,7 @@
                         <th>e-mail</th>
                         <th>Дата добавления</th>
                         <th>Просрочено дней</th>
+                        <th>Управление</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +36,9 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ date("d.m.Y", strtotime($item->adding_data)) }}</td>
                             <td>{{ $item->deys }}</td>
+                            <td>
+                                <x-controls.lnk-icon-delete title="Удалить" icon="trash" :route="route('debtors_dell', $item->id)"></x-controls.lnk-icon-delete>
+                            </td>
                         </tr>
                     @endforeach
 

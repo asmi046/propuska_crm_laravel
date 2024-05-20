@@ -12,6 +12,7 @@ import {createApp} from 'vue/dist/vue.esm-bundler';
 import MassAlert from "./components/MassAlert.vue"
 import MassAdd from "./components/MassAdd.vue"
 import MassNumberCheck from "./components/MassNumberCheck.vue"
+import DebtorsAdd from "./components/DebtorsAdd.vue"
 
 const mass_alert_app = createApp({
     components:{
@@ -57,6 +58,21 @@ const mass_n_check = createApp({
 if (document.getElementById('mass_n_check')) {
     mass_n_check.use(VueAxios, axios)
     mass_n_check.mount("#mass_n_check")
+}
+
+const debtors_add = createApp({
+    components:{
+        DebtorsAdd
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('debtors_add')) {
+    debtors_add.use(VueAxios, axios)
+    debtors_add.mount("#debtors_add")
 }
 
 
