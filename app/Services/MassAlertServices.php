@@ -38,8 +38,8 @@ class MassAlertServices {
             'result' => 0,
         ];
 
-        Mail::to($an->truc->email)->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
-        // Mail::to("asmi046@gmail.com")->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
+        // Mail::to($an->truc->email)->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
+        Mail::to("asmi046@gmail.com")->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
 
         return [
             'pass' => $serias.$number,

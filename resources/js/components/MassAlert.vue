@@ -43,7 +43,7 @@
 <script setup>
     import { ref } from 'vue'
 
-    let list_text = ref('БА-1516048, БА-1351981, БА-1351369, БА-0534768, БА-0904913')
+    let list_text = ref('БА-1324762, БА-1516048, БА0534768, БА1391311, БА-1403849')
     let list = ref([])
     let loader = ref(false)
 
@@ -64,7 +64,18 @@
                 if (list.value.length == mainnumbers.length)
                     loader.value = false
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                list.value.push({
+                    'pass':elem,
+                    'truc_number':"-",
+                    'time':"-",
+                    'email':"-",
+                    'result':0,
+                })
+                if (list.value.length == mainnumbers.length)
+                    loader.value = false
+            });
         })
     }
 </script>
