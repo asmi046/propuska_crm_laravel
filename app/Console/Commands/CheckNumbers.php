@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\CarNumber;
 use Illuminate\Console\Command;
 use App\Services\ChecNumberServices;
+use App\Services\EventNumberService;
 use App\Services\ActiveNumberServices;
 
 class CheckNumbers extends Command
@@ -26,7 +27,7 @@ class CheckNumbers extends Command
     /**
      * Execute the console command.
      */
-    public function handle(ChecNumberServices $cn_service)
+    public function handle(ChecNumberServices $cn_service, EventNumberService $en_service)
     {
 
         $this->info("Начата проверка:");
@@ -37,8 +38,20 @@ class CheckNumbers extends Command
         $excaption_count = 0;
         $excaption = [];
 
+        $stat = [
+            'razovie' => 0,
+            'postoyannie' => 0,
+            'out30' => 0,
+            'anul' => 0
+        ];
+
+        $chec_id = "CH_".date('d_m_Y')."_".rand(10000, 90000);
+        $en_service->start_checking($chec_id);
+
         foreach($all_numbers as $item) {
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
+
+            if (config('app.env') === "local" && $index > 300) break;
 
             try {
 
@@ -58,11 +71,10 @@ class CheckNumbers extends Command
                 $this->error($e->getMessage());
             }
 
-
-
-
             $index++;
         }
+
+        $en_service->end_checking($chec_id, $stat);
 
         $this->info("Проверка завершена!");
         $this->line("Ошибок: ".$excaption_count);

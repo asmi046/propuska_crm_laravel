@@ -11,7 +11,7 @@ use App\Mail\DebtorAlert\Debet15Mail;
 use App\Mail\DebtorAlert\Debet20Mail;
 use App\Services\ActiveNumberServices;
 
-class CheckNumbers extends Command
+class CheckDebtors extends Command
 {
     /**
      * The name and signature of the console command.
@@ -67,7 +67,9 @@ class CheckNumbers extends Command
                 $this->info($item->truc_number.' - Задолженность '.$deycount." дней. ");
 
                 $adt_tosend = config('notification_adr.adr_to_send');
-                // $adt_tosend[] = $item->email;
+
+                if (config('app.env') === "production")
+                    $adt_tosend[] = $item->email;
 
                 if ($deycount == 11) {
                     Mail::to($adt_tosend)->send(new Debet11Mail($item->truc_number));
