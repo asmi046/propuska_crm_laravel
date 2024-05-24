@@ -53,11 +53,14 @@ class ChecNumberServices {
         );
     }
 
-    public function chec_number(string $truck_num = null, string $type = "old") {
+    public function chec_number(string $truck_num = null, string $type = "base") {
 
         if (empty($truck_num)) return null;
 
-        $response = Http::get(config('chec_service.service_url'), [
+        $check_type = ($type === "base")?config('chec_service.service_url'):config('chec_service.service_url_for_site');
+
+
+        $response = Http::get($check_type, [
             'apikey' => config('chec_service.service_token'),
             'truck_num' => $truck_num,
         ]);
@@ -73,8 +76,8 @@ class ChecNumberServices {
             $element->sys_status = $stauses['sys_status'];
             $element->deycount = $stauses['deycount'];
             $element->sys_color = $this->get_color_class($stauses['sys_status']);
+            $element->check_type = $type;
         }
-
 
         return $passes;
     }

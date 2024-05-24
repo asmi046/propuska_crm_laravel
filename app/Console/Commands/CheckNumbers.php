@@ -51,7 +51,7 @@ class CheckNumbers extends Command
         foreach($all_numbers as $item) {
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
 
-            if (config('app.env') === "local" && $index > 300) break;
+            if (config('app.env') === "local" && $index > 7000) break;
 
             try {
 
@@ -59,10 +59,12 @@ class CheckNumbers extends Command
 
                 foreach ($rez['active_number'] as $elem) {
                     $this->info("Добавлен активный пропуск: ".$elem['series']." ".$elem['pass_number']." ".$elem['type_pass']." ".$elem['sys_status']);
+                    $en_service->check_pass_events($elem, $item->email);
                 }
 
                 foreach ($rez['no_active_number'] as $elem) {
                     $this->error("Добавлен не активный пропуск: ".$elem['series']." ".$elem['pass_number']." ".$elem['type_pass']." ".$elem['sys_status']);
+                    $en_service->check_pass_events($elem, $item->email);
                 }
 
             } catch (\Throwable $e) {
