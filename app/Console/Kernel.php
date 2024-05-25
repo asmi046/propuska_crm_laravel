@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('numbers:check-numbers')->cron('25 */2 * * *');
         $schedule->command('debtors:check-debtors')->cron('1 6 * * *');
+        $schedule->command('mtest:cron-test')->everyTwoMinutes();
     }
 
     /**
