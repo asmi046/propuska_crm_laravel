@@ -21,8 +21,6 @@
                 <tr>
                     <th>Госномер</th>
                     <th>e-mail</th>
-                    <th>e-mail доп.</th>
-                    <th>Телефон</th>
                     <th>Активные пропуска</th>
                     <th>Последние пропуска</th>
                     <th>Управление</th>
@@ -33,8 +31,6 @@
                     <tr>
                         <td>{{ $item->truc_number }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->email_dop }}</td>
-                        <td>{{ $item->phone }}</td>
                         <td>
                             <x-active-numbers.all-number :item="$item"></x-active-numbers.all-number>
                         </td>

@@ -12,15 +12,12 @@
                     </svg>
                 @endif
 
-                <span>{{ $an->type_pass }}</span>
+                <span>{{ $an->type_pass }} ({{ $an->sys_status }})</span>
             </div>
 
             <div class="b_body">
-                <span>{{ $an->sys_status }}</span>
-                <span>{{ $an->pass_zone }}</span>
-                <span>{{ $an->series }}-{{ $an->pass_number }}</span>
-                <span>от {{ date("d.m.Y", strtotime($an->valid_from)) }}</span>
-                <span>до {{ date("d.m.Y", strtotime($an->valid_to)) }}</span>
+                <span>{{ $an->series }}-{{ $an->pass_number }} ({{ $an->pass_zone }})</span>
+                <span>от {{ date("d.m.Y", strtotime($an->valid_from)) }} до {{ date("d.m.Y", strtotime($an->valid_to)) }}</span>
             </div>
          </div>
     @endforeach
