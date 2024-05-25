@@ -28,7 +28,7 @@ class TmpPassEndNowMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Временный пропуск на машину ".$this->pass['truck_num']." заканчивается сегодня",
+            subject: "Временный пропуск на машину ".$this->pass['truck_num']." заканчивается сегодня".((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 

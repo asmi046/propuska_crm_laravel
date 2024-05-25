@@ -27,8 +27,9 @@ class MainPassAnnulMail extends Mailable
      */
     public function envelope(): Envelope
     {
+
         return new Envelope(
-            subject: "Пропуск ".$this->pass['truck_num']." аннулирован",
+            subject: "Пропуск ".$this->pass['truck_num']." аннулирован".((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 

@@ -107,32 +107,26 @@ class EventNumberService {
 
         if ($this->check_tmp_pass_created($pass))
         {
-            dump("Событие 1");
             Mail::to($adt_tosend)->send(new TmpPassCreatedMail($pass));
         }
 
         if ($this->check_main_pass_created($pass)) {
-            dump("Событие 2");
             Mail::to($adt_tosend)->send(new MainPassCreatedMail($pass));
         }
 
         if ($this->check_tmp_pass_end_now($pass)) {
-            dump("Событие 3");
             Mail::to($adt_tosend)->send(new TmpPassEndNowMail($pass));
         }
 
         if ($this->check_main_pass_end_60($pass)) {
-            dump("Событие 4");
             Mail::to($adt_tosend)->send(new MainPassEnd60Mail($pass));
         }
 
         if ($this->check_main_pass_end_30($pass)) {
-            dump("Событие 5");
             Mail::to($adt_tosend)->send(new MainPassEnd30Mail($pass));
         }
 
         if ($this->check_main_pass_annul($pass)) {
-            dump("Событие 6");
             Mail::to($adt_tosend)->send(new MainPassEnd60Mail($pass));
         }
 

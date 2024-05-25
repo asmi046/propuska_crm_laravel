@@ -28,7 +28,7 @@ class MainPassEnd60Mail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "До окончания пропуска на ".$this->pass['truck_num']." осталось 60 дней",
+            subject: "До окончания пропуска на ".$this->pass['truck_num']." осталось 60 дней".((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 

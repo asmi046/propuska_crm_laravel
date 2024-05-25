@@ -28,7 +28,7 @@ class MainPassCreatedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Вышел постоянный пропуск для ".$this->pass['truck_num']." до ".date("d.m.Y", strtotime($this->pass['valid_to'])),
+            subject: "Вышел постоянный пропуск для ".$this->pass['truck_num']." до ".date("d.m.Y", strtotime($this->pass['valid_to'])).((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 
