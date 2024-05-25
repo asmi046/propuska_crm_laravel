@@ -21,3 +21,15 @@ table {
         background-color: #EBEBEB;
     }
 }
+
+
+@media (max-width:1024px) {
+    table th{
+        display: none;
+    }
+
+    table tr{
+        display: flex;
+        flex-direction: column;
+    }
+}

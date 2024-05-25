@@ -77,3 +77,23 @@ form {
         max-width: 200px;
     }
 }
+
+
+.start-form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+@media (max-width:520px) {
+    .filter_form {
+        flex-direction: column;
+
+        .field {
+            width: 100%;
+        }
+    }
+
+
+}
+
+

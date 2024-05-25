@@ -14,3 +14,13 @@ header{
         font-size: 28px;
     }
 }
+
+
+@media (max-width:520px) {
+    header {
+        h1 {
+            line-height: 1;
+            font-size: 18px;
+        }
+    }
+}
