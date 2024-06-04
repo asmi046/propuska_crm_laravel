@@ -9,10 +9,12 @@
 @section('description', $description)
 
 @section('main')
-    <section class="table_section">
+    <section class="table_section" id="main_page">
         @if (session('number_info_save'))
             <div class="form-status form-status--success">{{ session('number_info_save') }}</div>
         @endif
+
+        <main-page></main-page>
 
         <x-forms.main-filter></x-forms.main-filter>
 

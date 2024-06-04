@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,9 +21,15 @@ class CarNumber extends Model
 
     protected $with = [
         'active_numbers',
-        'no_active_numbers'
+        'no_active_numbers',
+        'last_pass'
     ];
 
+
+    public function last_pass(): HasOne
+    {
+        return $this->hasOne(LastPass::class);
+    }
 
     public function active_numbers(): HasMany
     {

@@ -51,7 +51,7 @@ class CheckNumbers extends Command
         foreach($all_numbers as $item) {
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
 
-            if (config('app.env') === "local" && $index > 7000) break;
+            if (config('app.env') === "local" && $index > 27000) break;
 
             try {
 

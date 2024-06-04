@@ -58,10 +58,11 @@ class ChecNumberServices {
         if (empty($truck_num)) return null;
 
         $check_type = ($type === "base")?config('chec_service.service_url'):config('chec_service.service_url_for_site');
+        $check_token = ($type === "base")?config('chec_service.service_token'):config('chec_service.service_token_for_site');
 
 
         $response = Http::get($check_type, [
-            'apikey' => config('chec_service.service_token'),
+            'apikey' => $check_token,
             'truck_num' => $truck_num,
         ]);
 
@@ -97,6 +98,10 @@ class ChecNumberServices {
 
         $item->active_numbers()->delete(['car_numbers_id' => $item->id]);
         $item->no_active_numbers()->delete(['car_numbers_id' => $item->id]);
+        $item->last_pass()->delete(['car_numbers_id' => $item->id]);
+
+        if ($result)
+            $item->last_pass()->create((array)$result[0]);
 
         foreach ($an as $elem)
             $item->active_numbers()->create($elem);

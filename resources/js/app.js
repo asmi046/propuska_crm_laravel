@@ -9,10 +9,14 @@ import VueAxios from 'vue-axios'
 
 import {createApp} from 'vue/dist/vue.esm-bundler';
 
+import PrimeVue from 'primevue/config';
+import 'primevue/resources/themes/aura-light-green/theme.css'
+
 import MassAlert from "./components/MassAlert.vue"
 import MassAdd from "./components/MassAdd.vue"
 import MassNumberCheck from "./components/MassNumberCheck.vue"
 import DebtorsAdd from "./components/DebtorsAdd.vue"
+import MainPage from "./components/MainPage/MainPage.vue"
 
 const mass_alert_app = createApp({
     components:{
@@ -73,6 +77,21 @@ const debtors_add = createApp({
 if (document.getElementById('debtors_add')) {
     debtors_add.use(VueAxios, axios)
     debtors_add.mount("#debtors_add")
+}
+
+const main_page = createApp({
+    components:{
+        MainPage
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('main_page')) {
+    main_page.use(PrimeVue);
+    main_page.mount("#main_page")
 }
 
 
