@@ -8,6 +8,7 @@ use App\Models\PassCreateLog;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Alert\TmpPassCreatedMail;
+use App\Mail\Alert\MainPassCreatedMail;
 
 class PassCreateInfoController extends Controller
 {
