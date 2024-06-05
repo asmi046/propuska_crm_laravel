@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamp('chec_time')->nullable()->comment('Последняя проверка')->useCurrent();
             $table->dateTime('valid_from')->nullable()->comment('Дата начала проверка');
             $table->dateTime('valid_to')->nullable()->comment('Дата окончания проверка');
-            $table->dateTime('anul_data')->nullable()->comment('Дата анулиции проверка');
+            $table->dateTime('cancel_date')->nullable()->comment('Дата анулиции проверка');
 
             $table->string('series', 10)->nullable()->comment('Серия пропуска');
             $table->string('pass_number', 20)->nullable()->comment('Номер пропуска');

@@ -11,6 +11,7 @@ import {createApp} from 'vue/dist/vue.esm-bundler';
 
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-light-green/theme.css'
+import 'primeicons/primeicons.css'
 
 import MassAlert from "./components/MassAlert.vue"
 import MassAdd from "./components/MassAdd.vue"

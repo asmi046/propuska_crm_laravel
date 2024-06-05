@@ -20,7 +20,7 @@ class ActivePass extends Model
         'chec_time',
         'valid_from',
         'valid_to',
-        'anul_data',
+        'cancel_date',
         'series',
         'pass_number',
         'pass_zone',
@@ -30,19 +30,25 @@ class ActivePass extends Model
     protected function validFrom(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => $value,
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
             set: fn (string $value) => date("Y-m-d H:i:s", strtotime($value)),
         );
     }
 
-    protected function setValidToAttribute($value)
+    protected function validTo(): Attribute
     {
-        $this->attributes['valid_to'] = date("Y-m-d H:i:s", strtotime($value));
+        return Attribute::make(
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+            set: fn (string $value) => date("Y-m-d H:i:s", strtotime($value)),
+        );
     }
 
-    protected function setAnulDataAttribute($value)
+    protected function cancelDate(): Attribute
     {
-        $this->attributes['anul_data'] = date("Y-m-d H:i:s", strtotime($value));
+        return Attribute::make(
+            get: fn ($value) => ($value)?date("d.m.Y", strtotime($value)):null,
+            set: fn ($value) => ($value)?date("Y-m-d H:i:s", strtotime($value)):null,
+        );
     }
 
     public function truc(): BelongsTo

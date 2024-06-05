@@ -14,6 +14,11 @@ class IndexController extends Controller
         return view('dashboard', ['numbers' => $numbers]);
     }
 
+    public function get_all_numbers(PassFilter $request) {
+        $numbers = CarNumber::all();
+        return $numbers;
+    }
+
     public function test($number, ChecNumberServices $cn_service) {
        $result = $cn_service->chec_number($number);
         dd($result);

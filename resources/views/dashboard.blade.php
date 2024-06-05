@@ -16,7 +16,7 @@
 
         <main-page></main-page>
 
-        <x-forms.main-filter></x-forms.main-filter>
+        {{-- <x-forms.main-filter></x-forms.main-filter>
 
         <table>
             <thead>
@@ -50,7 +50,7 @@
             </tbody>
         </table>
 
-        <x-pagination :tovars="$numbers"></x-pagination>
+        <x-pagination :tovars="$numbers"></x-pagination> --}}
     </section>
 @endsection
 
