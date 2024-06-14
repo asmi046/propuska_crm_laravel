@@ -15,7 +15,7 @@ class IndexController extends Controller
     }
 
     public function get_all_numbers(PassFilter $request) {
-        $numbers = CarNumber::all();
+        $numbers = CarNumber::filter($request)->get();
         return $numbers;
     }
 

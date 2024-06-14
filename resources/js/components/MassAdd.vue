@@ -8,11 +8,13 @@
         <input @change="chengeFile" id="i_file" type="file" accept="text/csv">
     </label>
 
+    <Fieldset legend="Результаты">
+        <p><strong>Загружено из файла:</strong> {{ file_count }}</p>
+        <p><strong>Добавлено в базу:</strong> {{ in_base_count }}</p>
+    </Fieldset>
+
     <br>
-    <p><strong>Загружено из файла:</strong> {{ file_count }}</p>
-    <p><strong>Добавлено в базу:</strong> {{ in_base_count }}</p>
-    <br>
-    <button @click.prevent="addToBase" >Добавить в базу</button>
+    <Button @click.prevent="addToBase" label="Добавить в базу" />
 
     <br>
         <svg v-show="loader" class="loader_icon">
@@ -21,29 +23,32 @@
     <br>
 
     <div v-show="list.length > 0" class="table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Госномер</th>
-                    <th>Email</th>
-                    <th>Статус</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, i) in list" :key="i">
-                    <td>{{ item.truc_number }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.state }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <DataTable stripedRows  :value="list">
+            <Column field="truc_number" header="Госномер"></Column>
+            <Column field="email" header="e-mail"></Column>
+            <Column field="state" header="Статус">
+                <template #body="slotProps">
+                    <Tag v-if="slotProps.data.state && slotProps.data.state == 'Добавлен в базу'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
+                    <Tag v-if="slotProps.data.state && slotProps.data.state == 'Уже в базе'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+                    <Tag v-if="slotProps.data.state && slotProps.data.state == 'Ошибка'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+                    <Tag v-if="slotProps.data.state && slotProps.data.state == 'Ожидает загрузки'" icon="pi pi-info-circle" severity="info" :value="slotProps.data.state" />
+                </template>
+            </Column>
+        </DataTable>
     </div>
+
+
 
 </template>
 
 <script setup>
     import { ref } from 'vue'
     import * as papa from "papaparse"
+    import Fieldset from 'primevue/fieldset';
+    import Button from 'primevue/button';
+    import DataTable from 'primevue/datatable';
+    import Column from 'primevue/column';
+    import Tag from 'primevue/tag';
 
     let file_loadet = ref(false)
     let file_name = ref('')
@@ -106,7 +111,7 @@
                         list.value.push({
                             "truc_number": results.data[i][0],
                             "email": results.data[i][1],
-                            "state": "",
+                            "state": "Ожидает загрузки",
                         });
                     }
 

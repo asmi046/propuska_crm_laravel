@@ -9,9 +9,12 @@
 @section('description', $description)
 
 @section('main')
-    <section class="table_section">
+    <section id="check_number" class="table_section">
         <h1>{{ $title }}</h1>
-        <x-forms.check-truck-numbet-form :number="$number" :action="route('check_number')"></x-forms.check-truck-numbet-form>
+
+        <check-number number="{{$number}}" action="{{route('check_number')}}" :grndata="{{ json_encode($info) }}" ></check-number>
+
+        {{-- <x-forms.check-truck-numbet-form :number="$number" :action="route('check_number')"></x-forms.check-truck-numbet-form>
 
         @if ($info)
             <br>
@@ -19,7 +22,7 @@
         @else
             <br>
             <strong>По вашему запросу ничего не найдено</strong>
-        @endif
+        @endif --}}
 
 
 

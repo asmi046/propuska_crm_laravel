@@ -1,6 +1,8 @@
-button {
+td .p-button-label,
+.p-splitbutton .p-button-label {
     font-size: 12px;
 }
+
 .button {
     background-color: $main_color;
     border: 1px solid $main_color;

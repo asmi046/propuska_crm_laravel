@@ -10,9 +10,16 @@ use App\Filters\DebtorsFilter;
 class DebtorsController extends Controller
 {
     public function debtors_dashboard(DebtorsFilter $request) {
-        $all_debtors = Debtor::select()->filter($request)->paginate(50);
+        // $all_debtors = Debtor::select()->filter($request)->paginate(50);
 
-        return view('debtors_dashboard', ['debtors' => $all_debtors]);
+        // return view('debtors_dashboard', ['debtors' => $all_debtors]);
+        return view('debtors_dashboard');
+    }
+
+    public function debtors_dashboard_get(DebtorsFilter $request) {
+        $all_debtors = Debtor::select()->filter($request)->get();
+        dump($request->request->all());
+        return $all_debtors;
     }
 
     public function debtors_add_do(Request $request) {

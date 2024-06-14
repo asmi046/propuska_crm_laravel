@@ -59,6 +59,7 @@
             margin: auto auto auto 0;
         }
 
+        &.active,
         &:hover {
             color:$main_color;
             background-color: $gray_bg_color;

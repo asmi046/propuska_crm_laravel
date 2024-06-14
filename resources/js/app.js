@@ -13,11 +13,14 @@ import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-light-green/theme.css'
 import 'primeicons/primeicons.css'
 
+import CheckNumber from "./components/CheckNumber.vue"
 import MassAlert from "./components/MassAlert.vue"
 import MassAdd from "./components/MassAdd.vue"
 import MassNumberCheck from "./components/MassNumberCheck.vue"
 import DebtorsAdd from "./components/DebtorsAdd.vue"
 import MainPage from "./components/MainPage/MainPage.vue"
+
+import DebtorsList from "./components/DebtorsList.vue"
 
 const mass_alert_app = createApp({
     components:{
@@ -93,6 +96,32 @@ const main_page = createApp({
 if (document.getElementById('main_page')) {
     main_page.use(PrimeVue);
     main_page.mount("#main_page")
+}
+
+const check_number = createApp({
+    components:{
+        CheckNumber
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('check_number')) {
+    check_number.use(PrimeVue);
+    check_number.mount("#check_number")
+}
+
+const debtors_list = createApp({
+    components:{
+        DebtorsList
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('debtors_list')) {
+    debtors_list.use(PrimeVue);
+    debtors_list.mount("#debtors_list")
 }
 
 

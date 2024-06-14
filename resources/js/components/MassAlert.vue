@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <button @click.prevent="do_check" >Начать оповещение</button>
+        <Button @click.prevent="do_check" label="Начать оповещение" />
     </form>
     <br>
     <svg v-show="loader" class="loader_icon">
@@ -15,7 +15,27 @@
     </svg>
     <br>
 
-    <div v-show="list.length > 0" class="table_wrapper">
+    <DataTable v-show="list.length > 0" stripedRows :rows="50" :value="list">
+        <Column field="truc_number" header="Госномер"></Column>
+        <Column field="email" header="e-mail"></Column>
+        <Column field="pass" header="Пропуск">
+            <template #body="slotProps">
+                <span v-if="slotProps.data">
+                    <Avatar v-if="slotProps.data.time == 'Дневной'" title="Дневной" icon="pi pi-sun" style="background-color: #dee9fc; color: #1a2551" />
+                    <Avatar v-if="slotProps.data.time == 'Ночной'" title="Ночной" icon="pi pi-moon" style="background-color: #181f3c; color: white" />
+                    {{ slotProps.data.pass }}
+                </span>
+            </template>
+        </Column>
+        <Column field="result" header="Статус">
+            <template #body="slotProps">
+                <Tag v-if="slotProps.data.result == '1'" icon="pi pi-check" severity="success" value="Отправлено" />
+                <Tag v-if="slotProps.data.result == '0'" icon="pi pi-times" severity="danger" value="Не отправлено" />
+            </template>
+        </Column>
+    </DataTable>
+
+    <!-- <div v-show="list.length > 0" class="table_wrapper">
         <table>
             <thead>
                 <tr>
@@ -36,12 +56,18 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
 
 </template>
 
 <script setup>
     import { ref } from 'vue'
+    import Button from 'primevue/button'
+
+    import DataTable from 'primevue/datatable'
+    import Column from 'primevue/column'
+    import Tag from 'primevue/tag'
+    import Avatar from 'primevue/avatar'
 
     let list_text = ref('БА-1324762, БА-1516048, БА0534768, БА1391311, БА-1403849')
     let list = ref([])

@@ -1,5 +1,7 @@
-<form class="check_truc_number_form" action="{{ $action }}" method="GET">
-    @if (session('number_info_save'))
+
+
+
+    {{-- @if (session('number_info_save'))
         <div class="form-status form-status--success">{{ session('number_info_save') }}</div>
     @endif
 
@@ -17,5 +19,5 @@
         @enderror
     </div>
 
-    <button type="submit">Проверить</button>
-</form>
+    <button type="submit">Проверить</button> --}}
+

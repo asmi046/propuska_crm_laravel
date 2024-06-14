@@ -9,10 +9,12 @@
 @section('description', $description)
 
 @section('main')
-    <section class="table_section">
+    <section id="debtors_list" class="table_section">
         <h1>{{ $title }}</h1>
 
-        <x-forms.debtor-filter></x-forms.debtor-filter>
+        <debtors-list action="{{ route('debtors_dashboard_get') }}" session="{{ session('number_deleted') }}" ></debtors-list>
+
+        {{-- <x-forms.debtor-filter></x-forms.debtor-filter>
 
         @if (session('number_deleted'))
             <div class="form-status form-status--success">{{ session('number_deleted') }}</div>
@@ -46,7 +48,7 @@
             </table>
         </div>
 
-        <x-pagination :tovars="$debtors"></x-pagination>
+        <x-pagination :tovars="$debtors"></x-pagination> --}}
 
     </section>
 @endsection

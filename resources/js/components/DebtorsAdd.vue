@@ -7,37 +7,39 @@
             </div>
         </div>
 
-        <button @click.prevent="do_add" >Добавить</button>
+        <Button @click.prevent="do_add" label="Добавить" />
     </form>
+
     <br>
     <svg v-show="loader" class="loader_icon">
         <use xlink:href="#loader"></use>
     </svg>
     <br>
 
-    <div v-show="list.length > 0" class="table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Госномер</th>
-                    <th>Email</th>
-                    <th>Статус</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, i) in list" :key="i">
-                    <td>{{ item.truc_number }}</td>
-                    <td>{{ item.email }}</td>
-                    <td>{{ item.state }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <DataTable v-show="list.length > 0" stripedRows  :rows="50" :value="list">
+        <Column field="truc_number" header="Госномер"></Column>
+        <Column field="email" header="e-mail"></Column>
+
+        <Column field="state" header="Статус">
+            <template #body="slotProps">
+                <Tag v-if="slotProps.data.state == 'Действует'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state == 'Не найден в основной базе'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state == 'Уже в базе должников'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+            </template>
+        </Column>
+
+    </DataTable>
 
 </template>
 
 <script setup>
     import { ref } from 'vue'
+
+    import Button from 'primevue/button'
+
+    import DataTable from 'primevue/datatable'
+    import Column from 'primevue/column'
+    import Tag from 'primevue/tag'
 
     let list_text = ref('В228ТМ26, С739АА93, А311НО763, А741СВ763, С948ЕЕ123, Х755ОС750')
     let list = ref([])

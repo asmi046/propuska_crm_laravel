@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <button @click.prevent="do_check" >Начать проверку</button>
+        <Button @click.prevent="do_check" label="Начать проверку" />
     </form>
 
     <br>
@@ -16,35 +16,32 @@
     </svg>
     <br>
 
-    <div v-show="list.length > 0" class="table_wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Госномер</th>
-                    <th>Статус</th>
-                    <th>Активные пропуска</th>
-                    <th>Последние пропуска</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, i) in list" :key="i">
-                    <td>{{ item.truc_number }}</td>
-                    <td>{{ item.state }}</td>
-                    <td>
-                        <pass-line :item="item.an"></pass-line>
-                    </td>
-                    <td>
-                        <pass-line :item="item.n_an"></pass-line>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <DataTable v-show="list.length > 0" stripedRows :rows="50" :value="list">
+        <Column field="truc_number" header="Госномер"></Column>
+        <Column field="state" header="Статус"></Column>
+
+        <Column field="an" header="Активные пропуска">
+            <template #body="slotProps">
+                <pass-line :item="slotProps.data.an"></pass-line>
+            </template>
+        </Column>
+
+        <Column field="an" header="Не активные пропуска">
+            <template #body="slotProps">
+                <pass-line :item="slotProps.data.n_an"></pass-line>
+            </template>
+        </Column>
+    </DataTable>
+
 </template>
 
 <script setup>
     import { ref } from 'vue'
     import PassLine from './PassLine.vue'
+
+    import Button from 'primevue/button'
+    import DataTable from 'primevue/datatable';
+    import Column from 'primevue/column';
 
 
     let list_text = ref('В228ТМ26, С739АА93, А311НО763, А741СВ763, С948ЕЕ123, Х755ОС750')

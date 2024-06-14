@@ -15,7 +15,7 @@
     <div class="field">
         <label class="label">Госномер<sup>*</sup></label>
         <div class="control">
-            <input name="truc_number" class="input" value="{{ $item->truc_number ?? old('truc_number') ?? "" }}" type="text" placeholder="Государственный регистрационный номер">
+            <input name="truc_number" class="input p-inputtext p-component" value="{{ $item->truc_number ?? old('truc_number') ?? "" }}" type="text" placeholder="Государственный регистрационный номер">
         </div>
 
         @error('truc_number')
@@ -26,7 +26,7 @@
     <div class="field">
         <label class="label">E-mail<sup>*</sup></label>
         <div class="control">
-            <input name="email" class="input" type="email" value="{{ $item->email ?? old('email') ?? "" }}" placeholder="e-mail">
+            <input name="email" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? old('email') ?? "" }}" placeholder="e-mail">
         </div>
 
         @error('email')
@@ -37,7 +37,7 @@
     <div class="field">
         <label class="label">E-mail дополнительный</label>
         <div class="control">
-            <input name="email_dop" class="input" type="email" value="{{ $item->email_dop ?? old('email_dop') ?? "" }}" placeholder="e-mail">
+            <input name="email_dop" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop ?? old('email_dop') ?? "" }}" placeholder="e-mail">
         </div>
 
         @error('email_dop')
@@ -48,12 +48,12 @@
     <div class="field">
         <label class="label">Телефон</label>
         <div class="control">
-            <input name="phone" class="input" type="tel" value="{{ $item->phone ?? old('phone') ?? "" }}" placeholder="Контактный телефон">
+            <input name="phone" class="input p-inputtext p-component" type="tel" value="{{ $item->phone ?? old('phone') ?? "" }}" placeholder="Контактный телефон">
         </div>
 
         @error('phone')
             <p class="error">{{$message}}</p>
         @enderror
     </div>
-    <button type="submit">Сохранить изменения</button>
+    <button class="p-button p-component" type="submit">Сохранить изменения</button>
 </form
