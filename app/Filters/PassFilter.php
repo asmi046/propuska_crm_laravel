@@ -4,13 +4,7 @@ namespace App\Filters;
 
 class PassFilter extends QueryFilter {
 
-    public function serch($serch) {
-        if (!empty($serch)) {
-            $mserch = "%".$serch."%";
-            $this->builder->where("truc_number", "LIKE", $mserch)->orWhere("email",  "LIKE", $mserch);
-        }
 
-    }
 
     public function sys_statuse($sys_statuse) {
         if (!empty($sys_statuse)) {
@@ -28,6 +22,18 @@ class PassFilter extends QueryFilter {
 
             $this->builder->whereHas('last_pass', function ($query) use ($series) {
                 $query->where('series', $series);
+            });
+        }
+
+    }
+
+    public function serch($serch) {
+        if (!empty($serch)) {
+            $mserch = "%".$serch."%";
+
+            // $this->builder->where("truc_number", "LIKE", $mserch)->orWhere("email",  "LIKE", $mserch);
+            $this->builder->where(function ($query) use ($mserch) {
+                $query->where("truc_number", "LIKE", $mserch)->orWhere("email",  "LIKE", $mserch);
             });
         }
 
