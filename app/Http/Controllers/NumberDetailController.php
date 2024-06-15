@@ -17,8 +17,6 @@ class NumberDetailController extends Controller
 
         $info = $true_number?$detail_service->chec_number($true_number):null;
 
-        dump($info);
-
         return view('check_number', ['number' => $true_number, 'info' => $info]);
     }
 
