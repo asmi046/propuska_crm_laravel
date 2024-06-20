@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LastPass;
 use App\Models\CarNumber;
 use App\Filters\PassFilter;
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ class IndexController extends Controller
     }
 
     public function get_all_numbers(PassFilter $request) {
-        $numbers = CarNumber::filter($request)->get();
+        $numbers = CarNumber::orderBy(
+            LastPass::select('valid_from')
+                ->whereColumn('last_passes.car_number_id', 'car_numbers.id')
+            , "DESC")
+            ->filter($request)
+            ->get();
         return $numbers;
     }
 

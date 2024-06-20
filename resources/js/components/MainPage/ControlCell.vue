@@ -30,6 +30,7 @@
     ];
 
     const more = () => {
-        window.location.href = '/check_number/'+props.gn;
+        // window.location.href = '/check_number/'+props.gn;
+        window.open('/check_number/'+props.gn)
     };
 </script>

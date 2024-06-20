@@ -24,7 +24,6 @@ class NumberEditRequest extends FormRequest
     {
         return [
             'truc_number.required' => 'Поле "Госномер" должно быть заполнено',
-            'email.required' => 'Поле "e-mail" должно быть заполнено',
         ];
     }
 
@@ -37,7 +36,7 @@ class NumberEditRequest extends FormRequest
     {
         return [
             'truc_number' => ['required', 'string'],
-            'email' => ['required', 'string'],
+            'email' => [],
             'email_dop' => [],
             'phone' => [],
         ];

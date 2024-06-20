@@ -17,11 +17,20 @@
     </Card>
 
     <br>
+        <svg v-show="locading" class="loader_icon">
+            <use xlink:href="#loader"></use>
+        </svg>
     <br>
 
     <DataTable stripedRows  paginator :rows="50" :value="passes">
         <Column field="truc_number" header="Госномер"></Column>
-        <Column field="email" header="e-mail"></Column>
+
+        <Column field="email" header="e-mail">
+            <template #body="slotProps">
+                {{ slotProps.data.email }} <br><br> {{slotProps.data.email_dop }}
+            </template>
+        </Column>
+
         <Column field="last_pass.pass_zone" header="Зона"></Column>
         <Column field="pass" header="Пропуск">
             <template #body="slotProps">
@@ -74,7 +83,6 @@ import Card from 'primevue/card';
 
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
-
 
 let passes = ref([])
 

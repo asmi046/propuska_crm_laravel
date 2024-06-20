@@ -99,11 +99,16 @@ class EventNumberService {
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], date("Y-m-d", strtotime($pass->anul_data))));
     }
 
-    public function check_pass_events($pass, $email) {
+    public function check_pass_events($pass, $email, $email_dop) {
 
         $adt_tosend = config('notification_adr.adr_to_send');
-        if (config('app.env') === "production")
+        if (config('app.env') === "production"){
             $adt_tosend[] = $email;
+
+            if (!empty($email_dop))
+                $adt_tosend[] = $email_dop;
+        }
+
 
         if ($this->check_tmp_pass_created($pass))
         {

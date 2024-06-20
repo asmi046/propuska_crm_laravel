@@ -84,6 +84,40 @@ class ChecNumberServices {
     }
 
 
+
+
+    public function find_last_pass($result) {
+
+        $active_stauses = [
+            "Начинается сегодня",
+            "Начинается завтра",
+            "Действует",
+            "Заканчивается завтра",
+            "Заканчивается сегодня",
+        ];
+
+        foreach ($result as $item)
+        if (($item->series === "БА") && in_array($item->sys_status, $active_stauses))
+        {
+            return (array)$item;
+        }
+
+        foreach ($result as $item)
+        if (($item->series === "ББ") && in_array($item->sys_status, $active_stauses))
+        {
+            return (array)$item;
+        }
+
+        foreach ($result as $item)
+        if ($item->sys_status === "Анулирован")
+        {
+            return (array)$item;
+        }
+
+        return (array)$result[0];
+
+    }
+
     public function fill_number_info(CarNumber $item) {
 
         if (!$item) return;
@@ -101,7 +135,7 @@ class ChecNumberServices {
         $item->last_pass()->delete(['car_numbers_id' => $item->id]);
 
         if ($result)
-            $item->last_pass()->create((array)$result[0]);
+            $item->last_pass()->create($this->find_last_pass($result));
 
         foreach ($an as $elem)
             $item->active_numbers()->create($elem);

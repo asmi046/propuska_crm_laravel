@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('truc_number', 15)->comment('Номер автомобиля');
-            $table->string('email')->comment('e-mail');
+            $table->string('email')->nullable()->comment('e-mail');
             $table->string('email_dop')->nullable()->comment('Дополнительный e-mail');
             $table->string('phone')->nullable()->comment('Телефон');
 

@@ -74,7 +74,17 @@ class NumberEditController extends Controller
             );
         }
 
-        return redirect()->back()->with('email_chenget', "Найдено и заменено: ".count($items)." позиций");
+        $items_dop = CarNumber::where('email_dop', $data['email'])->get();
+
+        foreach ($items_dop as $item) {
+            $item->update(
+                [
+                    'email_dop' => $data['new_email']
+                ]
+            );
+        }
+
+        return redirect()->back()->with('email_chenget', "Найдено и заменено: ".count($items)." основных emeil и ".count($items_dop)." дополнительных email");
     }
 
     public function delete_number($id) {

@@ -24,7 +24,7 @@
     </div>
 
     <div class="field">
-        <label class="label">E-mail<sup>*</sup></label>
+        <label class="label">E-mail</label>
         <div class="control">
             <input name="email" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? old('email') ?? "" }}" placeholder="e-mail">
         </div>
