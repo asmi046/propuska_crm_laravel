@@ -22,7 +22,7 @@
 
         <Column field="state" header="Статус">
             <template #body="slotProps">
-                <Tag v-if="slotProps.data.state == 'Действует'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state == 'Добавлен в базу'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
                 <Tag v-if="slotProps.data.state == 'Не найден в основной базе'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
                 <Tag v-if="slotProps.data.state == 'Уже в базе должников'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
             </template>
