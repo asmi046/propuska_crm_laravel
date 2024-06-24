@@ -32,8 +32,6 @@ class OutCheckController extends Controller
         $all_var[] = $number;
 	    $rez_var = $this->get_all_number_variant($number, $all_var);
 
-dump($rez_var);
-
         $passes=[];
         foreach ($rez_var as $number_elem)
         {
