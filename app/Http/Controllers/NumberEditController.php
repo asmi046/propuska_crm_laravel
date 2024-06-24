@@ -38,7 +38,7 @@ class NumberEditController extends Controller
 
         $item = CarNumber::create($data);
 
-        return redirect()->route('edit_number_info', $item->id)->with('number_info_save', "Номер добавлен");
+        return redirect()->route('create')->with('number_info_save', "Номер добавлен");
     }
 
     public function add_many_numbers() {
@@ -55,6 +55,26 @@ class NumberEditController extends Controller
         $item = CarNumber::create($data);
 
         return ["state" => "Добавлен в базу"];
+    }
+
+    public function email_dop_add() {
+        return view('email_dop_add');
+    }
+
+    public function email_dop_add_do(EmailReplaceRequest $request) {
+        $data = $request->validated();
+
+        $items = CarNumber::where('email', $data['email'])->get();
+
+        foreach ($items as $item) {
+            $item->update(
+                [
+                    'email_dop' => $data['new_email']
+                ]
+            );
+        }
+
+        return redirect()->back()->with('email_dop_add', "Дополнительный e-mail добавлен в: ".count($items)." записей");
     }
 
     public function email_chenge() {

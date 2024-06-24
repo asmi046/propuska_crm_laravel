@@ -10,12 +10,12 @@
         <div class="form-status form-status--error">{{ $error }}</div>
     @endforeach
 
-    <input type="hidden" name="item_id" value="{{ $item->id ?? old('item_id') ?? ""}}">
+    <input type="hidden" name="item_id" value="{{ $item->id ?? ""}}">
 
     <div class="field">
         <label class="label">Госномер<sup>*</sup></label>
         <div class="control">
-            <input name="truc_number" class="input p-inputtext p-component" value="{{ $item->truc_number ?? old('truc_number') ?? "" }}" type="text" placeholder="Государственный регистрационный номер">
+            <input name="truc_number" class="input p-inputtext p-component" value="{{ $item->truc_number  ?? "" }}" type="text" placeholder="Государственный регистрационный номер">
         </div>
 
         @error('truc_number')
@@ -26,7 +26,7 @@
     <div class="field">
         <label class="label">E-mail</label>
         <div class="control">
-            <input name="email" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? old('email') ?? "" }}" placeholder="e-mail">
+            <input name="email" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? "" }}" placeholder="e-mail">
         </div>
 
         @error('email')
@@ -37,7 +37,7 @@
     <div class="field">
         <label class="label">E-mail дополнительный</label>
         <div class="control">
-            <input name="email_dop" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop ?? old('email_dop') ?? "" }}" placeholder="e-mail">
+            <input name="email_dop" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop ?? "" }}" placeholder="e-mail">
         </div>
 
         @error('email_dop')
@@ -48,7 +48,7 @@
     <div class="field">
         <label class="label">Телефон</label>
         <div class="control">
-            <input name="phone" class="input p-inputtext p-component" type="tel" value="{{ $item->phone ?? old('phone') ?? "" }}" placeholder="Контактный телефон">
+            <input name="phone" class="input p-inputtext p-component" type="tel" value="{{ $item->phone ?? "" }}" placeholder="Контактный телефон">
         </div>
 
         @error('phone')
