@@ -49,6 +49,7 @@ class CheckNumbers extends Command
         $en_service->start_checking($chec_id);
 
         foreach($all_numbers as $item) {
+
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
 
             if (config('app.env') === "local" && $index > 27000) break;

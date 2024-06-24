@@ -103,7 +103,8 @@ class EventNumberService {
 
         $adt_tosend = config('notification_adr.adr_to_send');
         if (config('app.env') === "production"){
-            $adt_tosend[] = $email;
+            if (!empty($email))
+                $adt_tosend[] = $email;
 
             if (!empty($email_dop))
                 $adt_tosend[] = $email_dop;
