@@ -85,12 +85,14 @@ class EventNumberService {
     protected function check_main_pass_end_60($pass, string $evant_name = "До окончания пропуска осталось 60 дней") {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 60)
+            && (empty($pass->anul_data))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
     }
 
     protected function check_main_pass_end_30($pass, string $evant_name = "До окончания пропуска осталось 30 дней") {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 30)
+            && (empty($pass->anul_data))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
     }
 
