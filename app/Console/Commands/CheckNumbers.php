@@ -50,6 +50,8 @@ class CheckNumbers extends Command
 
         foreach($all_numbers as $item) {
 
+            // if ($item->truc_number !== 'А438ЕС799') continue;
+
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
 
             if (config('app.env') === "local" && $index > 27000) break;

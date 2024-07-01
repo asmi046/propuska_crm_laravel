@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\CheckLog;
 use App\Models\CheckEvent;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\Alert\MainPassAnnulMail;
 use App\Mail\Alert\MainPassEnd30Mail;
 use App\Mail\Alert\MainPassEnd60Mail;
 use App\Mail\Alert\TmpPassEndNowMail;
@@ -85,20 +86,21 @@ class EventNumberService {
     protected function check_main_pass_end_60($pass, string $evant_name = "До окончания пропуска осталось 60 дней") {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 60)
-            && (empty($pass->anul_data))
+            && (empty($pass['cancel_date']))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
     }
 
     protected function check_main_pass_end_30($pass, string $evant_name = "До окончания пропуска осталось 30 дней") {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 30)
-            && (empty($pass->anul_data))
+            && (empty($pass['cancel_date']))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
     }
 
     protected function check_main_pass_annul($pass, string $evant_name = "Аннулирован пропуск") {
-        return (!empty($pass->anul_data))
-            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], date("Y-m-d", strtotime($pass->anul_data))));
+        return (!empty($pass['cancel_date']))
+            && (strtotime("20.06.2024") < strtotime($pass['cancel_date']))
+            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], date("Y-m-d", strtotime($pass['cancel_date']))));
     }
 
     public function check_pass_events($pass, $email, $email_dop) {
@@ -135,7 +137,7 @@ class EventNumberService {
         }
 
         if ($this->check_main_pass_annul($pass)) {
-            Mail::to($adt_tosend)->send(new MainPassEnd60Mail($pass));
+            Mail::to($adt_tosend)->send(new MainPassAnnulMail($pass));
         }
 
     }
