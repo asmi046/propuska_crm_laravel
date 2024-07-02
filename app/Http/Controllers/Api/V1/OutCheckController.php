@@ -76,9 +76,6 @@ class OutCheckController extends Controller
 
         // $this->bot_check($token, $number);
 
-        if ($rc_result->success == false || $rc_result->score <= 0.5)
-            abort(403, 'Пшли вон!');
-
         if (!$number) abort(403, "Недостаточно данных");
         $info = $detail_service->chec_number($number, "site");
         return $info;
