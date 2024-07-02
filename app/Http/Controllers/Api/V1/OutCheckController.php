@@ -19,8 +19,8 @@ class OutCheckController extends Controller
 
     protected function bot_check($token, $truck_number) {
         $rc_result = $this->getCaptcha($token);
-        dump($rc_result);
-        dump(config('re_cap.re_captcha_key'));
+        // dump($rc_result);
+        // dump(config('re_cap.re_captcha_key'));
         SiteQueryLog::create([
             'ip' => $_SERVER['REMOTE_ADDR'],
             'truck_number' => $truck_number,
