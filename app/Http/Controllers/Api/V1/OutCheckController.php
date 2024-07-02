@@ -20,6 +20,7 @@ class OutCheckController extends Controller
     protected function bot_check($token, $truck_number) {
         $rc_result = $this->getCaptcha($token);
         dump($rc_result);
+        dump(config('re_cap.re_captcha_key'));
         SiteQueryLog::create([
             'ip' => $_SERVER['REMOTE_ADDR'],
             'truck_number' => $truck_number,
@@ -73,7 +74,7 @@ class OutCheckController extends Controller
         $number = $request->input('number');
         $token = $request->input('token');
 
-        $this->bot_check($token, $number);
+        // $this->bot_check($token, $number);
 
         if ($rc_result->success == false || $rc_result->score <= 0.5)
             abort(403, 'Пшли вон!');
