@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\SiteQueryLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ChecNumberServices;
 
 class OutCheckController extends Controller
 {
+
+
+    protected function getCaptcha($SecretKey) {
+        $Response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".config('re_cap.re_captcha_key')."&response={$SecretKey}");
+        $Return = json_decode($Response);
+        return $Return;
+    }
+
+    protected function bot_check($token, $truck_number) {
+        $rc_result = $this->getCaptcha($token);
+        dump($rc_result);
+        SiteQueryLog::create([
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'truck_number' => $truck_number,
+            "bot" => ($rc_result->success)?$rc_result->score:"0"
+        ]);
+
+        if ($rc_result->success == false || $rc_result->score <= 0.5)
+            abort(403, 'Пшли вон!');
+    }
 
     public function get_all_number_variant($number, &$all_var) {
         $i=0;
@@ -26,6 +47,10 @@ class OutCheckController extends Controller
 
     public function get_number_info_for_site_zag(ChecNumberServices $detail_service, Request $request) {
         $number = $request->input('number');
+        $token = $request->input('token');
+
+        $this->bot_check($token, $number);
+
         if (!$number) abort(403, "Недостаточно данных");
 
         $all_var = [];
@@ -46,6 +71,13 @@ class OutCheckController extends Controller
 
     public function get_number_info_for_site(ChecNumberServices $detail_service, Request $request) {
         $number = $request->input('number');
+        $token = $request->input('token');
+
+        $this->bot_check($token, $number);
+
+        if ($rc_result->success == false || $rc_result->score <= 0.5)
+            abort(403, 'Пшли вон!');
+
         if (!$number) abort(403, "Недостаточно данных");
         $info = $detail_service->chec_number($number, "site");
         return $info;
