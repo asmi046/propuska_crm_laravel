@@ -74,7 +74,7 @@ class OutCheckController extends Controller
         $number = $request->input('number');
         $token = $request->input('token');
 
-        // $this->bot_check($token, $number);
+        $this->bot_check($token, $number);
 
         if (!$number) abort(403, "Недостаточно данных");
         $info = $detail_service->chec_number($number, "site");
