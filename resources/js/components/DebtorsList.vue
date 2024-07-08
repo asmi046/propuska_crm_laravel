@@ -14,7 +14,7 @@
         <Column field="truc_number" header="Госномер"></Column>
         <Column field="email" header="e-mail"></Column>
         <Column field="adding_data" header="Дата добавления"></Column>
-        <Column field="deys" header="Просрочено дней"></Column>
+        <Column field="deys" sortable header="Просрочено дней"></Column>
 
         <Column field="state" header="Управление">
             <template #body="slotProps">

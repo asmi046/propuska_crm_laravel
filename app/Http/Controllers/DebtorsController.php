@@ -17,7 +17,9 @@ class DebtorsController extends Controller
     }
 
     public function debtors_dashboard_get(DebtorsFilter $request) {
-        $all_debtors = Debtor::select()->filter($request)->get();
+        $all_debtors = Debtor::select()->filter($request)
+        ->orderBy('adding_data', "DESC")
+        ->get();
         return $all_debtors;
     }
 
