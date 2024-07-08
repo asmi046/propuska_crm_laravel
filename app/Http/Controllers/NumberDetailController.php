@@ -40,6 +40,8 @@ class NumberDetailController extends Controller
 
     public function mass_check_pass_info(ChecNumberServices $cn_service, ActiveNumberServices $an_services, string $number) {
 
+        set_time_limit(60);
+
         $result = $cn_service->chec_number($number, "site");
 
         $an = $an_services->get_active_numbers($result);

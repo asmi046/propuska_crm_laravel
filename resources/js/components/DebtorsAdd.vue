@@ -52,9 +52,9 @@
         let mainnumbers = list_text.value.split(/(?:\r\n|\r|\n|,|, )+/g)
         console.log(mainnumbers)
 
-        mainnumbers.forEach((elem) => {
+        for (let i = mainnumbers.length; i>0; i--) {
             axios.post('/debtors_add_do', {
-                'number': elem,
+                'number': mainnumbers[i-1],
             })
             .then((resp) => {
                 list.value.push(resp.data)
@@ -66,6 +66,22 @@
             .catch(error => {
                 console.log(error)
             });
-        })
+        }
+
+        // mainnumbers.forEach((elem) => {
+        //     axios.post('/debtors_add_do', {
+        //         'number': elem,
+        //     })
+        //     .then((resp) => {
+        //         list.value.push(resp.data)
+        //         console.log(resp.data)
+
+        //         if (list.value.length == mainnumbers.length)
+        //             loader.value = false
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     });
+        // })
     }
 </script>

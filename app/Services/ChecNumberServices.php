@@ -61,7 +61,7 @@ class ChecNumberServices {
         $check_token = ($type === "base")?config('chec_service.service_token'):config('chec_service.service_token_for_site');
 
 
-        $response = Http::get($check_type, [
+        $response = Http::timeout(60)->get($check_type, [
             'apikey' => $check_token,
             'truck_num' => $truck_num,
         ]);

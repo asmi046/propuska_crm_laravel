@@ -73,7 +73,20 @@
                 if (list.value.length == mainnumbers.length)
                     loader.value = false
             })
-            .catch(error => console.log(error));
+            .catch((error) => {
+                list.value.push({
+                    "truc_number":elem,
+                    "state": error.message,
+                    "an": "",
+                    "n_an": "",
+                })
+
+
+                if (list.value.length == mainnumbers.length)
+                    loader.value = false
+
+                console.log(error)
+            });
 
         })
     }
