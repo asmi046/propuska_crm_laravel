@@ -49,7 +49,7 @@
     let list = ref([])
     let loader = ref(false)
 
-    let do_check = () => {
+    let do_check = async () => {
         loader.value = true
         list.value = []
 
@@ -57,12 +57,13 @@
 
         console.log(mainnumbers);
 
-        mainnumbers.forEach((elem) => {
+        // mainnumbers.forEach((elem) => {
 
-            axios.get('/mass_check_pass_info/'+elem)
+        for (let i = 0; i<mainnumbers.length; i++) {
+            await axios.get('/mass_check_pass_info/'+mainnumbers[i])
             .then((resp) => {
                 list.value.push({
-                    "truc_number":elem,
+                    "truc_number":mainnumbers[i],
                     "state":resp.data.state,
                     "an": resp.data.an,
                     "n_an": resp.data.n_an,
@@ -75,7 +76,7 @@
             })
             .catch((error) => {
                 list.value.push({
-                    "truc_number":elem,
+                    "truc_number":mainnumbers[i],
                     "state": error.message,
                     "an": "",
                     "n_an": "",
@@ -87,8 +88,8 @@
 
                 console.log(error)
             });
-
-        })
+        }
+        // })
     }
 
 </script>
