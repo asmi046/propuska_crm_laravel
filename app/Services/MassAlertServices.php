@@ -42,7 +42,7 @@ class MassAlertServices {
         // dump($an);
         if (config('app.env') === "production")
             $adt_tosend[] = $an->truc->email;
-
+        sleep(rand(1,2));
         Mail::to($adt_tosend)->send(new AnnulMail($an->truc->truc_number, $serias.$number, $an->type_pass));
 
         return [
