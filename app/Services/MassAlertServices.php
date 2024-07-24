@@ -39,7 +39,7 @@ class MassAlertServices {
             ];
 
         $adt_tosend = config('notification_adr.adr_to_send');
-        dump($an);
+        // dump($an);
         if (config('app.env') === "production")
             $adt_tosend[] = $an->truc->email;
 
