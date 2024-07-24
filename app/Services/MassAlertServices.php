@@ -30,17 +30,17 @@ class MassAlertServices {
         $an = $this->get_user_data($serias, $number);
 
         if (!$an)
-        return [
-            'pass' => $serias.$number,
-            'truc_number' => "",
-            'email' => "",
-            'time' => "",
-            'result' => 0,
-        ];
+            return [
+                'pass' => $serias.$number,
+                'truc_number' => "",
+                'email' => "",
+                'time' => "",
+                'result' => 0,
+            ];
 
         $adt_tosend = config('notification_adr.adr_to_send');
         if (config('app.env') === "production")
-            $adt_tosend[] = $item->email;
+            $adt_tosend[] = $an->email;
 
         Mail::to($adt_tosend)->send(new AnnulMail($an->truc_number, $serias.$number, $an->type_pass));
 
