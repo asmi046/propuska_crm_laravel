@@ -35,22 +35,22 @@ class PassFilter extends QueryFilter {
             $this->builder->where(function ($query) use ($mserch) {
                 $query->where("truc_number", "LIKE", $mserch)
                     ->orWhere("email",  "LIKE", $mserch)
-                    // ->orWhereHas('last_pass', function ($query_l) use ($mserch) {
+                    ->orWhereHas('last_pass', function ($query_l) use ($mserch) {
 
-                    //     $mseries = "";
+                        $mseries = "";
 
-                    //     if (strpos($mserch, "БА") !== false) {
-                    //         $mseries = "БА";
-                    //         $mserch = str_replace("БА", "", $mserch);
-                    //     }
+                        if (strpos($mserch, "БА") !== false) {
+                            $mseries = "БА";
+                            $mserch = str_replace("БА", "", $mserch);
+                        }
 
-                    //     if (strpos($mserch, "ББ") !== false) {
-                    //         $mseries = "ББ";
-                    //         $mserch = str_replace("ББ", "", $mserch);
-                    //     }
+                        if (strpos($mserch, "ББ") !== false) {
+                            $mseries = "ББ";
+                            $mserch = str_replace("ББ", "", $mserch);
+                        }
 
-                    //     $query_l->where("pass_number", "LIKE", $mserch);
-                    // })
+                        $query_l->where("pass_number", "LIKE", $mserch);
+                    })
                     ;
             });
         }
