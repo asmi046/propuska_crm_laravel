@@ -105,14 +105,14 @@ const series_list = [
 let serch = ref('')
 
 watch([state, series, serch], () => {
-    getNumbersList()
+        getNumbersList()
 });
 
 let locading = ref(false)
 
-const getNumbersList = () => {
+const getNumbersList = async () => {
     locading.value = true
-    axios.get('/get_all_numbers', {
+    await axios.get('/get_all_numbers', {
             params: {
                 'sys_statuse': state.value,
                 'series': series.value,
