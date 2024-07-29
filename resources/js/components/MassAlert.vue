@@ -17,7 +17,12 @@
 
     <DataTable v-show="list.length > 0" stripedRows :rows="50" :value="list">
         <Column field="truc_number" header="Госномер"></Column>
-        <Column field="email" header="e-mail"></Column>
+        <Column field="email" header="e-mail">
+            <template #body="slotProps">
+                {{ slotProps.data.email }} <br><br> {{slotProps.data.email_dop }}
+            </template>
+        </Column>
+
         <Column field="pass" header="Пропуск">
             <template #body="slotProps">
                 <span v-if="slotProps.data">
@@ -98,6 +103,7 @@
                     'truc_number':error.message,
                     'time':"-",
                     'email':"-",
+                    'email_dop':"-",
                     'result':0,
                 })
                 if (list.value.length == mainnumbers.length)
