@@ -78,7 +78,7 @@
     let list = ref([])
     let loader = ref(false)
 
-    let do_check = () => {
+    let do_check = async () => {
         loader.value = true
         list.value = []
 
@@ -87,7 +87,7 @@
 
         // mainnumbers.forEach((elem) => {
         for (let i = 0; i<mainnumbers.length; i++) {
-            axios.post('/send_alert', {
+            await axios.post('/send_alert', {
                 'pass': mainnumbers[i],
             })
             .then((resp) => {
