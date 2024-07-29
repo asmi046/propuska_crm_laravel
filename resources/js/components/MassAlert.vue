@@ -80,9 +80,10 @@
         let mainnumbers = list_text.value.split(/(?:\r\n|\r|\n|,|, )+/g)
         console.log(mainnumbers)
 
-        mainnumbers.forEach((elem) => {
+        // mainnumbers.forEach((elem) => {
+        for (let i = 0; i<mainnumbers.length; i++) {
             axios.post('/send_alert', {
-                'pass': elem,
+                'pass': mainnumbers[i],
             })
             .then((resp) => {
                 list.value.push(resp.data)
@@ -93,8 +94,8 @@
             .catch(error => {
                 console.log(error)
                 list.value.push({
-                    'pass':elem,
-                    'truc_number':"-",
+                    'pass':mainnumbers[i],
+                    'truc_number':error.message,
                     'time':"-",
                     'email':"-",
                     'result':0,
@@ -102,7 +103,8 @@
                 if (list.value.length == mainnumbers.length)
                     loader.value = false
             });
-        })
+        // })
+        }
     }
 </script>
 
