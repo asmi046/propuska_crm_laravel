@@ -38,12 +38,15 @@ class MassAlertServices {
                 'result' => 0,
             ];
 
-        $adt_tosend = config('notification_adr.adr_to_send');
-        // dump($an);
-        if (config('app.env') === "production") {
-            $adt_tosend[] = $an->truc->email;
-            $adt_tosend[] = $an->truc->email_dop;
-        }
+
+        $adt_tosend = get_truck_addresat($an->truc);
+
+        // $adt_tosend = config('notification_adr.adr_to_send');
+        // // dump($an);
+        // if (config('app.env') === "production") {
+        //     $adt_tosend[] = $an->truc->email;
+        //     $adt_tosend[] = $an->truc->email_dop;
+        // }
 
 
         sleep(rand(1,2));

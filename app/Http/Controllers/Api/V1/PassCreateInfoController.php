@@ -36,9 +36,11 @@ class PassCreateInfoController extends Controller
             abort(406, "Нет клиента в базе");
         }
 
-        $adt_tosend = config('notification_adr.adr_to_send');
-        if (config('app.env') === "production")
-            $adt_tosend[] =  $truc_in_base->email;
+        // $adt_tosend = config('notification_adr.adr_to_send');
+        // if (config('app.env') === "production")
+        //     $adt_tosend[] =  $truc_in_base->email;
+
+        $adt_tosend = get_truck_addresat($truc_in_base);
 
         if ($log_item->series === "ББ")
             Mail::to($adt_tosend)->send(new TmpPassCreatedMail($log_item->toArray()));
