@@ -21,6 +21,7 @@ import DebtorsAdd from "./components/DebtorsAdd.vue"
 import MainPage from "./components/MainPage/MainPage.vue"
 
 import DebtorsList from "./components/DebtorsList.vue"
+import DeleteByEmail from './components/DeleteByEmail.vue';
 
 const mass_alert_app = createApp({
     components:{
@@ -122,6 +123,18 @@ const debtors_list = createApp({
 if (document.getElementById('debtors_list')) {
     debtors_list.use(PrimeVue);
     debtors_list.mount("#debtors_list")
+}
+const delete_by_email = createApp({
+    components:{
+        DeleteByEmail
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('delete_by_email')) {
+    delete_by_email.use(PrimeVue);
+    delete_by_email.mount("#delete_by_email")
 }
 
 

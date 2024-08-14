@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CarNumber;
 use Illuminate\Http\Request;
+use App\Models\DeletedNumber;
 use App\Http\Requests\NumberEditRequest;
 use App\Http\Requests\EmailReplaceRequest;
 
@@ -115,5 +116,40 @@ class NumberEditController extends Controller
         $item->delete();
 
         return redirect()->back()->with('number_deleted', "Номер удален!");
+    }
+
+    public function delete_by_email() {
+        return view('delete_by_email');
+    }
+
+    public function delete_by_email_do(Request $request) {
+        $email = $request->input('email');
+
+        $all_deleted_number = CarNumber::where('email', $email)->orWhere('email_dop', $email)->get();
+        CarNumber::where('email', $email)->orWhere('email_dop', $email)->delete();
+
+        $for_add = [];
+        $all_car_number_str = "";
+
+        foreach ($all_deleted_number as $item) {
+            $for_add[] = [
+                'truc_number' => $item->truc_number,
+                'email' => $item->email,
+                'email_dop' => $item->email_dop,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            $all_car_number_str .= $item->truc_number.", ";
+        }
+
+        DeletedNumber::insert($for_add);
+
+        return [
+            'email' => $email,
+            'count_number' => count($all_deleted_number),
+            'numbers' => $all_car_number_str
+        ];
+
     }
 }

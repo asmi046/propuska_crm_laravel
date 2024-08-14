@@ -19,4 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/email_dop_add', [NumberEditController::class, "email_dop_add"])->name('email_dop_add');
     Route::post('/email_dop_add_do', [NumberEditController::class, "email_dop_add_do"])->name('email_dop_add_do');
+
+    Route::get('/delete_by_email', [NumberEditController::class, "delete_by_email"])->name('delete_by_email');
+    Route::post('/delete_by_email_do', [NumberEditController::class, "delete_by_email_do"])->name('delete_by_email_do');
 });
