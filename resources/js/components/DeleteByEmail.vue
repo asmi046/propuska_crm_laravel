@@ -50,6 +50,7 @@
 
 
         for (let i = 0; i<mainnumbers.length; i++) {
+            if (mainnumbers[i] == "") continue;
             await axios.post('/delete_by_email_do', {
                 'email': mainnumbers[i],
             })
