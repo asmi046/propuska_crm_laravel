@@ -49,8 +49,19 @@
         console.log(mainnumbers)
 
 
+        const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
         for (let i = 0; i<mainnumbers.length; i++) {
             if (mainnumbers[i] == "") continue;
+            if (!EMAIL_REGEXP.test(mainnumbers[i])) {
+                list.value.push({
+                    'email':mainnumbers[i],
+                    'count_number': 0,
+                    'numbers': "Неверный формат e-mail"
+                })
+                continue;
+            }
+
             await axios.post('/delete_by_email_do', {
                 'email': mainnumbers[i],
             })

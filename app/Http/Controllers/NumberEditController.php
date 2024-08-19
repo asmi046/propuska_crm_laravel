@@ -123,6 +123,7 @@ class NumberEditController extends Controller
     }
 
     public function delete_by_email_do(Request $request) {
+
         $email = $request->input('email');
 
         $all_deleted_number = CarNumber::where('email', $email)->orWhere('email_dop', $email)->get();
@@ -131,7 +132,10 @@ class NumberEditController extends Controller
         $for_add = [];
         $all_car_number_str = "";
 
+
+
         foreach ($all_deleted_number as $item) {
+
             $for_add[] = [
                 'truc_number' => $item->truc_number,
                 'email' => $item->email,
