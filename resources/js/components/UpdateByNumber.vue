@@ -57,9 +57,6 @@
         let mainnumbers = list_text.value.split(/(?:\r\n|\r|\n|,|, )+/g)
         console.log(mainnumbers)
 
-
-        const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-
         for (let i = 0; i<mainnumbers.length; i++) {
             if (mainnumbers[i] == "") continue;
 
