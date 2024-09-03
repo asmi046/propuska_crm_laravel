@@ -107,6 +107,7 @@ class NumberDetailController extends Controller
             }
             elseif (chec_rus($pass_info[0]->truck_num) === false) {
                 $all_var = [];
+                $all_var[] = str_replace(" ","", $pass_info[0]->truck_num);
                 $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
 
                 $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
