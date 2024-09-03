@@ -29,20 +29,20 @@ class OutCheckController extends Controller
             abort(403, 'Пшли вон!');
     }
 
-    public function get_all_number_variant($number, &$all_var) {
-        $i=0;
-        do {
-            if ((ctype_digit($number[$i]) && ctype_alpha($number[$i+1]))||(ctype_alpha($number[$i]) && ctype_digit($number[$i+1])) ) {
-                $ns = str_replace($number[$i].$number[$i+1],$number[$i]." ".$number[$i+1],$number);
-                $all_var[] = $ns;
-                $this->get_all_number_variant($ns, $all_var);
-            }
+    // public function get_all_number_variant($number, &$all_var) {
+    //     $i=0;
+    //     do {
+    //         if ((ctype_digit($number[$i]) && ctype_alpha($number[$i+1]))||(ctype_alpha($number[$i]) && ctype_digit($number[$i+1])) ) {
+    //             $ns = str_replace($number[$i].$number[$i+1],$number[$i]." ".$number[$i+1],$number);
+    //             $all_var[] = $ns;
+    //             $this->get_all_number_variant($ns, $all_var);
+    //         }
 
-            $i++;
-        } while ($i<strlen($number)-2);
+    //         $i++;
+    //     } while ($i<strlen($number)-2);
 
-        return $all_var;
-    }
+    //     return $all_var;
+    // }
 
     public function get_number_info_for_site_zag(ChecNumberServices $detail_service, Request $request) {
         $number = $request->input('number');
@@ -54,7 +54,7 @@ class OutCheckController extends Controller
 
         $all_var = [];
         $all_var[] = $number;
-	    $rez_var = $this->get_all_number_variant($number, $all_var);
+	    $rez_var = get_all_number_variant($number, $all_var);
 
         set_time_limit(60);
 

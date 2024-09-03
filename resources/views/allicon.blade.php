@@ -117,6 +117,25 @@
         <g data-name="Layer 17" id="Layer_17"><path class="cls-1" d="M24,31H8a3,3,0,0,1-3-3V9A1,1,0,0,1,7,9V28a1,1,0,0,0,1,1H24a1,1,0,0,0,1-1V9a1,1,0,0,1,2,0V28A3,3,0,0,1,24,31Z"/><path class="cls-1" d="M28,7H4A1,1,0,0,1,4,5H28a1,1,0,0,1,0,2Z"/><path class="cls-1" d="M20,7a1,1,0,0,1-1-1V3H13V6a1,1,0,0,1-2,0V2a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V6A1,1,0,0,1,20,7Z"/><path class="cls-1" d="M16,26a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0V25A1,1,0,0,1,16,26Z"/><path class="cls-1" d="M21,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,21,24Z"/><path class="cls-1" d="M11,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,11,24Z"/></g>
     </symbol>
 
+    <symbol id="pass_icon" viewBox="0 0 512 512" stroke-width="1.5">
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="114.7" x2="114.7" y1="221.5" y2="290.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="90" x2="138.8" y1="231.7" y2="280.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="79.7" x2="148.8" y1="256.5" y2="256.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="90" x2="138.8" y1="281.2" y2="232.4"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="209.2" x2="209.2" y1="221.5" y2="290.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="184.5" x2="233.3" y1="231.7" y2="280.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="174.2" x2="243.3" y1="256.5" y2="256.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="184.5" x2="233.3" y1="281.2" y2="232.4"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="303.7" x2="303.7" y1="221.5" y2="290.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="279" x2="327.8" y1="231.7" y2="280.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="268.7" x2="337.8" y1="256.5" y2="256.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="279" x2="327.8" y1="281.2" y2="232.4"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="398.2" x2="398.2" y1="221.5" y2="290.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="373.5" x2="422.3" y1="231.7" y2="280.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="363.2" x2="432.3" y1="256.5" y2="256.5"/>
+        <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="373.5" x2="422.3" y1="281.2" y2="232.4"/>
+    </symbol>
+
 
 
 

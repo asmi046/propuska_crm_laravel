@@ -70,4 +70,65 @@ class NumberDetailController extends Controller
     public function check_many_numbers(Request $request) {
         return view('check_many_numbers');
     }
+
+    public function updet_by_numbers(Request $request) {
+        return view('updet_by_numbers');
+    }
+
+    public function update_by_numbers_do(ChecNumberServices $cn_service, $pass) {
+
+        $pass_clear = trim(str_replace([" ", "-", " - "], "", $pass));
+        $pass_info = $cn_service->chec_pass($pass_clear);
+        $result = [
+            'pass_number' => $pass_clear,
+            'rus' => false,
+            'truck_number' => "",
+            'valid_from' => "",
+            'valid_to' => "",
+            'state' => "Нет информации по данному пропуску",
+        ];
+
+        // dump($pass_info);
+        // dump($pass);
+
+        if ($pass_info) {
+            $result['truck_number'] = $pass_info[0]->truck_num;
+            $result['rus'] = chec_rus($pass_info[0]->truck_num);
+            $result['valid_from'] = date("d.m.Y", strtotime($pass_info[0]->valid_from));
+            $result['valid_to'] = date("d.m.Y",  strtotime($pass_info[0]->valid_to));
+
+            $base_number_item = CarNumber::where('truc_number', $pass_info[0]->truck_num)->first();
+
+
+
+            if ($base_number_item) {
+                $fill_rez = $cn_service->fill_number_info($base_number_item);
+                $result['state'] = "Данные обновлены";
+            }
+            elseif (chec_rus($pass_info[0]->truck_num) === false) {
+                $all_var = [];
+                $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
+
+                $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
+
+                foreach ($rez_var as $item) {
+                    $s_elem = CarNumber::where('truc_number', $item)->first();
+                    if ($s_elem) {
+                        $fill_rez = $cn_service->fill_number_info($s_elem);
+                        $result['state'] = "Данные обновлены*";
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
+            }
+
+
+
+        }
+
+        return $result;
+    }
 }

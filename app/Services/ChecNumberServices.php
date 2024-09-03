@@ -53,6 +53,23 @@ class ChecNumberServices {
         );
     }
 
+    protected function get_pass_sys_settings($passes, $type) {
+
+        if (!empty($passes))
+            $this->sort_passes($passes);
+
+        foreach ($passes as $element)
+        {
+            $stauses = $this->get_status($element);
+            $element->sys_status = $stauses['sys_status'];
+            $element->deycount = $stauses['deycount'];
+            $element->sys_color = $this->get_color_class($stauses['sys_status']);
+            $element->check_type = $type;
+        }
+
+        return $passes;
+    }
+
     public function chec_number(string $truck_num = null, string $type = "base") {
 
         if (empty($truck_num)) return null;
@@ -83,7 +100,19 @@ class ChecNumberServices {
         return $passes;
     }
 
+    public function chec_pass(string $pass_number = null) {
+        $check_type = config('chec_service.service_url_for_site');
+        $check_token = config('chec_service.service_token_for_site');
 
+        $response = Http::timeout(60)->get($check_type, [
+            'apikey' => $check_token,
+            'pass_series_number' => $pass_number,
+        ]);
+
+        $passes = $response->object()->passes;
+
+        return $this->get_pass_sys_settings($passes, "Проверка по номеру пропуска");
+    }
 
 
     public function find_last_pass($result) {
