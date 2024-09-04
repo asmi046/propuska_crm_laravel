@@ -129,9 +129,10 @@ class NumberDetailController extends Controller
             }
             else
             {
-                CarNumber::create([
+                $new_element = CarNumber::create([
                     "truc_number" => $pass_info[0]->truck_num
                 ]);
+                $fill_rez = $cn_service->fill_number_info($new_element);
 
                 $result['state'] = "Госномер добавлен в базу";
                 // $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
