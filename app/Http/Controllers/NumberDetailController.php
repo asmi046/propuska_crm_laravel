@@ -132,7 +132,7 @@ class NumberDetailController extends Controller
                     "truc_number" => $pass_info[0]->truck_num
                 ]);
 
-                $result['state'] = "Создана запись для номера ". $pass_info[0]->truck_num;
+                $result['state'] = "Госномер добавлен в базу";
                 // $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
             }
 

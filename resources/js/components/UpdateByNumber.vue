@@ -30,7 +30,8 @@
         <Column field="state" header="Результат проверки">
             <template #body="slotProps">
                 <Tag v-if="slotProps.data.state == 'Данные обновлены' || slotProps.data.state == 'Данные обновлены*'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
-                <Tag v-else icon="pi pi-times" severity="info" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state == 'Госномер добавлен в базу'" icon="pi pi-times" severity="info" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state != 'Данные обновлены' && slotProps.data.state != 'Данные обновлены*' && slotProps.data.state != 'Госномер добавлен в базу'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
             </template>
         </Column>
     </DataTable>
