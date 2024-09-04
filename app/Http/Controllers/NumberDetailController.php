@@ -108,7 +108,10 @@ class NumberDetailController extends Controller
             elseif (chec_rus($pass_info[0]->truck_num) === false) {
                 $all_var = [];
                 $all_var[] = str_replace(" ","", $pass_info[0]->truck_num);
-                $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
+                $rez_var = transliterator(get_all_number_variant($pass_info[0]->truck_num, $all_var));
+                // $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
+
+                dump($rez_var);
 
                 $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
 
@@ -116,6 +119,10 @@ class NumberDetailController extends Controller
                     $s_elem = CarNumber::where('truc_number', $item)->first();
                     if ($s_elem) {
                         $fill_rez = $cn_service->fill_number_info($s_elem);
+
+                        $s_elem->truc_number = $pass_info[0]->truck_num;
+                        $s_elem->save();
+
                         $result['state'] = "Данные обновлены*";
                         break;
                     }
@@ -123,7 +130,12 @@ class NumberDetailController extends Controller
             }
             else
             {
-                $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
+                CarNumber::create([
+                    "truc_number" => $pass_info[0]->truck_num
+                ]);
+
+                $result['state'] = "Создана запись для номера ". $pass_info[0]->truck_num;
+                // $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
             }
 
 

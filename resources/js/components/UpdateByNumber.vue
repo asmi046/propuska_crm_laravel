@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <Button @click.prevent="do_update" label="Начать обновление" />
+        <Button :disabled="loader" @click.prevent="do_update" label="Начать обновление" />
     </form>
     <br>
     <svg v-show="loader" class="loader_icon">
@@ -30,7 +30,7 @@
         <Column field="state" header="Результат проверки">
             <template #body="slotProps">
                 <Tag v-if="slotProps.data.state == 'Данные обновлены' || slotProps.data.state == 'Данные обновлены*'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
-                <Tag v-else icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+                <Tag v-else icon="pi pi-times" severity="info" :value="slotProps.data.state" />
             </template>
         </Column>
     </DataTable>
