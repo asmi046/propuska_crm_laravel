@@ -111,8 +111,6 @@ class NumberDetailController extends Controller
                 $rez_var = transliterator(get_all_number_variant($pass_info[0]->truck_num, $all_var));
                 // $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
 
-                dump($rez_var);
-
                 $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
 
                 foreach ($rez_var as $item) {
