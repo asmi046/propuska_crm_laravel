@@ -116,10 +116,11 @@ class NumberDetailController extends Controller
                 foreach ($rez_var as $item) {
                     $s_elem = CarNumber::where('truc_number', $item)->first();
                     if ($s_elem) {
-                        $fill_rez = $cn_service->fill_number_info($s_elem);
 
                         $s_elem->truc_number = $pass_info[0]->truck_num;
                         $s_elem->save();
+
+                        $fill_rez = $cn_service->fill_number_info($s_elem);
 
                         $result['state'] = "Данные обновлены*";
                         break;
