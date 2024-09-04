@@ -123,9 +123,17 @@ class NumberDetailController extends Controller
                         $fill_rez = $cn_service->fill_number_info($s_elem);
 
                         $result['state'] = "Данные обновлены*";
-                        break;
+                        return $result;
                     }
                 }
+
+                $new_element = CarNumber::create([
+                    "truc_number" => $pass_info[0]->truck_num
+                ]);
+
+                $fill_rez = $cn_service->fill_number_info($new_element);
+                $result['state'] = "Госномер добавлен в базу";
+
             }
             else
             {
