@@ -7,6 +7,7 @@ use App\Models\CarNumber;
 use App\Filters\PassFilter;
 use Illuminate\Http\Request;
 use App\Services\ChecNumberServices;
+use App\Services\TransleteratorServices;
 
 class IndexController extends Controller
 {
@@ -31,17 +32,60 @@ class IndexController extends Controller
     }
 
     public function test_r() {
-        // $number = iconv('-1252//IGNORE', 'UTF-8//IGNORE', "АХ1413-7");
-        $number = "АХ1413-7";
-        $symbols = ["А", "A", "В", "B", "Е", "E", "К", "K", "М", "M", "Н", "H", "О", "O", "Р", "P", "С", "C", "Т", "T", "У", "Y", "Х", "X"];
-        $didgit = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-        dump("НОШЕН!");
-        dump($number[1]);
-        dump($number[4]);
-        dump(in_array($number[1], $symbols, true));
-        dump(in_array($number[2], $didgit, true));
-        dump(mb_str_split($number));
+        $pass = "БА1706377";
+        $cn_service = new ChecNumberServices();
+
+        //------------------------
+
+        $pass_clear = trim(str_replace([" ", "-", " - "], "", $pass));
+        $pass_info = $cn_service->chec_pass($pass_clear);
+        $result = [
+            'pass_number' => $pass_clear,
+            'rus' => false,
+            'truck_number' => "",
+            'valid_from' => "",
+            'valid_to' => "",
+            'search_info' => "",
+            'state' => "Нет информации по данному пропуску",
+        ];
+
+
+        if ($pass_info) {
+            $result['truck_number'] = $pass_info[0]->truck_num;
+            $result['rus'] = chec_rus($pass_info[0]->truck_num);
+            $result['valid_from'] = date("d.m.Y", strtotime($pass_info[0]->valid_from));
+            $result['valid_to'] = date("d.m.Y",  strtotime($pass_info[0]->valid_to));
+
+            $srt = new TransleteratorServices();
+            $all_variant = $srt->all_variant($pass_info[0]->truck_num);
+
+            $base_number_items = CarNumber::whereIn('truc_number', $all_variant)->get();
+
+            if (count($base_number_items) > 1)
+            {
+                $result['search_info'] = "Найдено ".count($base_number_items)." записей похожих на госномер ".$pass_info[0]->truck_num;
+                $result['state'] = "Несколько вариантов для обновления";
+            }
+            elseif (count($base_number_items) == 1) {
+                $s_elem = $base_number_items[0];
+                $s_elem->truc_number = $pass_info[0]->truck_num;
+                $s_elem->save();
+                $fill_rez = $cn_service->fill_number_info($s_elem);
+                $result['state'] = "Данные обновлены";
+            } else {
+                $new_element = CarNumber::create([
+                    "truc_number" => $pass_info[0]->truck_num
+                ]);
+
+                $fill_rez = $cn_service->fill_number_info($new_element);
+                $result['state'] = "Госномер добавлен в базу";
+            }
+
+            return $result;
+        }
+
+
 
     }
 

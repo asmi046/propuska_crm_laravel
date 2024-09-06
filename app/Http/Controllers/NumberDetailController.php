@@ -6,6 +6,7 @@ use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Services\ChecNumberServices;
 use App\Services\ActiveNumberServices;
+use App\Services\TransleteratorServices;
 use App\Http\Requests\CheckTruckNumberRequest;
 
 class NumberDetailController extends Controller
@@ -75,7 +76,7 @@ class NumberDetailController extends Controller
         return view('updet_by_numbers');
     }
 
-    public function update_by_numbers_do(ChecNumberServices $cn_service, $pass) {
+    public function update_by_numbers_do(TransleteratorServices $srt, ChecNumberServices $cn_service, $pass) {
 
         $pass_clear = trim(str_replace([" ", "-", " - "], "", $pass));
         $pass_info = $cn_service->chec_pass($pass_clear);
@@ -85,11 +86,10 @@ class NumberDetailController extends Controller
             'truck_number' => "",
             'valid_from' => "",
             'valid_to' => "",
+            'search_info' => "",
             'state' => "Нет информации по данному пропуску",
         ];
 
-        // dump($pass_info);
-        // dump($pass);
 
         if ($pass_info) {
             $result['truck_number'] = $pass_info[0]->truck_num;
@@ -97,59 +97,31 @@ class NumberDetailController extends Controller
             $result['valid_from'] = date("d.m.Y", strtotime($pass_info[0]->valid_from));
             $result['valid_to'] = date("d.m.Y",  strtotime($pass_info[0]->valid_to));
 
-            $base_number_item = CarNumber::where('truc_number', $pass_info[0]->truck_num)->first();
+            $all_variant = $srt->all_variant($pass_info[0]->truck_num);
 
+            $base_number_items = CarNumber::whereIn('truc_number', $all_variant)->get();
 
-
-            if ($base_number_item) {
-                $fill_rez = $cn_service->fill_number_info($base_number_item);
-                $result['state'] = "Данные обновлены";
-            }
-            elseif (chec_rus($pass_info[0]->truck_num) === false) {
-                $all_var = [];
-                $all_var[] = str_replace(" ","", $pass_info[0]->truck_num);
-                $rez_var = transliterator(get_all_number_variant($pass_info[0]->truck_num, $all_var));
-                // $rez_var = get_all_number_variant($pass_info[0]->truck_num, $all_var);
-
-                $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
-
-                foreach ($rez_var as $item) {
-                    $s_elem = CarNumber::where('truc_number', $item)->first();
-                    if ($s_elem) {
-
-                        $s_elem->truc_number = $pass_info[0]->truck_num;
-                        $s_elem->save();
-
-                        $fill_rez = $cn_service->fill_number_info($s_elem);
-
-                        $result['state'] = "Данные обновлены*";
-                        return $result;
-                    }
-                }
-
-                $new_element = CarNumber::create([
-                    "truc_number" => $pass_info[0]->truck_num
-                ]);
-
-                $fill_rez = $cn_service->fill_number_info($new_element);
-                $result['state'] = "Госномер добавлен в базу";
-
-            }
-            else
+            if (count($base_number_items) > 1)
             {
+                $result['search_info'] = "Найдено ".count($base_number_items)." записей похожих на госномер ".$pass_info[0]->truck_num;
+                $result['state'] = "Несколько вариантов для обновления";
+            }
+            elseif (count($base_number_items) == 1) {
+                $s_elem = $base_number_items[0];
+                $s_elem->truc_number = $pass_info[0]->truck_num;
+                $s_elem->save();
+                $fill_rez = $cn_service->fill_number_info($s_elem);
+                $result['state'] = "Данные обновлены";
+            } else {
                 $new_element = CarNumber::create([
                     "truc_number" => $pass_info[0]->truck_num
                 ]);
-                $fill_rez = $cn_service->fill_number_info($new_element);
 
+                $fill_rez = $cn_service->fill_number_info($new_element);
                 $result['state'] = "Госномер добавлен в базу";
-                // $result['state'] = "Автомобиль с номером ". $pass_info[0]->truck_num ." не найден в базе системы";
             }
 
-
-
+            return $result;
         }
-
-        return $result;
     }
 }
