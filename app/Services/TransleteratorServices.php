@@ -75,11 +75,13 @@ class TransleteratorServices {
 
     public function all_variant( $number ) {
 
+            $number_no_space = str_replace(" ","", $number);
+
             $result = [];
 
             $all_var = [];
-            $all_var[] = str_replace(" ","", $number);
-            $number_variant = $this->all_variant_space($number, $all_var);
+            $all_var[] = $number_no_space;
+            $number_variant = $this->all_variant_space($number_no_space, $all_var);
             foreach($number_variant as $item) {
                 $result = array_merge($this->all_variant_translet($item), $result);
             }

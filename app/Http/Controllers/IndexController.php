@@ -33,7 +33,7 @@ class IndexController extends Controller
 
     public function test_r() {
 
-        $pass = "БА1706377";
+        $pass = "БА1707303";
         $cn_service = new ChecNumberServices();
 
         //------------------------
@@ -81,7 +81,6 @@ class IndexController extends Controller
                 $fill_rez = $cn_service->fill_number_info($new_element);
                 $result['state'] = "Госномер добавлен в базу";
             }
-
             return $result;
         }
 
