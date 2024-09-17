@@ -77,7 +77,11 @@ if (!function_exists("get_truck_addresat")) {
             $adt_tosend[] = $truk->email;
             if (!empty($truk->email_dop))
                 $adt_tosend[] = $truk->email_dop;
+
+            if (!empty($truk->email_dop2))
+                $adt_tosend[] = $truk->email_dop2;
         }
+
         return $adt_tosend;
     }
 }

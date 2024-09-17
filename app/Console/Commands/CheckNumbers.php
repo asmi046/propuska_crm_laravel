@@ -62,12 +62,12 @@ class CheckNumbers extends Command
 
                 foreach ($rez['active_number'] as $elem) {
                     $this->info("Добавлен активный пропуск: ".$elem['series']." ".$elem['pass_number']." ".$elem['type_pass']." ".$elem['sys_status']);
-                    $en_service->check_pass_events($elem, $item->email, $item->email_dop);
+                    $en_service->check_pass_events($elem, $item->email, $item->email_dop, $item->email_dop2);
                 }
 
                 foreach ($rez['no_active_number'] as $elem) {
                     $this->error("Добавлен не активный пропуск: ".$elem['series']." ".$elem['pass_number']." ".$elem['type_pass']." ".$elem['sys_status']);
-                    $en_service->check_pass_events($elem, $item->email, $item->email_dop);
+                    $en_service->check_pass_events($elem, $item->email, $item->email_dop, $item->email_dop2);
                 }
 
             } catch (\Throwable $e) {

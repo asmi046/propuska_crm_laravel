@@ -19,7 +19,7 @@
         <Column field="truc_number" header="Госномер"></Column>
         <Column field="email" header="e-mail">
             <template #body="slotProps">
-                {{ slotProps.data.email }} <br><br> {{slotProps.data.email_dop }}
+                {{ slotProps.data.email }} <br> {{slotProps.data.email_dop }} <br> {{slotProps.data.email_dop2 }}
             </template>
         </Column>
 
@@ -104,6 +104,7 @@
                     'time':"-",
                     'email':"-",
                     'email_dop':"-",
+                    'email_dop2':"-",
                     'result':0,
                 })
                 if (list.value.length == mainnumbers.length)

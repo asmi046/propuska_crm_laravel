@@ -103,7 +103,7 @@ class EventNumberService {
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], date("Y-m-d", strtotime($pass['cancel_date']))));
     }
 
-    public function check_pass_events($pass, $email, $email_dop) {
+    public function check_pass_events($pass, $email, $email_dop, $email_dop2) {
 
         $adt_tosend = config('notification_adr.adr_to_send');
         if (config('app.env') === "production"){
@@ -112,6 +112,9 @@ class EventNumberService {
 
             if (!empty($email_dop))
                 $adt_tosend[] = $email_dop;
+
+            if (!empty($email_dop2))
+                $adt_tosend[] = $email_dop2;
         }
 
 

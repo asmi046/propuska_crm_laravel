@@ -58,6 +58,7 @@ class MassAlertServices {
             'truc_number' => $an->truc->truc_number,
             'email' => $an->truc->email,
             'email_dop' => $an->truc->email_dop,
+            'email_dop2' => $an->truc->email_dop2,
             'time' => $an->type_pass,
             'result' => 1,
         ];

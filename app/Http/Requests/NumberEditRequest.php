@@ -38,6 +38,7 @@ class NumberEditRequest extends FormRequest
             'truc_number' => ['required', 'string'],
             'email' => [],
             'email_dop' => [],
+            'email_dop2' => [],
             'phone' => [],
         ];
     }

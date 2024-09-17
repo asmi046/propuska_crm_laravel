@@ -37,10 +37,21 @@
     <div class="field">
         <label class="label">E-mail дополнительный</label>
         <div class="control">
-            <input name="email_dop" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop ?? "" }}" placeholder="e-mail">
+            <input name="email_dop" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop ?? "" }}" placeholder="e-mail дополнительный">
         </div>
 
         @error('email_dop')
+            <p class="error">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="field">
+        <label class="label">E-mail дополнительный 2</label>
+        <div class="control">
+            <input name="email_dop2" class="input p-inputtext p-component" type="email" value="{{ $item->email_dop2 ?? "" }}" placeholder="e-mail дополнительный 2">
+        </div>
+
+        @error('email_dop2')
             <p class="error">{{$message}}</p>
         @enderror
     </div>

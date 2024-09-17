@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Models\DeletedNumber;
+use App\Services\ChengeEmailServices;
 use App\Http\Requests\NumberEditRequest;
 use App\Http\Requests\EmailReplaceRequest;
 
@@ -23,15 +24,19 @@ class NumberEditController extends Controller
     }
 
 
-    public function save_number_info(NumberEditRequest $request) {
+    public function save_number_info(NumberEditRequest $request, ChengeEmailServices $email_ch) {
         $data = $request->validated();
 
         $item = CarNumber::where('id', $request->input('item_id'))->first();
         if(!$item) abort('404');
 
+        $old_email =$item->email;
+
         $item->update($data);
 
-        return redirect()->back()->with('number_info_save', "Данные сохранены");
+        $chenge_string = $email_ch->chenge_email_form_debtors($old_email, $data['email']);
+
+        return redirect()->back()->with('number_info_save', "Данные сохранены. ".$chenge_string);
     }
 
     public function create_number_info(NumberEditRequest $request) {
@@ -82,7 +87,7 @@ class NumberEditController extends Controller
         return view('email_chenge');
     }
 
-    public function email_chenge_do(EmailReplaceRequest $request) {
+    public function email_chenge_do(EmailReplaceRequest $request, ChengeEmailServices $email_ch) {
         $data = $request->validated();
 
         $items = CarNumber::where('email', $data['email'])->get();
@@ -95,6 +100,8 @@ class NumberEditController extends Controller
             );
         }
 
+        $debtors_result = $email_ch->chenge_email_form_debtors($data['email'], $data['new_email']);
+
         $items_dop = CarNumber::where('email_dop', $data['email'])->get();
 
         foreach ($items_dop as $item) {
@@ -105,7 +112,7 @@ class NumberEditController extends Controller
             );
         }
 
-        return redirect()->back()->with('email_chenget', "Найдено и заменено: ".count($items)." основных emeil и ".count($items_dop)." дополнительных email");
+        return redirect()->back()->with('email_chenget', "Найдено и заменено: ".count($items)." основных emeil и ".count($items_dop)." дополнительных email. ".$debtors_result);
     }
 
     public function delete_number($id) {

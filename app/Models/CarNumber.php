@@ -16,6 +16,7 @@ class CarNumber extends Model
         'truc_number',
         'email',
         'email_dop',
+        'email_dop2',
         'phone'
     ];
 
