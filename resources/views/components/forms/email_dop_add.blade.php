@@ -17,9 +17,15 @@
     </div>
 
     <div class="field">
-        <label class="label">Вставляемый дополнительный E-mail<sup>*</sup></label>
+        <label class="label">Вставляемый дополнительный E-mail</label>
         <div class="control">
             <input name="new_email" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? old('new_email') ?? "" }}" placeholder="Дополнительный e-mail">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Вставляемый дополнительный E-mail 2</label>
+        <div class="control">
+            <input name="new_email2" class="input p-inputtext p-component" type="email" value="{{ $item->email ?? old('new_email2') ?? "" }}" placeholder="Дополнительный e-mail 2">
         </div>
     </div>
 

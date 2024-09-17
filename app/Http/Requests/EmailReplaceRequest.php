@@ -37,7 +37,8 @@ class EmailReplaceRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string'],
-            'new_email' => ['required', 'string'],
+            'new_email' => [],
+            'new_email2' => [],
         ];
     }
 }

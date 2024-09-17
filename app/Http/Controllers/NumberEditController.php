@@ -70,17 +70,26 @@ class NumberEditController extends Controller
     public function email_dop_add_do(EmailReplaceRequest $request) {
         $data = $request->validated();
 
-        $items = CarNumber::where('email', $data['email'])->get();
+        $upp_data = [];
 
-        foreach ($items as $item) {
-            $item->update(
-                [
-                    'email_dop' => $data['new_email']
-                ]
-            );
-        }
+        if ($data['new_email'] ) $upp_data['email_dop'] = $data['new_email'];
+        if ($data['new_email2'] ) $upp_data['email_dop2'] = $data['new_email2'];
 
-        return redirect()->back()->with('email_dop_add', "Дополнительный e-mail добавлен в: ".count($items)." записей");
+        $chenge_count = CarNumber::where('email', $data['email'])->update($upp_data);
+
+        // $items = CarNumber::where('email', $data['email'])->get();
+
+        // $chenge_count = 0;
+        // foreach ($items as $item) {
+        //     $upp_data = [];
+
+        //     if ($data['new_email'] ) $upp_data['email_dop'] = $data['new_email'];
+        //     if ($data['new_email2'] ) $upp_data['email_dop2'] = $data['new_email2'];
+
+        //     $chenge_count += $item->update($upp_data);
+        // }
+
+        return redirect()->back()->with('email_dop_add', "Обработано: ".$chenge_count." записей");
     }
 
     public function email_chenge() {
