@@ -42,10 +42,10 @@ class PassCreateInfoController extends Controller
 
         $adt_tosend = get_truck_addresat($truc_in_base);
 
-        if ($log_item->series === "ББ")
-            Mail::to($adt_tosend)->send(new TmpPassCreatedMail($log_item->toArray()));
-        else
-            Mail::to($adt_tosend)->send(new MainPassCreatedMail($log_item->toArray()));
+        // if ($log_item->series === "ББ")
+        //     Mail::to($adt_tosend)->send(new TmpPassCreatedMail($log_item->toArray()));
+        // else
+        //     Mail::to($adt_tosend)->send(new MainPassCreatedMail($log_item->toArray()));
 
         $log_item->update([
             'sys_status' => "Отправлено клиенту"
