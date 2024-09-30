@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\Settings;
 use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Models\PassCreateLog;
@@ -13,6 +14,9 @@ use App\Mail\Alert\MainPassCreatedMail;
 class PassCreateInfoController extends Controller
 {
     public function create_new_pass(Request $request) {
+        $settings = Settings::where('name', 'send_api_meaasge')->first();
+        $do_send = ($settings)?boolval($settings->value):true;
+
         $log_item = PassCreateLog::create(
             [
                 "ip" => $_SERVER['REMOTE_ADDR'],
@@ -36,10 +40,6 @@ class PassCreateInfoController extends Controller
             abort(406, "Нет клиента в базе");
         }
 
-        // $adt_tosend = config('notification_adr.adr_to_send');
-        // if (config('app.env') === "production")
-        //     $adt_tosend[] =  $truc_in_base->email;
-
         $adt_tosend = get_truck_addresat($truc_in_base);
 
         if ($log_item->series === "ББ")
@@ -48,7 +48,7 @@ class PassCreateInfoController extends Controller
             Mail::to($adt_tosend)->send(new MainPassCreatedMail($log_item->toArray()));
 
         $log_item->update([
-            'sys_status' => "Отправлено клиенту"
+            'sys_status' => (!$do_send)?"Отправка ВЫКЛЮЧЕНА!":"Отправлено клиенту"
         ]);
     }
 

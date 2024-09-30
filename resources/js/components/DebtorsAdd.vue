@@ -24,7 +24,7 @@
             <template #body="slotProps">
                 <Tag v-if="slotProps.data.state == 'Добавлен в базу'" icon="pi pi-check" severity="success" :value="slotProps.data.state" />
                 <Tag v-if="slotProps.data.state == 'Не найден в основной базе'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
-                <Tag v-if="slotProps.data.state == 'Уже в базе должников'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
+                <Tag v-if="slotProps.data.state == 'Уже есть 2 номера в базе должников'" icon="pi pi-times" severity="danger" :value="slotProps.data.state" />
             </template>
         </Column>
 
@@ -45,7 +45,7 @@
     let list = ref([])
     let loader = ref(false)
 
-    let do_add = () => {
+    let do_add = async () => {
         loader.value = true
         list.value = []
 
@@ -53,20 +53,27 @@
         console.log(mainnumbers)
 
         for (let i = mainnumbers.length; i>0; i--) {
-            axios.post('/debtors_add_do', {
+            await axios.post('/debtors_add_do', {
                 'number': mainnumbers[i-1],
             })
             .then((resp) => {
                 list.value.push(resp.data)
                 console.log(resp.data)
 
-                if (list.value.length == mainnumbers.length)
-                    loader.value = false
+                // if (list.value.length == mainnumbers.length)
+                // loader.value = false
             })
             .catch(error => {
+                list.value.push({
+                    'truc_number': mainnumbers[i-1],
+                    'email': "",
+                    'state': error.message
+                })
                 console.log(error)
             });
         }
+
+        loader.value = false
 
         // mainnumbers.forEach((elem) => {
         //     axios.post('/debtors_add_do', {

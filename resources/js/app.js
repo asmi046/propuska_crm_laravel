@@ -23,6 +23,7 @@ import MainPage from "./components/MainPage/MainPage.vue"
 import DebtorsList from "./components/DebtorsList.vue"
 import DeleteByEmail from './components/DeleteByEmail.vue';
 import UpdateByNumber from './components/UpdateByNumber.vue';
+import Settings from './components/Settings.vue';
 
 const mass_alert_app = createApp({
     components:{
@@ -149,6 +150,20 @@ const update_by_number = createApp({
 if (document.getElementById('update_by_number')) {
     update_by_number.use(PrimeVue);
     update_by_number.mount("#update_by_number")
+}
+
+const settings_app = createApp({
+    components:{
+        Settings
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('settings_app')) {
+    settings_app.use(PrimeVue);
+    settings_app.use(VueAxios, axios);
+    settings_app.mount("#settings_app")
 }
 
 

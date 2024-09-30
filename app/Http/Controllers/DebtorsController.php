@@ -6,6 +6,7 @@ use App\Models\Debtor;
 use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Filters\DebtorsFilter;
+use App\Http\Requests\Debtors;
 
 class DebtorsController extends Controller
 {
@@ -24,6 +25,9 @@ class DebtorsController extends Controller
     }
 
     public function debtors_add_do(Request $request) {
+        // $data = $request->validated();
+        // $number = $data['number'];
+
         $number = $request->input('number');
         if (!$number) abort(403, "Номер не передан");
 
@@ -34,11 +38,11 @@ class DebtorsController extends Controller
                 'state' => "Не найден в основной базе"
         ];
 
-        $in_debtor_base = Debtor::where("truc_number", $number)->first();
-        if ($in_debtor_base) return [
+        $in_debtor_base = Debtor::where("truc_number", $number)->get();
+        if (count($in_debtor_base) > 1) return [
             'truc_number' => $number,
             'email' => $in_base->email,
-            'state' => "Уже в базе должников"
+            'state' => "Уже есть 2 номера в базе должников"
         ];
 
         $element = Debtor::create([
