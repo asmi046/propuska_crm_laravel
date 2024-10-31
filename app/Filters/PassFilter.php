@@ -35,6 +35,8 @@ class PassFilter extends QueryFilter {
             $this->builder->where(function ($query) use ($mserch) {
                 $query->where("truc_number", "LIKE", $mserch)
                     ->orWhere("email",  "LIKE", $mserch)
+                    ->orWhere("email_dop",  "LIKE", $mserch)
+                    ->orWhere("email_dop2",  "LIKE", $mserch)
                     ->orWhereHas('last_pass', function ($query_l) use ($mserch) {
 
                         $mseries = "";
