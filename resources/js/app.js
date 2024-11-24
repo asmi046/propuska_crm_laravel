@@ -24,6 +24,25 @@ import DebtorsList from "./components/DebtorsList.vue"
 import DeleteByEmail from './components/DeleteByEmail.vue';
 import UpdateByNumber from './components/UpdateByNumber.vue';
 import Settings from './components/Settings.vue';
+import EmailTemplateList from './components/EmailTemplate/EmailTemplateList.vue';
+import ToastService from 'primevue/toastservice';
+
+const email_templates = createApp({
+    components:{
+        EmailTemplateList
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('email_templates')) {
+    email_templates.use(VueAxios, axios)
+    email_templates.use(PrimeVue)
+    email_templates.use(ToastService);
+    email_templates.mount("#email_templates")
+}
 
 const mass_alert_app = createApp({
     components:{
@@ -38,6 +57,7 @@ const mass_alert_app = createApp({
 
 if (document.getElementById('mass_alert_app')) {
     mass_alert_app.use(VueAxios, axios)
+    mass_alert_app.use(PrimeVue)
     mass_alert_app.mount("#mass_alert_app")
 }
 

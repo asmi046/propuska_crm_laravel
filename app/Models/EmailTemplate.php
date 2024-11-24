@@ -12,6 +12,7 @@ class EmailTemplate extends Model
     public $fillable =[
         'name',
         'slug',
+        'subj',
         'text'
     ];
 }

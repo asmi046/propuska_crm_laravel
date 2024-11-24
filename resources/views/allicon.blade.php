@@ -117,6 +117,10 @@
         <g data-name="Layer 17" id="Layer_17"><path class="cls-1" d="M24,31H8a3,3,0,0,1-3-3V9A1,1,0,0,1,7,9V28a1,1,0,0,0,1,1H24a1,1,0,0,0,1-1V9a1,1,0,0,1,2,0V28A3,3,0,0,1,24,31Z"/><path class="cls-1" d="M28,7H4A1,1,0,0,1,4,5H28a1,1,0,0,1,0,2Z"/><path class="cls-1" d="M20,7a1,1,0,0,1-1-1V3H13V6a1,1,0,0,1-2,0V2a1,1,0,0,1,1-1h8a1,1,0,0,1,1,1V6A1,1,0,0,1,20,7Z"/><path class="cls-1" d="M16,26a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0V25A1,1,0,0,1,16,26Z"/><path class="cls-1" d="M21,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,21,24Z"/><path class="cls-1" d="M11,24a1,1,0,0,1-1-1V13a1,1,0,0,1,2,0V23A1,1,0,0,1,11,24Z"/></g>
     </symbol>
 
+    <symbol id="template_emeil" viewBox="0 0 24 24" stroke-width="1.5">
+        <path fill-rule="evenodd" d="M10,19 L19,19 L19,11 L10,11 L10,19 Z M8,19 L8,11 L5,11 L5,9 L19,9 L19,5 L5,5 L5,19 L8,19 Z M5,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,19 C21,20.1045695 20.1045695,21 19,21 L5,21 C3.8954305,21 3,20.1045695 3,19 L3,5 C3,3.8954305 3.8954305,3 5,3 Z"/>
+    </symbol>
+
     <symbol id="pass_icon" viewBox="0 0 512 512" stroke-width="1.5">
         <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="114.7" x2="114.7" y1="221.5" y2="290.5"/>
         <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="90" x2="138.8" y1="231.7" y2="280.5"/>

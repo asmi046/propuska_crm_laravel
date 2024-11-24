@@ -3,11 +3,12 @@
 namespace App\Mail\DebtorAlert;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Services\MailContentServices;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Debet15Mail extends Mailable
 {
@@ -16,12 +17,19 @@ class Debet15Mail extends Mailable
     public $truc_number;
     public $pass;
     public $time;
+
+    public $content;
     /**
      * Create a new message instance.
      */
     public function __construct($truc_number)
     {
         $this->truc_number = $truc_number;
+
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('debt15', [
+            'truc_number' => $truc_number
+        ]);
     }
 
     /**
@@ -30,7 +38,8 @@ class Debet15Mail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Нет оплаты за пропуск ".$this->truc_number." более двух недель",
+            // subject: "Нет оплаты за пропуск ".$this->truc_number." более двух недель",
+            subject: $this->content['subject'].((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 
@@ -40,7 +49,8 @@ class Debet15Mail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.debtor.debt15',
+            // view: 'mail.debtor.debt15',
+            view: 'mail.all_mail_template',
         );
     }
 

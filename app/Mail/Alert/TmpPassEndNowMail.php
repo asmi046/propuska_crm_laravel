@@ -3,23 +3,27 @@
 namespace App\Mail\Alert;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Services\MailContentServices;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class TmpPassEndNowMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $pass;
+    public $content;
     /**
      * Create a new message instance.
      */
     public function __construct($pass)
     {
         $this->pass = $pass;
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('tmp_pass_end_now', $pass);
     }
 
     /**
@@ -28,7 +32,8 @@ class TmpPassEndNowMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Временный пропуск на машину ".$this->pass['truck_num']." заканчивается сегодня".((config('app.env') !== "production")?" (Тест)":""),
+            // subject: "Временный пропуск на машину ".$this->pass['truck_num']." заканчивается сегодня".((config('app.env') !== "production")?" (Тест)":""),
+            subject: $this->content['subject'].((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 
@@ -38,7 +43,8 @@ class TmpPassEndNowMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.alert.tmp_pass_end_now',
+            // view: 'mail.alert.tmp_pass_end_now',
+            view: 'mail.all_mail_template',
         );
     }
 

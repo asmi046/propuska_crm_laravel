@@ -7,6 +7,9 @@
             </div>
         </div>
 
+        <InputText v-model="dop_message" name="dop_message" id="dop_message" type="text" placeholder="Дополнительное сообщение" />
+        <br>
+
         <Button @click.prevent="do_check" label="Начать оповещение" />
     </form>
     <br>
@@ -74,9 +77,13 @@
     import Tag from 'primevue/tag'
     import Avatar from 'primevue/avatar'
 
+    import InputText from 'primevue/inputtext';
+
+
     let list_text = ref('БА-1324762, БА-1516048, БА0534768, БА1391311, БА-1403849')
     let list = ref([])
     let loader = ref(false)
+    let dop_message = ref(null)
 
     let do_check = async () => {
         loader.value = true
@@ -89,6 +96,7 @@
         for (let i = 0; i<mainnumbers.length; i++) {
             await axios.post('/send_alert', {
                 'pass': mainnumbers[i],
+                'message': dop_message.value
             })
             .then((resp) => {
                 list.value.push(resp.data)

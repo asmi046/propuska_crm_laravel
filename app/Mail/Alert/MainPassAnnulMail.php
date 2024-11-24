@@ -3,23 +3,28 @@
 namespace App\Mail\Alert;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Services\MailContentServices;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class MainPassAnnulMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $pass;
+    public $content;
+
     /**
      * Create a new message instance.
      */
     public function __construct($pass)
     {
         $this->pass = $pass;
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('main_pass_annul', $pass);
     }
 
     /**
@@ -29,7 +34,8 @@ class MainPassAnnulMail extends Mailable
     {
 
         return new Envelope(
-            subject: "Пропуск ".$this->pass['truck_num']." аннулирован".((config('app.env') !== "production")?" (Тест)":""),
+            // subject: "Пропуск ".$this->pass['truck_num']." аннулирован".((config('app.env') !== "production")?" (Тест)":""),
+            subject: $this->content['subject'].((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 
@@ -39,7 +45,8 @@ class MainPassAnnulMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.alert.main_pass_annul',
+            // view: 'mail.alert.main_pass_annul',
+            view: 'mail.all_mail_template',
         );
     }
 

@@ -3,11 +3,12 @@
 namespace App\Mail\Alert;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Services\MailContentServices;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class AnnulMail extends Mailable
 {
@@ -16,14 +17,26 @@ class AnnulMail extends Mailable
     public $truc_number;
     public $pass;
     public $time;
+    public $msg;
+
+    public $content;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($truc_number, $pass, $time)
+    public function __construct($truc_number, $pass, $time, $message)
     {
         $this->truc_number = $truc_number;
         $this->pass = $pass;
         $this->time = $time;
+        $this->msg = $message;
+
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('annul', [
+            "truc_number" => $truc_number,
+            "pass" => $pass,
+            "time" => $time,
+        ]);
     }
 
     /**
@@ -32,7 +45,9 @@ class AnnulMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Пропуск на автомобиль ".$this->truc_number." будет аннулирован завтра",
+            // subject: "Пропуск на автомобиль ".$this->truc_number." будет аннулирован завтра",
+            subject: $this->content['subject'].((config('app.env') !== "production")?" (Тест)":""),
+
         );
     }
 
@@ -42,7 +57,8 @@ class AnnulMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.alert.annul',
+            // view: 'mail.alert.annul',
+            view: 'mail.all_mail_template',
         );
     }
 

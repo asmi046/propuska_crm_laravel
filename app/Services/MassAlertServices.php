@@ -19,7 +19,7 @@ class MassAlertServices {
     }
 
 
-    public function do_alert(string $alert_pass) {
+    public function do_alert(string $alert_pass, string|null $message) {
 
 
         $pass = str_replace(["-"," ","_"],"", $alert_pass);
@@ -51,7 +51,7 @@ class MassAlertServices {
 
         sleep(rand(1,2));
 
-        Mail::to($adt_tosend)->send(new AnnulMail($an->truc->truc_number, $serias.$number, $an->type_pass));
+        Mail::to($adt_tosend)->send(new AnnulMail($an->truc->truc_number, $serias.$number, $an->type_pass, $message));
 
         return [
             'pass' => $serias.$number,

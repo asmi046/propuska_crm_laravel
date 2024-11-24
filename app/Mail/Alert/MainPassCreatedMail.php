@@ -3,23 +3,27 @@
 namespace App\Mail\Alert;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Services\MailContentServices;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class MainPassCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $pass;
+    public $content;
     /**
      * Create a new message instance.
      */
     public function __construct($pass)
     {
         $this->pass = $pass;
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('main_pass_created', $pass);
     }
 
     /**
@@ -38,7 +42,8 @@ class MainPassCreatedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.alert.main_pass_created',
+            // view: 'mail.alert.main_pass_created',
+            view: 'mail.all_mail_template',
         );
     }
 

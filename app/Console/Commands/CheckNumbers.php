@@ -85,5 +85,7 @@ class CheckNumbers extends Command
         $this->line("Ошибок: ".$excaption_count);
         $this->line("Расшифровка ошибок: ");
 
+        print_r($excaption);
+
     }
 }

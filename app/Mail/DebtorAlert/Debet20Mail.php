@@ -15,6 +15,9 @@ class Debet20Mail extends Mailable
 
     public $truc_number;
     public $annul_data;
+
+    public $content;
+
     /**
      * Create a new message instance.
      */
@@ -22,6 +25,12 @@ class Debet20Mail extends Mailable
     {
         $this->truc_number = $truc_number;
         $this->annul_data = $annul_data;
+
+        $serv = new MailContentServices();
+        $this->content = $serv->get_no_active_numbers('debt20', [
+            'truc_number' => $truc_number,
+            'annul_data' => $annul_data
+        ]);
     }
 
     /**
@@ -30,7 +39,8 @@ class Debet20Mail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Нет оплаты за пропуск ".$this->truc_number.". Отправляем на аннуляцию.",
+            // subject: "Нет оплаты за пропуск ".$this->truc_number.". Отправляем на аннуляцию.",
+            subject: $this->content['subject'].((config('app.env') !== "production")?" (Тест)":""),
         );
     }
 
@@ -40,7 +50,8 @@ class Debet20Mail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.debtor.debt15',
+            // view: 'mail.debtor.debt15',
+            view: 'mail.all_mail_template',
         );
     }
 
