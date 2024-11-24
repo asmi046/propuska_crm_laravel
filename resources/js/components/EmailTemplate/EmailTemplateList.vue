@@ -125,6 +125,7 @@ const updatedTemplate = () => {
             .then((resp) => {
                 toast.add({ severity: 'success', summary: 'Успех', detail: 'Запись обновлена', life: 3000 });
                 loading.value = false
+                getDebtorsList()
             })
             .catch(error => {
                 loading.value = false;

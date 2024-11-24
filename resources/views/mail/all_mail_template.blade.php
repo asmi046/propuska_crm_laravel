@@ -8,7 +8,7 @@
 
         @isset($msg)
             @if (!empty($msg))
-                <q>{!! $msg !!}</q>
+                <strong style="background-color:rgb(255,153,0); font-weight:bold; font-size:18px">{!! $msg !!}</strong>
             @endif
         @endisset
     </body>
