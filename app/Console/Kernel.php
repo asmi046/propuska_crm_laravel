@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('numbers:check-numbers')->cron('25 */2 * * *')->unlessBetween('23:59', '8:00');
+        $schedule->command('numbers:check-numbers')->cron('25 */2 * * *')->unlessBetween('20:59', '5:00');
         $schedule->command('debtors:check-debtors')->cron('1 6 * * *');
 
         // $schedule->command('mtest:cron-test')->everyTwoMinutes();
