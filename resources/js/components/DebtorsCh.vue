@@ -110,6 +110,7 @@
         for (let index in out_base.value) {
             await axios.get('/debtors_dell_return/'+out_base.value[index].id)
             .then((resp) => {
+                out_base.value.splice(index,1);
                 toast.add({ severity: 'success', summary: 'Удалено', detail: out_base.value[index].truc_number + ' - Должник удален', life: 2000 });
             })
             .catch(error => {
