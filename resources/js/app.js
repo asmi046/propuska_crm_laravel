@@ -27,6 +27,7 @@ import Settings from './components/Settings.vue';
 import EmailTemplateList from './components/EmailTemplate/EmailTemplateList.vue';
 import DebtorsCh from './components/DebtorsCh.vue';
 import ToastService from 'primevue/toastservice';
+import ConfirmationService from 'primevue/confirmationservice';
 
 const email_templates = createApp({
     components:{
@@ -59,6 +60,7 @@ if (document.getElementById('debtors_chek')) {
     debtors_chek.use(VueAxios, axios)
     debtors_chek.use(PrimeVue)
     debtors_chek.use(ToastService);
+    debtors_chek.use(ConfirmationService);
     debtors_chek.mount("#debtors_chek")
 }
 

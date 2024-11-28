@@ -68,6 +68,17 @@ class DebtorsController extends Controller
         return redirect()->back()->with('number_deleted', "Должник удален!");
     }
 
+    public function debtors_dell_return(int $id) {
+        $item = Debtor::where('id', $id)->first();
+        if(!$item) abort('403', "Не найдена запись");
+
+        $item->delete();
+
+        return [
+            'debtor_id' => $id
+        ];
+    }
+
     public function debtors_add() {
         return view('debtors_add');
     }

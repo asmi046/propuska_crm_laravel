@@ -10,6 +10,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/debtors_chek', [DebtorsController::class, "debtors_chek"])->name('debtors_chek');
     Route::get('/debtors_chek_do', [DebtorsController::class, "debtors_chek_do"])->name('debtors_chek_do');
     Route::get('/debtors_dell/{id}', [DebtorsController::class, "debtors_dell"])->name('debtors_dell');
+    Route::get('/debtors_dell_return/{id}', [DebtorsController::class, "debtors_dell_return"])->name('debtors_dell_return');
     Route::get('/debtors_dashboard', [DebtorsController::class, "debtors_dashboard"])->name('debtors_dashboard');
     Route::get('/debtors_dashboard_get', [DebtorsController::class, "debtors_dashboard_get"])->name('debtors_dashboard_get');
 });
