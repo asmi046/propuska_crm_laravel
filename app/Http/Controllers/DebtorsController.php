@@ -71,4 +71,20 @@ class DebtorsController extends Controller
     public function debtors_add() {
         return view('debtors_add');
     }
+
+    public function debtors_chek() {
+        return view('debtors_chek');
+    }
+
+    public function debtors_chek_do(Request $request) {
+        $list = $request->input('list');
+
+        $in_base = Debtor::whereIn('truc_number',$list)->get();
+        $out_base = Debtor::whereNotIn('truc_number',$list)->get();
+
+        return [
+            'in_base' => $in_base,
+            'out_base' => $out_base,
+        ];
+    }
 }

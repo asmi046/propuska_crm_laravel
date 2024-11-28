@@ -13,6 +13,7 @@
         <x-menues.menu-item title="Удаление по E-mail" icon="dell_emeil" :active="(Route::currentRouteName() === 'delete_by_email')?true:false" :route="route('delete_by_email')"></x-menues.menu-item>
         <x-menues.menu-item title="Добавление должников" icon="person_add" :active="(Route::currentRouteName() === 'debtors_add')?true:false" :route="route('debtors_add')"></x-menues.menu-item>
         <x-menues.menu-item title="Управление должниками" icon="procent" :active="(Route::currentRouteName() === 'debtors_dashboard')?true:false" :route="route('debtors_dashboard')"></x-menues.menu-item>
+        <x-menues.menu-item title="Проверка должников" icon="deb_ch" :active="(Route::currentRouteName() === 'debtors_chek')?true:false" :route="route('debtors_chek')"></x-menues.menu-item>
         <x-menues.menu-item title="Шаблоны E-mail" icon="template_emeil" :active="(Route::currentRouteName() === 'email_template_list')?true:false" :route="route('email_template_list')"></x-menues.menu-item>
 
         <div id="settings_app">

@@ -121,6 +121,12 @@
         <path fill-rule="evenodd" d="M10,19 L19,19 L19,11 L10,11 L10,19 Z M8,19 L8,11 L5,11 L5,9 L19,9 L19,5 L5,5 L5,19 L8,19 Z M5,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,19 C21,20.1045695 20.1045695,21 19,21 L5,21 C3.8954305,21 3,20.1045695 3,19 L3,5 C3,3.8954305 3.8954305,3 5,3 Z"/>
     </symbol>
 
+    <symbol id="deb_ch" viewBox="0 0 24 24" stroke-width="1.5">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+        <circle cx="8.5" cy="7" r="4" />
+        <polyline points="17 11 19 13 23 9" />
+    </symbol>
+
     <symbol id="pass_icon" viewBox="0 0 512 512" stroke-width="1.5">
         <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="114.7" x2="114.7" y1="221.5" y2="290.5"/>
         <line stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="10" x1="90" x2="138.8" y1="231.7" y2="280.5"/>

@@ -25,6 +25,7 @@ import DeleteByEmail from './components/DeleteByEmail.vue';
 import UpdateByNumber from './components/UpdateByNumber.vue';
 import Settings from './components/Settings.vue';
 import EmailTemplateList from './components/EmailTemplate/EmailTemplateList.vue';
+import DebtorsCh from './components/DebtorsCh.vue';
 import ToastService from 'primevue/toastservice';
 
 const email_templates = createApp({
@@ -42,6 +43,23 @@ if (document.getElementById('email_templates')) {
     email_templates.use(PrimeVue)
     email_templates.use(ToastService);
     email_templates.mount("#email_templates")
+}
+
+const debtors_chek = createApp({
+    components:{
+        DebtorsCh
+    },
+
+    setup() {
+        return {};
+    },
+})
+
+if (document.getElementById('debtors_chek')) {
+    debtors_chek.use(VueAxios, axios)
+    debtors_chek.use(PrimeVue)
+    debtors_chek.use(ToastService);
+    debtors_chek.mount("#debtors_chek")
 }
 
 const mass_alert_app = createApp({
