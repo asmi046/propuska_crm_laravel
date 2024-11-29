@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "109c45b01d109f71aa2656205ba0d3ae",
+    "content-hash": "ace1d694cb1a95c01c4f6f20f5d8aac2",
     "packages": [
         {
             "name": "brick/math",
@@ -6190,131 +6190,53 @@
             "time": "2024-04-26T08:14:18+00:00"
         },
         {
-            "name": "buggregator/trap",
-            "version": "1.6.1",
+            "name": "barryvdh/laravel-debugbar",
+            "version": "v3.14.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/buggregator/trap.git",
-                "reference": "b6ad65463b55afd0670b46b96b95197f2061e573"
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "2e805a6bd4e1aa83774316bb062703c65d0691ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/buggregator/trap/zipball/b6ad65463b55afd0670b46b96b95197f2061e573",
-                "reference": "b6ad65463b55afd0670b46b96b95197f2061e573",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/2e805a6bd4e1aa83774316bb062703c65d0691ef",
+                "reference": "2e805a6bd4e1aa83774316bb062703c65d0691ef",
                 "shasum": ""
             },
             "require": {
-                "clue/stream-filter": "^1.6",
-                "ext-sockets": "*",
-                "nunomaduro/termwind": "^1.15 || ^2",
-                "nyholm/psr7": "^1.8",
-                "php": ">=8.1",
-                "php-http/message": "^1.15",
-                "psr/container": "^1.1 || ^2.0",
-                "psr/http-message": "^1.1 || ^2",
-                "symfony/console": "^6.4 || ^7",
-                "symfony/var-dumper": "^6.3 || ^7",
-                "yiisoft/injector": "^1.2"
+                "illuminate/routing": "^9|^10|^11",
+                "illuminate/session": "^9|^10|^11",
+                "illuminate/support": "^9|^10|^11",
+                "maximebf/debugbar": "~1.23.0",
+                "php": "^8.0",
+                "symfony/finder": "^6|^7"
             },
             "require-dev": {
-                "dereuromark/composer-prefer-lowest": "^0.1.10",
-                "google/protobuf": "^3.23",
-                "phpunit/phpunit": "^10.4",
-                "roxblnfk/unpoly": "^1.8.1",
-                "vimeo/psalm": "^5.11"
-            },
-            "suggest": {
-                "ext-simplexml": "To load trap.xml",
-                "roxblnfk/unpoly": "If you want to remove unnecessary PHP polyfills depend on PHP version."
-            },
-            "bin": [
-                "bin/trap"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Buggregator\\Trap\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Aleksei Gagarin (roxblnfk)",
-                    "homepage": "https://github.com/roxblnfk"
-                },
-                {
-                    "name": "Pavel Buchnev (butschster)",
-                    "homepage": "https://github.com/butschster"
-                }
-            ],
-            "description": "A simple and powerful tool for debugging PHP applications.",
-            "homepage": "https://buggregator.dev/",
-            "keywords": [
-                "WebSockets",
-                "binary dump",
-                "cli",
-                "console",
-                "debug",
-                "dev",
-                "dump",
-                "helper",
-                "sentry",
-                "server",
-                "smtp"
-            ],
-            "support": {
-                "issues": "https://github.com/buggregator/trap/issues",
-                "source": "https://github.com/buggregator/trap/tree/1.6.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/buggregator",
-                    "type": "github"
-                },
-                {
-                    "url": "https://patreon.com/butschster",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://patreon.com/roxblnfk",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2024-05-04T20:21:09+00:00"
-        },
-        {
-            "name": "clue/stream-filter",
-            "version": "v1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/clue/stream-filter.git",
-                "reference": "049509fef80032cb3f051595029ab75b49a3c2f7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/clue/stream-filter/zipball/049509fef80032cb3f051595029ab75b49a3c2f7",
-                "reference": "049509fef80032cb3f051595029ab75b49a3c2f7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.6 || ^5.7 || ^4.8.36"
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench-dusk": "^5|^6|^7|^8|^9",
+                "phpunit/phpunit": "^9.6|^10.5",
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.14-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\Debugbar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Debugbar": "Barryvdh\\Debugbar\\Facades\\Debugbar"
+                    }
+                }
+            },
             "autoload": {
                 "files": [
-                    "src/functions_include.php"
+                    "src/helpers.php"
                 ],
                 "psr-4": {
-                    "Clue\\StreamFilter\\": "src/"
+                    "Barryvdh\\Debugbar\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6323,36 +6245,33 @@
             ],
             "authors": [
                 {
-                    "name": "Christian Lück",
-                    "email": "christian@clue.engineering"
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
                 }
             ],
-            "description": "A simple and modern approach to stream filtering in PHP",
-            "homepage": "https://github.com/clue/stream-filter",
+            "description": "PHP Debugbar integration for Laravel",
             "keywords": [
-                "bucket brigade",
-                "callback",
-                "filter",
-                "php_user_filter",
-                "stream",
-                "stream_filter_append",
-                "stream_filter_register"
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
             ],
             "support": {
-                "issues": "https://github.com/clue/stream-filter/issues",
-                "source": "https://github.com/clue/stream-filter/tree/v1.7.0"
+                "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.14.9"
             },
             "funding": [
                 {
-                    "url": "https://clue.engineering/support",
+                    "url": "https://fruitcake.nl",
                     "type": "custom"
                 },
                 {
-                    "url": "https://github.com/clue",
+                    "url": "https://github.com/barryvdh",
                     "type": "github"
                 }
             ],
-            "time": "2023-12-20T15:40:13+00:00"
+            "time": "2024-11-25T14:51:20+00:00"
         },
         {
             "name": "fakerphp/faker",
@@ -6667,6 +6586,74 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2024-05-16T21:39:11+00:00"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "v1.23.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "687400043d77943ef95e8417cb44e1673ee57844"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/687400043d77943ef95e8417cb44e1673ee57844",
+                "reference": "687400043d77943ef95e8417cb44e1673ee57844",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8",
+                "psr/log": "^1|^2|^3",
+                "symfony/var-dumper": "^4|^5|^6|^7"
+            },
+            "require-dev": {
+                "dbrekelmans/bdi": "^1",
+                "phpunit/phpunit": "^8|^9",
+                "symfony/panther": "^1|^2.1",
+                "twig/twig": "^1.38|^2.7|^3.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.23-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "support": {
+                "issues": "https://github.com/maximebf/php-debugbar/issues",
+                "source": "https://github.com/maximebf/php-debugbar/tree/v1.23.3"
+            },
+            "time": "2024-10-29T12:24:25+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7023,75 +7010,6 @@
                 "source": "https://github.com/phar-io/version/tree/3.2.1"
             },
             "time": "2022-02-21T01:04:05+00:00"
-        },
-        {
-            "name": "php-http/message",
-            "version": "1.16.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/message.git",
-                "reference": "5997f3289332c699fa2545c427826272498a2088"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/5997f3289332c699fa2545c427826272498a2088",
-                "reference": "5997f3289332c699fa2545c427826272498a2088",
-                "shasum": ""
-            },
-            "require": {
-                "clue/stream-filter": "^1.5",
-                "php": "^7.2 || ^8.0",
-                "psr/http-message": "^1.1 || ^2.0"
-            },
-            "provide": {
-                "php-http/message-factory-implementation": "1.0"
-            },
-            "require-dev": {
-                "ergebnis/composer-normalize": "^2.6",
-                "ext-zlib": "*",
-                "guzzlehttp/psr7": "^1.0 || ^2.0",
-                "laminas/laminas-diactoros": "^2.0 || ^3.0",
-                "php-http/message-factory": "^1.0.2",
-                "phpspec/phpspec": "^5.1 || ^6.3 || ^7.1",
-                "slim/slim": "^3.0"
-            },
-            "suggest": {
-                "ext-zlib": "Used with compressor/decompressor streams",
-                "guzzlehttp/psr7": "Used with Guzzle PSR-7 Factories",
-                "laminas/laminas-diactoros": "Used with Diactoros Factories",
-                "slim/slim": "Used with Slim Framework PSR-7 implementation"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/filters.php"
-                ],
-                "psr-4": {
-                    "Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                }
-            ],
-            "description": "HTTP Message related tools",
-            "homepage": "http://php-http.org",
-            "keywords": [
-                "http",
-                "message",
-                "psr-7"
-            ],
-            "support": {
-                "issues": "https://github.com/php-http/message/issues",
-                "source": "https://github.com/php-http/message/tree/1.16.1"
-            },
-            "time": "2024-03-07T13:22:09+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -8859,76 +8777,6 @@
                 }
             ],
             "time": "2024-03-03T12:36:25+00:00"
-        },
-        {
-            "name": "yiisoft/injector",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/injector.git",
-                "reference": "0dc0127a7542341bdaabda7b85204e992938b83e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/injector/zipball/0dc0127a7542341bdaabda7b85204e992938b83e",
-                "reference": "0dc0127a7542341bdaabda7b85204e992938b83e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "maglnet/composer-require-checker": "^3.8|^4.2",
-                "phpbench/phpbench": "^1.1",
-                "phpunit/phpunit": "^9.5",
-                "psr/container": "^1.0|^2.0",
-                "rector/rector": "^0.18.12",
-                "roave/infection-static-analysis-plugin": "^1.16",
-                "spatie/phpunit-watcher": "^1.23",
-                "vimeo/psalm": "^4.30|^5.7",
-                "yiisoft/test-support": "^1.2"
-            },
-            "suggest": {
-                "psr/container": "For automatic resolving of dependencies"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Injector\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "PSR-11 compatible injector. Executes a callable and makes an instances by injecting dependencies from a given DI container.",
-            "homepage": "https://www.yiiframework.com/",
-            "keywords": [
-                "PSR-11",
-                "dependency injection",
-                "di",
-                "injector",
-                "reflection"
-            ],
-            "support": {
-                "chat": "https://t.me/yii3en",
-                "forum": "https://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/injector/issues?state=open",
-                "source": "https://github.com/yiisoft/injector",
-                "wiki": "https://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2023-12-20T09:39:03+00:00"
         }
     ],
     "aliases": [],

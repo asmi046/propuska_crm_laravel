@@ -7,6 +7,7 @@ use App\Models\CarNumber;
 use Illuminate\Http\Request;
 use App\Filters\DebtorsFilter;
 use App\Http\Requests\Debtors;
+use App\Services\ListServices;
 
 class DebtorsController extends Controller
 {
@@ -71,7 +72,6 @@ class DebtorsController extends Controller
     public function debtors_dell_return(int $id) {
         $item = Debtor::where('id', $id)->first();
         if(!$item) abort('403', "Не найдена запись");
-
         $item->delete();
 
         return [
@@ -87,15 +87,22 @@ class DebtorsController extends Controller
         return view('debtors_chek');
     }
 
-    public function debtors_chek_do(Request $request) {
+
+
+
+    public function debtors_chek_do(Request $request, ListServices $ls) {
         $list = $request->input('list');
 
         $in_base = Debtor::whereIn('truc_number',$list)->get();
         $out_base = Debtor::whereNotIn('truc_number',$list)->get();
+        $all_debtors = Debtor::all();
+
+        $razn = $ls->list_compare( $all_debtors->toArray(), $list);
 
         return [
             'in_base' => $in_base,
             'out_base' => $out_base,
+            'empty' => $razn,
         ];
     }
 }

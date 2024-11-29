@@ -14,7 +14,7 @@
     },
     "require-dev": {
         "asmi046/site_skelet": "^1.0",
-        "buggregator/trap": "^1.6",
+        "barryvdh/laravel-debugbar": "^3.14",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

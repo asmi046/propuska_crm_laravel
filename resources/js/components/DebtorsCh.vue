@@ -34,7 +34,7 @@
             </SplitterPanel>
 
             <SplitterPanel class="flex align-items-center justify-content-center p20">
-                <h2>Есть в списке но нет в базе ({{ out_base.length }})</h2>
+                <h2>Есть в базе но нет в списке ({{ out_base.length }})</h2>
 
                 <DataTable v-show="out_base.length > 0" stripedRows  :rows="50" :value="out_base">
                     <Column field="truc_number" header="Госномер">
@@ -47,6 +47,15 @@
                 </DataTable>
                 <br><br>
                 <Button @click="deleteAll" label="Удалить все номера" icon="pi pi-trash" severity="danger" />
+                <br><br>
+                <h2>Есть в списке но нет в базе ({{ out_list.length }})</h2>
+                <DataTable v-show="out_list.length > 0" stripedRows  :rows="50" :value="out_list">
+                    <Column field="truc_number" header="Госномер">
+                        <template #body="slotProps">
+                            <Tag severity="info" :value="slotProps.data.truc_number" />
+                        </template>
+                    </Column>
+                </DataTable>
             </SplitterPanel>
     </Splitter>
 
@@ -72,9 +81,10 @@
     const confirm = useConfirm();
     const toast = useToast();
 
-    let list_text = ref('Х173ТХ15, Е999ОР21, С900РК39, О600СК799, Т304ВА39, О286УТ777, К672СС799, А847ЕЕ750, В386УА790, А799ВУ37')
+    let list_text = ref('Х173ТХ15, Е999ОР21, С900РК39, О600СК799, Т304ВА39, О286УТ777, К672СС799, А847ЕЕ750, В386УА790, А799ВУ37, А222ВУ22, А777ВУ77')
     let in_base = ref([])
     let out_base = ref([])
+    let out_list = ref([])
     let loader = ref(false)
 
     let do_check = async () => {
@@ -94,6 +104,7 @@
                 loader.value = false
                 in_base.value = resp.data['in_base']
                 out_base.value = resp.data['out_base']
+                out_list.value = resp.data['empty']
                 console.log(resp.data)
         })
         .catch(error => {
