@@ -9,6 +9,7 @@ class MailContentServices {
     public $data_fields = [
         'valid_from',
         'valid_to',
+        'annul_data',
         'cancel_date'
     ];
 
