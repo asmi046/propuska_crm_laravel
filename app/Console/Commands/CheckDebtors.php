@@ -82,7 +82,7 @@ class CheckDebtors extends Command
                 }
 
                 if ($deycount == 20) {
-                    $annul_data = strtotime('+3 days');
+                    $annul_data = strtotime('+3 day');
                     Mail::to($adt_tosend)->send(new Debet20Mail($item->truc_number, $annul_data));
                     $this->error($item->truc_number.' - Задолженность 20+ дней. Оповещение отправлено');
                 }

@@ -30,7 +30,7 @@ class Debet20Mail extends Mailable
         $serv = new MailContentServices();
         $this->content = $serv->get_no_active_numbers('debt20', [
             'truc_number' => $truc_number,
-            'annul_data' => $annul_data
+            'annul_data' => date("d.m.Y", $annul_data)
         ]);
     }
 
