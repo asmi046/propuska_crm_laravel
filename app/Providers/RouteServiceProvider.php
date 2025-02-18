@@ -37,6 +37,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             Route::middleware('web')
+                ->group(base_path('routes/event_log.php'));
+
+            Route::middleware('web')
                 ->group(base_path('routes/asmi_all.php'));
 
             Route::middleware('web')

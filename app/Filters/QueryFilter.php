@@ -29,7 +29,8 @@ class QueryFilter
 
             if (method_exists($this, $name)) {
                 if ($value == NULL) continue;
-                call_user_func_array([$this, $name], array_filter([$value]));
+                // call_user_func_array([$this, $name], array_filter([$value]));
+                call_user_func_array([$this, $name], [$value]);
 
             }
         }

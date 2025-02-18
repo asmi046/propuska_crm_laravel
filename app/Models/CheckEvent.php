@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CheckEvent extends Model
 {
@@ -15,4 +17,13 @@ class CheckEvent extends Model
         'number',
         'pass_number',
     ];
+
+    public function truc(): BelongsTo
+    {
+        return $this->belongsTo(CarNumber::class, 'number', 'truc_number');
+    }
+
+    public function scopeFilter($builder, QueryFilter $filter) {
+        return $filter->apply($builder);
+    }
 }

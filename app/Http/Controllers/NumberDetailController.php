@@ -21,6 +21,16 @@ class NumberDetailController extends Controller
         return view('check_number', ['number' => $true_number, 'info' => $info]);
     }
 
+    public function check_number_site(CheckTruckNumberRequest $request, ChecNumberServices $detail_service, $number = "") {
+        $true_number = $number;
+        if (empty($true_number))
+            $true_number = $request->input('truc_number');
+
+        $info = $true_number?$detail_service->chec_number($true_number, "site"):null;
+
+        return view('check_number_site', ['number' => $true_number, 'info' => $info]);
+    }
+
     public function update_number_info(ChecNumberServices $cn_service, ActiveNumberServices $an_services, $id) {
         $item = CarNumber::where('id', $id)->first();
         if(!$item) abort('404');

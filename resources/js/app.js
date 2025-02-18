@@ -19,6 +19,7 @@ import MassAdd from "./components/MassAdd.vue"
 import MassNumberCheck from "./components/MassNumberCheck.vue"
 import DebtorsAdd from "./components/DebtorsAdd.vue"
 import MainPage from "./components/MainPage/MainPage.vue"
+import LogEvent from "./components/LogEvent/LogEvent.vue"
 
 import DebtorsList from "./components/DebtorsList.vue"
 import DeleteByEmail from './components/DeleteByEmail.vue';
@@ -204,6 +205,20 @@ if (document.getElementById('settings_app')) {
     settings_app.use(PrimeVue);
     settings_app.use(VueAxios, axios);
     settings_app.mount("#settings_app")
+}
+
+const event_log = createApp({
+    components:{
+        LogEvent
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('event_log')) {
+    event_log.use(PrimeVue);
+    event_log.use(VueAxios, axios);
+    event_log.mount("#event_log")
 }
 
 

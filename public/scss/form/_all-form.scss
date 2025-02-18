@@ -36,6 +36,17 @@ form {
     }
 }
 
+.group_process {
+    .control {
+        display: flex;
+        gap:40px;
+    }
+
+    .p-progressbar {
+        margin: auto auto auto 0;
+    }
+}
+
 .form-status {
     border-radius: 4px;
     padding: 20px;
