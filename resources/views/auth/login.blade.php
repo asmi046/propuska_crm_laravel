@@ -21,7 +21,7 @@
             <div class="field">
               <label class="label">E-mail</label>
               <div class="control">
-                <input name="email" class="input" type="email" placeholder="e.g. alex@example.com">
+                <input class="p-inputtext" name="email" class="input" type="email" placeholder="e.g. alex@example.com">
               </div>
 
               @error('email')
@@ -32,7 +32,7 @@
             <div class="field">
               <label class="label">Пароль</label>
               <div class="control">
-                <input name="password" class="input" type="password" placeholder="********">
+                <input class="p-inputtext" name="password" class="input" type="password" placeholder="********">
               </div>
 
               @error('password')

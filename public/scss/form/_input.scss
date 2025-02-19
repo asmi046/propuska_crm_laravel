@@ -3,6 +3,16 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
 select:-webkit-autofill:active,
 
+
+input[type=email]:-webkit-autofill,
+input[type=email]:-webkit-autofill:hover,
+input[type=email]:-webkit-autofill:focus,
+input[type=email]:-webkit-autofill:active,
+
+input[type=password]:-webkit-autofill,
+input[type=password]:-webkit-autofill:hover,
+input[type=password]:-webkit-autofill:focus,
+input[type=password]:-webkit-autofill:active,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -10,8 +20,12 @@ input:-webkit-autofill:active{
     box-shadow: inset 0 0 20px 20px #FFFFFFFF;
 }
 
+
 select,
 textarea,
+input[type=email],
+input[type=number],
+input[type=password],
 input[type=text]{
     box-sizing: border-box;
     box-shadow: inset 0 0.0625em 0.125em rgba(10,10,10,.05);
