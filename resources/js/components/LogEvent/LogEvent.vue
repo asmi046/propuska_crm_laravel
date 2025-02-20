@@ -13,7 +13,7 @@
                 </IconField>
             </div>
             <br>
-            <group-process-selector :selected="selectedProduct"> </group-process-selector>
+            <group-process-selector :selected="selectedProduct" :callback="selectClear"> </group-process-selector>
         </template>
     </Card>
 
@@ -25,7 +25,7 @@
         </svg>
     <br>
 
-    <DataTable stripedRows v-model:selection="selectedProduct" paginator :rows="50" :value="events">
+    <DataTable stripedRows v-model:selection="selectedProduct" paginator :rows="100" :value="events" :rowsPerPageOptions="[100, 150, 200, 500]">
         <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
         <Column field="state" header="Статус">
             <template #body="slotProps">
@@ -51,6 +51,13 @@
                     day: 'numeric'
                 })
 
+                }}
+            </template>
+        </Column>
+        <Column field="pass_end_date" header="Дата окончания">
+            <template #body="slotProps">
+                {{
+                    slotProps.data.pass_end_date?new Date(slotProps.data.pass_end_date).toLocaleString():""
                 }}
             </template>
         </Column>
@@ -94,12 +101,11 @@ let data_range = ref([addDays(new Date(), -1), addDays(new Date(), 1)])
 
 const selectedProduct = ref()
 
+
+
 let event_type = ref('')
 let event_types = ref([
     { name: 'Любые события', code: '%'},
-    { name: 'Аннулирован пропуск', code: 'Аннулирован пропуск'},
-    { name: 'Выпущен временный пропуск', code: 'Выпущен временный пропуск'},
-    { name: 'Выпущен временный пропуск заканчивается сегодня', code: 'Выпущен временный пропуск заканчивается сегодня'},
     { name: 'До окончания пропуска осталось 30 дней', code: 'До окончания пропуска осталось 30 дней'},
     { name: 'До окончания пропуска осталось 60 дней', code: 'До окончания пропуска осталось 60 дней'},
 ])
@@ -121,6 +127,10 @@ watch([data_range, event_type, serch, state], (newV, oldV) => {
     getEventList()
 });
 
+
+const selectClear = () => {
+    selectedProduct.value = []
+}
 
 const get_parametrs = () => {
     return {

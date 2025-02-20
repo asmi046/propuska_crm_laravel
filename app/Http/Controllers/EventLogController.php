@@ -13,7 +13,10 @@ class EventLogController extends Controller
     }
 
     public function get_event_list(EventsFilter $request) {
-        $events = CheckEvent::with('truc')->filter($request)->get();
+        $events = CheckEvent::with('truc')
+            ->whereIn('event_name', ['До окончания пропуска осталось 60 дней', 'До окончания пропуска осталось 30 дней'])
+            ->filter($request)
+            ->get();
         return $events;
     }
 

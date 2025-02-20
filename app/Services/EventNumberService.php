@@ -31,7 +31,7 @@ class EventNumberService {
         CheckLog::create($adding);
     }
 
-    protected function check_event(string $name, string $truc_number, string $pass_number, string $fix_date = "") {
+    protected function check_event(string $name, string $truc_number, string $pass_number, string $fix_date = "", $pass_end_date = null) {
 
         $fix_date = empty($fix_date)?date("Y-m-d"):$fix_date;
 
@@ -45,6 +45,7 @@ class EventNumberService {
                 'event_date' => $fix_date,
                 'number' => $truc_number,
                 'pass_number' => $pass_number,
+                'pass_end_date' => $pass_end_date,
             ]);
             return true;
         }
@@ -87,14 +88,14 @@ class EventNumberService {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 60)
             && (empty($pass['cancel_date']))
-            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
+            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], pass_end_date:date("Y-m-d", strtotime($pass['valid_to'])) ));
     }
 
     protected function check_main_pass_end_30($pass, string $evant_name = "До окончания пропуска осталось 30 дней") {
         return ($pass['series'] === "БА")
             && $this->dey_count_to_date($pass['valid_to'], 30)
             && (empty($pass['cancel_date']))
-            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number']));
+            && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], pass_end_date:date("Y-m-d", strtotime($pass['valid_to'])) ));
     }
 
     protected function check_main_pass_annul($pass, string $evant_name = "Аннулирован пропуск") {

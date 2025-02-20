@@ -16,6 +16,9 @@ class CheckEvent extends Model
         'event_date',
         'number',
         'pass_number',
+        'pass_end_date',
+        'important',
+        'state',
     ];
 
     public function truc(): BelongsTo
