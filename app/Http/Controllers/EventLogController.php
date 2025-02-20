@@ -24,7 +24,12 @@ class EventLogController extends Controller
         $list = $request->input('list');
         $state = $request->input('state');
 
-        $result = CheckEvent::whereIn('id', $list)->update(['state' => $state]);
+        if ($state === "Важное")
+            $result = CheckEvent::whereIn('id', $list)->update(['important' => true]);
+        elseif ($state === "Неважное")
+            $result = CheckEvent::whereIn('id', $list)->update(['important' => false]);
+        else
+            $result = CheckEvent::whereIn('id', $list)->update(['state' => $state]);
 
         return [$result];
     }

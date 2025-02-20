@@ -9,6 +9,7 @@
             <Button :disabled="props.selected == undefined || props.selected.length == 0" @click.prevent="actionHandler('Непрочитанное')" icon="pi pi-question-circle" severity="secondary" aria-label="Не прочитано" label="Не прочитано"  />
             <Button :disabled="props.selected == undefined || props.selected.length == 0" @click.prevent="actionHandler('Прочитанное')" icon="pi pi-plus-circle" severity="success" aria-label="Прочитано" label="Прочитано" />
             <Button :disabled="props.selected == undefined || props.selected.length == 0" @click.prevent="actionHandler('Важное')" icon="pi pi-megaphone" severity="danger" aria-label="Важное" label="Важное"  />
+            <Button :disabled="props.selected == undefined || props.selected.length == 0" @click.prevent="actionHandler('Неважное')" icon="pi pi-clock" severity="danger" outlined  aria-label="Важное" label="Неважное"  />
             <ProgressBar v-show="loading" mode="indeterminate" style="height: 6px; width: 50px;"></ProgressBar>
         </div>
     </div>
@@ -48,7 +49,12 @@ const actionHandler = (state) => {
         loading.value = false
 
         for (var i = 0; i < props.selected.length; i++)
-            props.selected[i].state = state;
+            if (state == 'Важное')
+                props.selected[i].important = true;
+            else if (state == 'Неважное')
+                props.selected[i].important = false;
+            else
+                props.selected[i].state = state;
 
         if (props.callback )
             props.callback()

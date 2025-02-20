@@ -34,6 +34,11 @@
                 <Tag v-if="slotProps.data.state == 'Важное'" icon="pi pi-megaphone" severity="danger" :value="slotProps.data.state" />
             </template>
         </Column>
+        <Column field="important" header="Важное">
+            <template #body="slotProps">
+                <Tag v-if="slotProps.data.important" icon="pi pi-megaphone" severity="danger" />
+            </template>
+        </Column>
 
         <Column field="created_at" header="Зафиксированно">
             <template #body="slotProps">
