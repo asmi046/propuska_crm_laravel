@@ -17,6 +17,8 @@
         <x-menues.menu-item title="Управление должниками" icon="procent" :active="(Route::currentRouteName() === 'debtors_dashboard')?true:false" :route="route('debtors_dashboard')"></x-menues.menu-item>
         <x-menues.menu-item title="Проверка должников" icon="deb_ch" :active="(Route::currentRouteName() === 'debtors_chek')?true:false" :route="route('debtors_chek')"></x-menues.menu-item>
         <x-menues.menu-item title="Шаблоны E-mail" icon="template_emeil" :active="(Route::currentRouteName() === 'email_template_list')?true:false" :route="route('email_template_list')"></x-menues.menu-item>
+        <x-menues.menu-item title="Оповешение о ТО" icon="to_icon" :active="(Route::currentRouteName() === 'to_alert_list')?true:false" :route="route('to_alert_list')"></x-menues.menu-item>
+        <x-menues.menu-item title="Оповешение о Штрафах" icon="fine_icon" :active="(Route::currentRouteName() === 'fine_alert_list')?true:false" :route="route('fine_alert_list')"></x-menues.menu-item>
 
         <div id="settings_app">
             <settings></settings>

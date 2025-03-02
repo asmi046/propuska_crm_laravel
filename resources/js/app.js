@@ -21,6 +21,9 @@ import DebtorsAdd from "./components/DebtorsAdd.vue"
 import MainPage from "./components/MainPage/MainPage.vue"
 import LogEvent from "./components/LogEvent/LogEvent.vue"
 
+import ToAlertList from "./components/ToAlertList.vue"
+import FineAlertList from "./components/FineAlertList.vue"
+
 import DebtorsList from "./components/DebtorsList.vue"
 import DeleteByEmail from './components/DeleteByEmail.vue';
 import UpdateByNumber from './components/UpdateByNumber.vue';
@@ -219,6 +222,35 @@ if (document.getElementById('event_log')) {
     event_log.use(PrimeVue);
     event_log.use(VueAxios, axios);
     event_log.mount("#event_log")
+}
+
+const to_alert_list = createApp({
+    components:{
+        ToAlertList
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('to_alert_list')) {
+    to_alert_list.use(PrimeVue);
+    to_alert_list.use(VueAxios, axios);
+    to_alert_list.mount("#to_alert_list")
+}
+
+const fine_alert_list = createApp({
+    components:{
+        FineAlertList
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('fine_alert_list')) {
+    fine_alert_list.use(PrimeVue);
+    fine_alert_list.use(VueAxios, axios);
+    fine_alert_list.use(ToastService);
+    fine_alert_list.mount("#fine_alert_list")
 }
 
 

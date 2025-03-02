@@ -65,6 +65,12 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/email_template.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/fine_alert.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/to_alert.php'));
         });
     }
 }

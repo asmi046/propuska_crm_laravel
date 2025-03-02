@@ -76,6 +76,21 @@
         margin-bottom: 10px;
     }
 
+    .df {
+        display: flex;
+    }
+
+    .g20{
+        gap: 20px;
+    }
+
+    .f1{
+        flex:1
+    }
+
+    .f2{
+        flex:2
+    }
 
     .an_wrapper {
         display: flex;
@@ -101,6 +116,19 @@
                 flex-direction: column;
                 padding: 5px 10px;
             }
+        }
+    }
+
+    .columns {
+        display: flex;
+        gap:20px;
+        .column {
+            flex:1;
+        }
+
+        .cl_left {
+            border-right: 1px solid $gray_border_color;
+            padding-right: 20px
         }
     }
 
