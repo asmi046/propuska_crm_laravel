@@ -58,7 +58,7 @@ class ToAlert extends Command
         $excaption = [];
 
 
-        $adt_tosend = config('notification_adr.adr_to_send');
+
 
         foreach($all_numbers as $item) {
             $this->line("#".$index." Проверяем номер: ".$item->truc_number);
@@ -70,6 +70,8 @@ class ToAlert extends Command
                 if ($deycount == -1 || $deycount >= 10) {
                     // SendToAlert::dispatch($item->truc_number, $item->email)->delay(now()->addMinutes($delay));
 
+                    $adt_tosend = [];
+                    $adt_tosend = config('notification_adr.adr_to_send');
                     if (config('app.env') === "production"){
                         $adt_tosend[] = $item->email;
                     }
