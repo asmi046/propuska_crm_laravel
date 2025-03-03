@@ -67,7 +67,7 @@ class FineAlert extends Command
         $excaption = [];
 
 
-        $adt_tosend = config('notification_adr.adr_to_send');
+
 
         foreach($fines as $key => $item_f) {
             $this->line("#".$index." Проверяем номер: ".$key);
@@ -78,6 +78,8 @@ class FineAlert extends Command
 
                 if ($deycount == -1 || $deycount >= 10) {
 
+                    $adt_tosend = [];
+                    $adt_tosend = config('notification_adr.adr_to_send');
                     if (config('app.env') === "production"){
                         $adt_tosend[] = $item_f['email'];
                     }
