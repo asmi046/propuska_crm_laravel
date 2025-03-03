@@ -106,7 +106,7 @@ const addDays = (date, days) => {
 }
 
 let events = ref([])
-let data_range = ref([addDays(new Date(), -1), addDays(new Date(), 1)])
+let data_range = ref([addDays(new Date(), -62), addDays(new Date(), 1)])
 
 const selectedProduct = ref()
 

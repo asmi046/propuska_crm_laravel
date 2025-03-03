@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card class="filter_card">
         <template #title>Фильтр</template>
         <template #content>
             <div class="filter_form">

@@ -44,8 +44,8 @@
                         </IconField>
                     </div>
                 </template>
-                <Column field="truc_number" header="Госномер"></Column>
-                <Column field="email" header="e-mail"></Column>
+                <Column sortable  field="truc_number" header="Госномер"></Column>
+                <Column sortable  field="email" header="e-mail"></Column>
                 <Column field="last_message" header="Последнее оповещение"></Column>
 
                 <Column field="state" header="Управление">

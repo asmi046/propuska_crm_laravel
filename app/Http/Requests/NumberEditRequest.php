@@ -24,6 +24,7 @@ class NumberEditRequest extends FormRequest
     {
         return [
             'truc_number.required' => 'Поле "Госномер" должно быть заполнено',
+            'truc_number.unique' => 'Такой госномер уже есть в базе',
         ];
     }
 
@@ -35,7 +36,7 @@ class NumberEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'truc_number' => ['required', 'string'],
+            'truc_number' => ['required', 'string', 'unique:car_numbers,truc_number'],
             'email' => [],
             'email_dop' => [],
             'email_dop2' => [],
