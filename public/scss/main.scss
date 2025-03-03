@@ -132,6 +132,16 @@
         }
     }
 
+    .filter_card {
+        position: sticky;
+        top:0;
+        z-index: 10;
+    }
+
+    .row_no_read {
+        font-weight: bold
+    }
+
     @import "header";
     @import "menues";
     @import "main-table";

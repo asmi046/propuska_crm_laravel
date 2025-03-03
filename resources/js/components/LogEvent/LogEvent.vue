@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card class="filter_card">
         <template #title>Фильтр</template>
         <template #content>
             <div class="filter_form">
@@ -25,7 +25,7 @@
         </svg>
     <br>
 
-    <DataTable stripedRows v-model:selection="selectedProduct" paginator :rows="100" :value="events" :rowsPerPageOptions="[100, 150, 200, 500]">
+    <DataTable :rowClass="rowClass" stripedRows v-model:selection="selectedProduct" paginator :rows="100" :value="events" :rowsPerPageOptions="[100, 150, 200, 500]">
         <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
         <Column field="state" header="Статус">
             <template #body="slotProps">
@@ -40,7 +40,7 @@
             </template>
         </Column>
 
-        <Column field="created_at" header="Зафиксированно">
+        <Column class="c_111" field="created_at" header="Зафиксированно">
             <template #body="slotProps">
                 {{ new Date(slotProps.data.created_at).toLocaleString() }}
             </template>
@@ -94,6 +94,10 @@ import GroupProcessSelector from './GroupProcessSelector.vue'
 
 import { ref, watch } from 'vue';
 
+
+const rowClass = (data) => {
+    return [{ 'row_no_read': data.state === 'Непрочитанное' }]
+};
 
 const addDays = (date, days) => {
     const newDate = new Date(date);

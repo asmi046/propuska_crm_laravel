@@ -14,6 +14,12 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('numbers:check-numbers')->cron('25 */2 * * *')->unlessBetween('20:59', '5:00');
         $schedule->command('debtors:check-debtors')->cron('1 6 * * *');
+        $schedule->command('alerts:fine')->dailyAt('10:00');
+        $schedule->command('alerts:to')->dailyAt('13:00');
+
+        $schedule->command('queue:work', [
+            '--max-time' => 300
+            ])->withoutOverlapping();
 
         // $schedule->command('mtest:cron-test')->everyTwoMinutes();
     }
