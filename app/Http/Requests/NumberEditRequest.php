@@ -39,7 +39,7 @@ class NumberEditRequest extends FormRequest
         return [
             'truc_number' => ['required',
             'string',
-            Rule::unique('car_numbers')->ignore($car_numbers)
+            Rule::unique('car_numbers')->ignore($car_number)
 
             // 'unique:car_numbers,truc_number'
         ],
