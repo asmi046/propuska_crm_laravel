@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class NumberEditRequest extends FormRequest
@@ -36,7 +37,13 @@ class NumberEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'truc_number' => ['required', 'string', 'unique:car_numbers,truc_number'],
+            'truc_number' => ['required',
+            'string',
+            Rule::unique('car_numbers')->ignore($car_numbers)
+
+            // 'unique:car_numbers,truc_number'
+        ],
+
             'email' => [],
             'email_dop' => [],
             'email_dop2' => [],
