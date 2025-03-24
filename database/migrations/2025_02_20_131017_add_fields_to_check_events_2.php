@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('check_events_2', function (Blueprint $table) {
+        Schema::table('check_events', function (Blueprint $table) {
             $table->dropColumn('important');
             $table->dropColumn('pass_end_date');
         });

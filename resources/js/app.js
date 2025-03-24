@@ -235,6 +235,7 @@ const to_alert_list = createApp({
 if (document.getElementById('to_alert_list')) {
     to_alert_list.use(PrimeVue);
     to_alert_list.use(VueAxios, axios);
+    to_alert_list.use(ToastService);
     to_alert_list.mount("#to_alert_list")
 }
 

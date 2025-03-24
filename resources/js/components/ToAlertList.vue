@@ -1,4 +1,5 @@
 <template>
+    <Toast />
     <br>
         <svg v-show="loader" class="loader_icon">
             <use xlink:href="#loader"></use>
@@ -49,8 +50,8 @@
                 <Column field="last_message" header="Последнее оповещение"></Column>
 
                 <Column field="state" header="Управление">
-                    <template #body="{ data, index }">
-                        <Button type="button" label="Удалить" icon="pi pi-times" severity="danger" @click="delet(data.id, index)" />
+                    <template #body="{ data }">
+                        <Button type="button" label="Удалить" icon="pi pi-times" severity="danger" @click="delet(data.id)" />
                     </template>
                 </Column>
             </DataTable>
@@ -71,7 +72,11 @@
     import IconField from 'primevue/iconfield';
     import InputIcon from 'primevue/inputicon';
 
-    let list_text = ref('М848ВУ790, М889ВУ790, БА0534768, В024ВС790, Р986АМ68')
+    import Toast from 'primevue/toast';
+    import { useToast } from 'primevue/usetoast';
+    const toast = useToast();
+
+    let list_text = ref('М848ВУ790, М889ВУ790, Р834ВМ154, В024ВС790, Р986АМ68, М354АВ67, М390ТВ790, С002СВ198')
     let loader = ref(false)
     let list = ref([])
     let alert_list = ref([])
@@ -95,17 +100,32 @@
             });
     }
 
-    let delet = (id, index) => {
+    let delet = (id) => {
         loader.value = true
         console.log(id)
         axios.get('/to_alert_delete/'+id)
             .then((resp) => {
-                alert_list.value.splice(index, 1)
+                alert_list.value = alert_list.value.filter((element) => element.id != id)
                 loader.value = false
+                toast.add(
+                    {
+                        severity: 'success',
+                        summary: 'Добавлено',
+                        detail: 'Номер удален', life: 2000
+                    }
+                );
             })
             .catch(error => {
                 console.log(error)
                 loader.value = false
+
+                toast.add(
+                    {
+                        severity: 'error',
+                        summary: 'Ошибка удаления',
+                        detail: error.response.data.message, life: 2000
+                    }
+                );
             });
     }
 
