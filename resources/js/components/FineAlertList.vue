@@ -31,8 +31,8 @@
             <Column field="last_message" header="Последнее оповещение"></Column>
 
             <Column field="state" header="Управление">
-                <template #body="{ data, index }">
-                    <Button type="button" label="Удалить" icon="pi pi-times" severity="danger" @click="delet(data.id, index)" />
+                <template #body="{ data }">
+                    <Button type="button" label="Удалить" icon="pi pi-times" severity="danger" @click="delet(data.id)" />
                 </template>
             </Column>
     </DataTable>
@@ -82,17 +82,31 @@
             });
     }
 
-    let delet = (id, index) => {
+    let delet = (id) => {
         loader.value = true
         console.log(id)
         axios.get('/fine_alert_delete/'+id)
             .then((resp) => {
-                alert_list.value.splice(index, 1)
+                alert_list.value = alert_list.value.filter((element) => element.id != id)
                 loader.value = false
+                toast.add(
+                    {
+                        severity: 'success',
+                        summary: 'Удаление',
+                        detail: 'Номер удален', life: 2000
+                    }
+                );
             })
             .catch(error => {
                 console.log(error)
                 loader.value = false
+                toast.add(
+                    {
+                        severity: 'error',
+                        summary: 'Ошибка удаления',
+                        detail: error.response.data.message, life: 2000
+                    }
+                );
             });
     }
 
