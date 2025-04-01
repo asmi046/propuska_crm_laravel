@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\CarNumber;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class ChecNumberServices {
@@ -77,6 +78,7 @@ class ChecNumberServices {
         $check_type = ($type === "base")?config('chec_service.service_url'):config('chec_service.service_url_for_site');
         $check_token = ($type === "base")?config('chec_service.service_token'):config('chec_service.service_token_for_site');
 
+        // Log::info($check_type);
 
         $response = Http::timeout(60)->get($check_type, [
             'apikey' => $check_token,
