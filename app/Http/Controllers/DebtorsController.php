@@ -86,7 +86,7 @@ class DebtorsController extends Controller
         $incorrect = 0;
 
         foreach ($debtors as $item) {
-            $email = CarNumber::where('email', $item->email)->first();
+            $email = CarNumber::where('email', $item->email)->where('truc_number', $item->truc_number)->first();
             if ($email) {
                 $item->true_email = true;
                 $correct++;
