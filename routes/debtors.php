@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DebtorsController;
 
-
 Route::middleware('auth')->group(function () {
+    Route::get('/email_check', [DebtorsController::class, "email_check"])->name('debtors_email_check');
     Route::post('/debtors_add_do', [DebtorsController::class, "debtors_add_do"])->name('debtors_add_do');
     Route::get('/debtors_add', [DebtorsController::class, "debtors_add"])->name('debtors_add');
     Route::get('/debtors_chek', [DebtorsController::class, "debtors_chek"])->name('debtors_chek');

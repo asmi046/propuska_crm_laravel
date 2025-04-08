@@ -79,6 +79,32 @@ class DebtorsController extends Controller
         ];
     }
 
+    public function email_check() {
+        $debtors = Debtor::all();
+
+        $correct = 0;
+        $incorrect = 0;
+
+        foreach ($debtors as $item) {
+            $email = CarNumber::where('email', $item->email)->first();
+            if ($email) {
+                $item->true_email = true;
+                $correct++;
+            } else {
+                $item->true_email = false;
+                $incorrect++;
+            }
+
+            $item->save();
+        }
+
+        return [
+            'all' => count( $debtors ),
+            'correct' => $correct,
+            'incorrect' => $incorrect,
+        ];
+    }
+
     public function debtors_add() {
         return view('debtors_add');
     }
