@@ -90,9 +90,11 @@ class NumberDetailController extends Controller
 
         $pass_clear = trim(str_replace([" ", "-", " - "], "", $pass));
         $pass_info = $cn_service->chec_pass($pass_clear);
+
         $result = [
             'pass_number' => $pass_clear,
             'rus' => false,
+            'type_pass' => "",
             'truck_number' => "",
             'valid_from' => "",
             'valid_to' => "",
@@ -103,6 +105,8 @@ class NumberDetailController extends Controller
 
         if ($pass_info) {
             $result['truck_number'] = $pass_info[0]->truck_num;
+            $result['type_pass'] = $pass_info[0]->type_pass;
+
             $result['rus'] = chec_rus($pass_info[0]->truck_num);
             $result['valid_from'] = date("d.m.Y", strtotime($pass_info[0]->valid_from));
             $result['valid_to'] = date("d.m.Y",  strtotime($pass_info[0]->valid_to));

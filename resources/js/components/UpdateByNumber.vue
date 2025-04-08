@@ -17,7 +17,15 @@
 
     <DataTable v-show="list.length > 0" stripedRows :rows="50" :value="list">
 
-        <Column field="pass_number" header="Пропуск"></Column>
+        <Column field="pass_number" header="Пропуск">
+            <template #body="slotProps">
+                <span v-if="slotProps.data.pass_number">
+                    <Avatar v-if="slotProps.data.type_pass == 'Дневной'" title="Дневной" icon="pi pi-sun" style="background-color: #dee9fc; color: #1a2551" />
+                    <Avatar v-if="slotProps.data.type_pass == 'Ночной'" title="Ночной" icon="pi pi-moon" style="background-color: #181f3c; color: white" />
+                    {{ slotProps.data.pass_number }}
+                </span>
+            </template>
+        </Column>
         <Column field="truck_number" header="Госномер">
             <template #body="slotProps">
                 {{ slotProps.data.truck_number }}
@@ -46,6 +54,7 @@
     import DataTable from 'primevue/datatable'
     import Column from 'primevue/column'
     import Tag from 'primevue/tag'
+    import Avatar from 'primevue/avatar';
 
     let list_text = ref('БА1652499, БА1350855, БА1378366, БА1643473, БА-1403849')
     let list = ref([])
