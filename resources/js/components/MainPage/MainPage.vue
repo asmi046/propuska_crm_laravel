@@ -22,7 +22,7 @@
         </svg>
     <br>
 
-    <DataTable stripedRows  paginator :rows="50" :value="passes">
+    <DataTable stripedRows  paginator :rows="50" :value="passes" dataKey="id">
         <Column field="truc_number" header="Госномер"></Column>
 
         <Column field="email" header="e-mail">
