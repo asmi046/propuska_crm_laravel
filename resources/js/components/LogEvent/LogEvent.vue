@@ -25,7 +25,23 @@
         </svg>
     <br>
 
-    <DataTable :rowClass="rowClass" stripedRows v-model:selection="selectedProduct" paginator :rows="100" :value="events" :rowsPerPageOptions="[100, 150, 200, 500]">
+    <DataTable :rowClass="rowClass"
+        dataKey="id"
+        stripedRows
+        v-model:selection="selectedProduct"
+        paginator
+        :rows="100"
+        :value="events"
+        :rowsPerPageOptions="[100, 150, 200, 500]"
+
+        :selectAll="selectAll"
+        @select-all-change="onSelectAllChange"
+        @row-select="onRowSelect"
+        @row-unselect="onRowUnselect"
+        @value-change="onValueChange"
+
+        @page="getRange"
+        >
         <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
         <Column field="state" header="Статус">
             <template #body="slotProps">
@@ -94,6 +110,56 @@ import GroupProcessSelector from './GroupProcessSelector.vue'
 
 import { ref, watch } from 'vue';
 
+const selectAll = ref(false);
+let visibleItems = []
+const first = ref(0)
+const rows = ref(100)
+
+const getRange = (event) => {
+    first.value = event.first
+    rows.value = event.rows
+}
+
+const onValueChange = (event) => {
+    console.log(first.value)
+    console.log(rows.value)
+    const newVisibleItems = event.slice(first.value, first.value + rows.value)
+
+    // if (JSON.stringify(newVisibleItems) !== JSON.stringify(visibleItems)) {
+    //     selectAll.value = false
+    //     selectedProduct.value = []
+    // }
+
+    if (newVisibleItems.length !== visibleItems.length || !newVisibleItems.every(item => visibleItems.includes(item))) {
+        selectAll.value = false
+        selectedProduct.value = []
+    }
+
+    visibleItems = newVisibleItems
+}
+
+
+const onSelectAllChange = (event) => {
+  if (event.checked) {
+    selectAll.value = true;
+    selectedProduct.value = (visibleItems.length == 0)?events.value:visibleItems
+  } else {
+    selectAll.value = false;
+    selectedProduct.value = [];
+  }
+};
+
+
+const onRowSelect = () => {
+  selectAll.value = selectedProduct.value.length === events.value;
+};
+
+const onRowUnselect = () => {
+  selectAll.value = false;
+};
+
+
+
 
 const rowClass = (data) => {
     return [{ 'row_no_read': data.state === 'Непрочитанное' }]
@@ -160,7 +226,6 @@ const getEventList = async () => {
             .then((resp) => {
                 locading.value = false
                 events.value = resp.data;
-                console.log(events.value)
             })
             .catch(error => {
                 locading.value = false
