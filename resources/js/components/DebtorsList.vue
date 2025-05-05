@@ -15,6 +15,12 @@
     <br>
     <div v-show="props.session" class="form-status form-status--success">{{ props.session }}</div>
     <br>
+    <div v-show="check_result != null" class="stat">
+        <p>Всего: <strong>{{ check_result?check_result.all:"" }}</strong></p>
+        <p>Корректно: <strong>{{ check_result?check_result.correct:"" }}</strong></p>
+        <p>Некорректно: <strong>{{ check_result?check_result.incorrect:"" }}</strong></p>
+    </div>
+    <br>
 
     <DataTable v-if="list.length != 0" stripedRows  paginator :rows="50" :value="list">
         <Column field="truc_number" header="Госномер"></Column>
@@ -25,7 +31,7 @@
         <Column field="true_email" sortable header="e-mail в базе">
             <template #body="slotProps">
                 <Tag v-if="slotProps.data.true_email" icon="pi pi-check" severity="success" value="Совпадает" />
-                <Tag v-if="slotProps.data.true_email == false" icon="pi pi-times" severity="danger" value="Несовпадает" />
+                <Tag v-if="slotProps.data.true_email == false" icon="pi pi-times" severity="danger" value="Исправлен" />
                 <Tag v-if="slotProps.data.true_email == null" icon="pi pi-times" severity="secondary" value="Непроверен" />
             </template>
         </Column>
@@ -56,6 +62,8 @@ const props = defineProps({
   session: String
 })
 
+let check_result = ref(null)
+
 let list = ref([])
 let serch = ref('')
 
@@ -81,7 +89,8 @@ const checkEmail  = () => {
     loader.value = true;
     axios.get('/email_check').then((resp) => {
         getDebtorsList()
-        loader.value = false;
+        check_result.value = resp.data
+        loader.value = false
     })
     .catch(error => console.log(error));
 }
