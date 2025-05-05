@@ -92,6 +92,8 @@ class DebtorsController extends Controller
                 $correct++;
             } else {
                 $item->true_email = false;
+                $n_number = CarNumber::where('truc_number', $item->truc_number)->first();
+                if ($n_number) $item->email = $n_number->email;
                 $incorrect++;
             }
 
