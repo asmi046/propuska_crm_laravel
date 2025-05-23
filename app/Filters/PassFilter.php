@@ -52,8 +52,22 @@ class PassFilter extends QueryFilter {
                         }
 
                         $query_l->where("pass_number", "LIKE", $mserch);
-                    })
-                    ;
+                    })->orWhereHas('active_numbers', function ($query_l) use ($mserch) {
+
+                        $mseries = "";
+
+                        if (strpos($mserch, "БА") !== false) {
+                            $mseries = "БА";
+                            $mserch = str_replace("БА", "", $mserch);
+                        }
+
+                        if (strpos($mserch, "ББ") !== false) {
+                            $mseries = "ББ";
+                            $mserch = str_replace("ББ", "", $mserch);
+                        }
+
+                        $query_l->where("pass_number", "LIKE", $mserch);
+                    });
             });
         }
 
