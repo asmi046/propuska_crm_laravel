@@ -45,10 +45,9 @@
     }
 
     .side_nav_item {
-        height: 30px;
         display: flex;
         font-size: 16px;
-        padding: 5px 10px;
+        padding: 5px 10px 5px 20px;
         border-radius: $border_rad;
 
         svg {
@@ -70,6 +69,10 @@
             fill:$main_color;
         }
 
+    }
+
+    .menu_h3 {
+        margin: 10px 0;
     }
 
     &.active .side_menue{
