@@ -23,6 +23,7 @@ import LogEvent from "./components/LogEvent/LogEvent.vue"
 
 import ToAlertList from "./components/ToAlertList.vue"
 import FineAlertList from "./components/FineAlertList.vue"
+import StsAlertList from "./components/StsAlertList.vue"
 
 import DebtorsList from "./components/DebtorsList.vue"
 import DeleteByEmail from './components/DeleteByEmail.vue';
@@ -252,6 +253,21 @@ if (document.getElementById('fine_alert_list')) {
     fine_alert_list.use(VueAxios, axios);
     fine_alert_list.use(ToastService);
     fine_alert_list.mount("#fine_alert_list")
+}
+
+const sts_alert_list = createApp({
+    components:{
+        StsAlertList
+    },
+
+    setup() {},
+})
+
+if (document.getElementById('sts_alert_list')) {
+    sts_alert_list.use(PrimeVue);
+    sts_alert_list.use(VueAxios, axios);
+    sts_alert_list.use(ToastService);
+    sts_alert_list.mount("#sts_alert_list")
 }
 
 

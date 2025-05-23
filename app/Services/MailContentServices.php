@@ -10,6 +10,7 @@ class MailContentServices {
         'valid_from',
         'valid_to',
         'annul_data',
+        'sts_data',
         'cancel_date'
     ];
 

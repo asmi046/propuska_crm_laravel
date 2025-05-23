@@ -29,6 +29,7 @@
         <h3 class="menu_h3">Должники</h3>
         <x-menues.menu-item title="Добавить ДК" icon="to_icon" :active="(Route::currentRouteName() === 'to_alert_list')?true:false" :route="route('to_alert_list')"></x-menues.menu-item>
         <x-menues.menu-item title="Добавить Штрафы" icon="fine_icon" :active="(Route::currentRouteName() === 'fine_alert_list')?true:false" :route="route('fine_alert_list')"></x-menues.menu-item>
+        <x-menues.menu-item title="Замена СТС" icon="sts_icon" :active="(Route::currentRouteName() === 'sts_alert_list')?true:false" :route="route('sts_alert_list')"></x-menues.menu-item>
 
         <div id="settings_app">
             <settings></settings>
