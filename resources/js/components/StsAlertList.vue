@@ -121,7 +121,7 @@
         .then((resp) => {
             alert_list.value.push(resp.data)
             truck_number.value = "",
-            fine_number.value = "",
+            sts_data.value = "",
             loader.value = false
             toast.add(
                 {
