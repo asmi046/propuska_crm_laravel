@@ -73,7 +73,7 @@ class StsAlert extends Command
                     $adt_tosend = [];
                     $adt_tosend = config('notification_adr.adr_to_send');
                     if (config('app.env') === "production"){
-                        $adt_tosend[] = $item_f['email'];
+                        $adt_tosend[] = $item['email'];
                     }
 
                     Mail::to($adt_tosend)
