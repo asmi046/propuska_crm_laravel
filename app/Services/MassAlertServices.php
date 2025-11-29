@@ -49,7 +49,7 @@ class MassAlertServices {
         // }
 
 
-        sleep(rand(1,10));
+        sleep(rand(3,10));
 
         Mail::to($adt_tosend)->send(new AnnulMail($an->truc->truc_number, $serias.$number, $an->type_pass, $message));
 
