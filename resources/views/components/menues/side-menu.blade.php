@@ -26,10 +26,13 @@
         <x-menues.menu-item title="Удалить должника" icon="procent" :active="(Route::currentRouteName() === 'debtors_dashboard')?true:false" :route="route('debtors_dashboard')"></x-menues.menu-item>
         <x-menues.menu-item title="Проверка должников" icon="deb_ch" :active="(Route::currentRouteName() === 'debtors_chek')?true:false" :route="route('debtors_chek')"></x-menues.menu-item>
 
-        <h3 class="menu_h3">Должники</h3>
+        <h3 class="menu_h3">Дополнительно</h3>
         <x-menues.menu-item title="Добавить ДК" icon="to_icon" :active="(Route::currentRouteName() === 'to_alert_list')?true:false" :route="route('to_alert_list')"></x-menues.menu-item>
         <x-menues.menu-item title="Добавить Штрафы" icon="fine_icon" :active="(Route::currentRouteName() === 'fine_alert_list')?true:false" :route="route('fine_alert_list')"></x-menues.menu-item>
         <x-menues.menu-item title="Замена СТС" icon="sts_icon" :active="(Route::currentRouteName() === 'sts_alert_list')?true:false" :route="route('sts_alert_list')"></x-menues.menu-item>
+
+        <h3 class="menu_h3">Управление</h3>
+        <x-menues.menu-item title="СТОП!" icon="sts_icon" :active="(Route::currentRouteName() === 'stop_service')?true:false" :route="route('stop_service')"></x-menues.menu-item>
 
         <div id="settings_app">
             <settings></settings>
