@@ -7,7 +7,7 @@ let side_menue = new SideMenu('#main_side_menue', '.show_menue_button');
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-import {createApp} from 'vue/dist/vue.esm-bundler';
+import { createApp } from 'vue/dist/vue.esm-bundler';
 
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/aura-light-green/theme.css'
@@ -33,9 +33,10 @@ import EmailTemplateList from './components/EmailTemplate/EmailTemplateList.vue'
 import DebtorsCh from './components/DebtorsCh.vue';
 import ToastService from 'primevue/toastservice';
 import ConfirmationService from 'primevue/confirmationservice';
+import StopSpam from './components/StopSpam.vue';
 
 const email_templates = createApp({
-    components:{
+    components: {
         EmailTemplateList
     },
 
@@ -52,7 +53,7 @@ if (document.getElementById('email_templates')) {
 }
 
 const debtors_chek = createApp({
-    components:{
+    components: {
         DebtorsCh
     },
 
@@ -70,7 +71,7 @@ if (document.getElementById('debtors_chek')) {
 }
 
 const mass_alert_app = createApp({
-    components:{
+    components: {
         MassAlert,
         MassAdd
     },
@@ -87,7 +88,7 @@ if (document.getElementById('mass_alert_app')) {
 }
 
 const mass_add = createApp({
-    components:{
+    components: {
         MassAdd
     },
 
@@ -102,7 +103,7 @@ if (document.getElementById('mass_add')) {
 }
 
 const mass_n_check = createApp({
-    components:{
+    components: {
         MassNumberCheck
     },
 
@@ -117,7 +118,7 @@ if (document.getElementById('mass_n_check')) {
 }
 
 const debtors_add = createApp({
-    components:{
+    components: {
         DebtorsAdd
     },
 
@@ -132,7 +133,7 @@ if (document.getElementById('debtors_add')) {
 }
 
 const main_page = createApp({
-    components:{
+    components: {
         MainPage
     },
 
@@ -147,11 +148,11 @@ if (document.getElementById('main_page')) {
 }
 
 const check_number = createApp({
-    components:{
+    components: {
         CheckNumber
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('check_number')) {
@@ -160,11 +161,11 @@ if (document.getElementById('check_number')) {
 }
 
 const debtors_list = createApp({
-    components:{
+    components: {
         DebtorsList
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('debtors_list')) {
@@ -172,11 +173,11 @@ if (document.getElementById('debtors_list')) {
     debtors_list.mount("#debtors_list")
 }
 const delete_by_email = createApp({
-    components:{
+    components: {
         DeleteByEmail
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('delete_by_email')) {
@@ -185,11 +186,11 @@ if (document.getElementById('delete_by_email')) {
 }
 
 const update_by_number = createApp({
-    components:{
+    components: {
         UpdateByNumber
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('update_by_number')) {
@@ -198,11 +199,11 @@ if (document.getElementById('update_by_number')) {
 }
 
 const settings_app = createApp({
-    components:{
+    components: {
         Settings
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('settings_app')) {
@@ -212,11 +213,11 @@ if (document.getElementById('settings_app')) {
 }
 
 const event_log = createApp({
-    components:{
+    components: {
         LogEvent
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('event_log')) {
@@ -226,11 +227,11 @@ if (document.getElementById('event_log')) {
 }
 
 const to_alert_list = createApp({
-    components:{
+    components: {
         ToAlertList
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('to_alert_list')) {
@@ -241,11 +242,11 @@ if (document.getElementById('to_alert_list')) {
 }
 
 const fine_alert_list = createApp({
-    components:{
+    components: {
         FineAlertList
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('fine_alert_list')) {
@@ -255,12 +256,13 @@ if (document.getElementById('fine_alert_list')) {
     fine_alert_list.mount("#fine_alert_list")
 }
 
+
 const sts_alert_list = createApp({
-    components:{
+    components: {
         StsAlertList
     },
 
-    setup() {},
+    setup() { },
 })
 
 if (document.getElementById('sts_alert_list')) {
@@ -270,5 +272,19 @@ if (document.getElementById('sts_alert_list')) {
     sts_alert_list.mount("#sts_alert_list")
 }
 
+const stop_spam = createApp({
+    components: {
+        StopSpam
+    },
+
+    setup() { },
+})
+
+if (document.getElementById('stop_spam')) {
+    stop_spam.use(PrimeVue);
+    stop_spam.use(VueAxios, axios);
+    stop_spam.use(ToastService);
+    stop_spam.mount("#stop_spam")
+}
 
 

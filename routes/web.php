@@ -15,14 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/stop_service', function(){
-        $response = Http::get('https://ap.mosbot.ru/api/online_passes.json', [
-            'apikey' => 'PZNLW4lgaUIxuocaGNV4qvKmFFMzVqd7',
-            'truck_num' => 'Е153ТВ159'
-        ]);
+        // $response = Http::get('https://ap.mosbot.ru/api/online_passes.json', [
+        //     'apikey' => 'PZNLW4lgaUIxuocaGNV4qvKmFFMzVqd7',
+        //     'truck_num' => 'Е153ТВ159'
+        // ]);
 
-        return $response->json();
+        // return $response->json();
+        return view('stop-spam');
 
     })->name('stop_service');
+
+    Route::get('/stop_service_do/{truck_num}', function($truck_num){
+        $response = Http::get('https://ap.mosbot.ru/api/online_passes.json', [
+            'apikey' => 'PZNLW4lgaUIxuocaGNV4qvKmFFMzVqd7',
+            'truck_num' => $truck_num
+        ]);
+        return $response->json();
+    })->name('stop_service_do');
+
 });
 
 
