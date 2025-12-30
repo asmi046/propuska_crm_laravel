@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::post('/stop_service', function(){
+    Route::get('/stop_service', function(){
         $response = Http::get('https://ap.mosbot.ru/api/online_passes.json', [
             'apikey' => 'PZNLW4lgaUIxuocaGNV4qvKmFFMzVqd7',
             'truck_num' => 'Е153ТВ159'
