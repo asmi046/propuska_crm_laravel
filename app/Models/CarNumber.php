@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Filters\QueryFilter;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CarNumber extends Model
 {
@@ -17,19 +17,23 @@ class CarNumber extends Model
         'email',
         'email_dop',
         'email_dop2',
-        'phone'
+        'phone',
     ];
 
     protected $with = [
         'active_numbers',
         'no_active_numbers',
-        'last_pass'
+        'last_pass',
     ];
-
 
     public function last_pass(): HasOne
     {
         return $this->hasOne(LastPass::class);
+    }
+
+    public function rnis_subscribe(): HasOne
+    {
+        return $this->hasOne(RnisSubscribe::class, 'truc_number', 'truc_number');
     }
 
     public function active_numbers(): HasMany
@@ -42,8 +46,8 @@ class CarNumber extends Model
         return $this->hasMany(NoActivePasses::class);
     }
 
-    public function scopeFilter($builder, QueryFilter $filter) {
+    public function scopeFilter($builder, QueryFilter $filter)
+    {
         return $filter->apply($builder);
     }
-
 }

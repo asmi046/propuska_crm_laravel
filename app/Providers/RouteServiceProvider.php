@@ -71,6 +71,9 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/to_alert.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/rnis_subscribe.php'));
         });
     }
 }
