@@ -49,9 +49,9 @@ class RnisSubscribeController extends Controller
     {
         if ($request->input('serch')) {
             $serch = $request->input('serch');
-            $rnis_log = RnisSubscribe::where('truc_number', 'like', "%$serch%")->get();
+            $rnis_log = RnisSubscribe::where('truc_number', 'like', "%$serch%")->with('car_number')->get();
         } else {
-            $rnis_log = RnisSubscribe::all();
+            $rnis_log = RnisSubscribe::with('car_number')->get();
         }
 
         return response()->json($rnis_log);

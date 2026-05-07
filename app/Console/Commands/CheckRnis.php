@@ -40,7 +40,7 @@ class CheckRnis extends Command
     public function handle()
     {
 
-        $all_rnis = RnisSubscribe::all();
+        $all_rnis = RnisSubscribe::with('car_number')->get();
 
         $this->info('Найдено '.count($all_rnis).' подписок РНИС в базе');
         $this->info('Начата проверка подписок РНИС:');

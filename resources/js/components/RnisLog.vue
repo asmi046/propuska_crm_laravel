@@ -43,6 +43,11 @@
             sortable
             header="Дата окончания подписки"
         ></Column>
+        <Column
+            field="car_number.email"
+            sortable
+            header="Email для уведомления"
+        ></Column>
     </DataTable>
     <strong v-else>Данных нет</strong>
 </template>
@@ -73,6 +78,7 @@ const getRnisList = () => {
         })
         .then((resp) => {
             list.value = resp.data;
+            console.log(resp.data);
         })
         .catch((error) => console.log(error));
 };
