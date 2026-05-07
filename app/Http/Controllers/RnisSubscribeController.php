@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CarNumber;
+use App\Models\RnisSubscribe;
 use Illuminate\Http\Request;
 
 class RnisSubscribeController extends Controller
@@ -42,5 +43,22 @@ class RnisSubscribeController extends Controller
         return response()->json([
             'message' => 'Данные обновлены',
         ], 200);
+    }
+
+    public function rnis_get_event_list(Request $request)
+    {
+        if ($request->input('serch')) {
+            $serch = $request->input('serch');
+            $rnis_log = RnisSubscribe::where('truc_number', 'like', "%$serch%")->get();
+        } else {
+            $rnis_log = RnisSubscribe::all();
+        }
+
+        return response()->json($rnis_log);
+    }
+
+    public function rnis_event_log(Request $request)
+    {
+        return view('event_log_rnis');
     }
 }

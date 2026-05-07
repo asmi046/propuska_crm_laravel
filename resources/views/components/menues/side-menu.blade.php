@@ -32,6 +32,11 @@
             :route="route('delete_by_email')"></x-menues.menu-item>
         <x-menues.menu-item title="Шаблоны E-mail" icon="template_emeil" :active="(Route::currentRouteName() === 'email_template_list')?true:false"
             :route="route('email_template_list')"></x-menues.menu-item>
+        <h3 class="menu_h3">РНИС</h3>
+
+        <x-menues.menu-item title="Лог событий РНИС" icon="log_list" :active="(Route::currentRouteName() === 'rnis_event_log')?true:false"
+            :route="route('rnis_event_log')"></x-menues.menu-item>
+
 
         <h3 class="menu_h3">Должники</h3>
         <x-menues.menu-item title="Добавление должников" icon="person_add" :active="(Route::currentRouteName() === 'debtors_add')?true:false"

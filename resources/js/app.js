@@ -34,6 +34,7 @@ import DebtorsCh from './components/DebtorsCh.vue';
 import ToastService from 'primevue/toastservice';
 import ConfirmationService from 'primevue/confirmationservice';
 import StopSpam from './components/StopSpam.vue';
+import RnisLog from './components/RnisLog.vue';
 
 const email_templates = createApp({
     components: {
@@ -285,6 +286,21 @@ if (document.getElementById('stop_spam')) {
     stop_spam.use(VueAxios, axios);
     stop_spam.use(ToastService);
     stop_spam.mount("#stop_spam")
+}
+
+const rnis_event_log = createApp({
+    components: {
+        RnisLog
+    },
+
+    setup() { },
+})
+
+if (document.getElementById('rnis_event_log')) {
+    rnis_event_log.use(PrimeVue);
+    rnis_event_log.use(VueAxios, axios);
+    rnis_event_log.use(ToastService);
+    rnis_event_log.mount("#rnis_event_log")
 }
 
 
