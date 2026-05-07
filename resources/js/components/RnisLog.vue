@@ -39,10 +39,14 @@
     >
         <Column field="truc_number" header="Госномер"></Column>
         <Column
-            field="end_subscribe"
+            field="end_subscribe_sort"
             sortable
             header="Дата окончания подписки"
-        ></Column>
+        >
+            <template #body="slotProps">
+                {{ slotProps.data.end_subscribe }}
+            </template>
+        </Column>
         <Column
             field="car_number.email"
             sortable
@@ -69,6 +73,29 @@ const props = defineProps({
 let list = ref([]);
 let serch = ref("");
 
+const parseDateForSort = (value) => {
+    if (!value) {
+        return 0;
+    }
+
+    if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
+        const timestamp = new Date(value).getTime();
+
+        return Number.isNaN(timestamp) ? 0 : timestamp;
+    }
+
+    const match = value.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+
+    if (!match) {
+        return 0;
+    }
+
+    const [, day, month, year] = match;
+    const timestamp = new Date(`${year}-${month}-${day}`).getTime();
+
+    return Number.isNaN(timestamp) ? 0 : timestamp;
+};
+
 const getRnisList = () => {
     axios
         .get(props.action, {
@@ -77,8 +104,10 @@ const getRnisList = () => {
             },
         })
         .then((resp) => {
-            list.value = resp.data;
-            console.log(resp.data);
+            list.value = resp.data.map((item) => ({
+                ...item,
+                end_subscribe_sort: parseDateForSort(item.end_subscribe),
+            }));
         })
         .catch((error) => console.log(error));
 };
