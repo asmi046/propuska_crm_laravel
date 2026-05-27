@@ -64,7 +64,7 @@ class CheckRnis extends Command
 
                 if (config('app.env') === 'production') {
                     if ($item->car_number) {
-                        $adt_tosend[] = $item->email;
+                        $adt_tosend[] = $item->car_number->email;
                     }
                 }
 
