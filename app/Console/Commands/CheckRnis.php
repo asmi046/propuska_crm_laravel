@@ -68,8 +68,7 @@ class CheckRnis extends Command
                     }
                 }
 
-                // if ($deycount == 60) {
-                if ($deycount < 60) {
+                if ($deycount == 60) {
                     Mail::to($adt_tosend)->send(new Rnis60Mail($item->truc_number, $item->end_subscribe));
                     $this->error($item->truc_number.' - До окончания подписки РНИС 60 дней. Оповещение отправлено');
                 }
