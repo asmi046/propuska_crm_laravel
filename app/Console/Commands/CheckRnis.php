@@ -68,12 +68,12 @@ class CheckRnis extends Command
                     }
                 }
 
-                if ($deycount == 60) {
+                if (in_array($deycount, [60, 59, 58, 57, 56, 55, 54, 53, 52, 51])) {
                     Mail::to($adt_tosend)->send(new Rnis60Mail($item->truc_number, $item->end_subscribe));
                     $this->error($item->truc_number.' - До окончания подписки РНИС 60 дней. Оповещение отправлено');
                 }
 
-                if ($deycount == 30) {
+                if (in_array($deycount, [30, 29, 28, 27, 26, 25, 24, 23, 22, 21])) {
                     Mail::to($adt_tosend)->send(new Rnis30Mail($item->truc_number, $item->end_subscribe));
                     $this->error($item->truc_number.' - До окончания подписки РНИС 30 дней. Оповещение отправлено');
                 }
