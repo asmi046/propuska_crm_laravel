@@ -86,16 +86,16 @@ class EventNumberService {
 
     protected function check_main_pass_end_60($pass, string $evant_name = "До окончания пропуска осталось 60 дней") {
         return ($pass['series'] === "БА")
-            // && $this->dey_count_to_date($pass['valid_to'], 60)
-            && ($this->dey_count_to_date($pass['valid_to'], 60)||$this->dey_count_to_date($pass['valid_to'], 58) || $this->dey_count_to_date($pass['valid_to'], 57)|| $this->dey_count_to_date($pass['valid_to'], 56)|| $this->dey_count_to_date($pass['valid_to'], 55)|| $this->dey_count_to_date($pass['valid_to'], 54) || $this->dey_count_to_date($pass['valid_to'], 53)|| $this->dey_count_to_date($pass['valid_to'], 52) || $this->dey_count_to_date($pass['valid_to'], 51))
+            && $this->dey_count_to_date($pass['valid_to'], 60)
+            // && ($this->dey_count_to_date($pass['valid_to'], 60)||$this->dey_count_to_date($pass['valid_to'], 58) || $this->dey_count_to_date($pass['valid_to'], 57)|| $this->dey_count_to_date($pass['valid_to'], 56)|| $this->dey_count_to_date($pass['valid_to'], 55)|| $this->dey_count_to_date($pass['valid_to'], 54) || $this->dey_count_to_date($pass['valid_to'], 53)|| $this->dey_count_to_date($pass['valid_to'], 52) || $this->dey_count_to_date($pass['valid_to'], 51))
             && (empty($pass['cancel_date']))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], pass_end_date:date("Y-m-d", strtotime($pass['valid_to'])) ));
     }
 
     protected function check_main_pass_end_30($pass, string $evant_name = "До окончания пропуска осталось 30 дней") {
         return ($pass['series'] === "БА")
-            // && $this->dey_count_to_date($pass['valid_to'], 30)
-            && ($this->dey_count_to_date($pass['valid_to'], 30) || $this->dey_count_to_date($pass['valid_to'], 28) || $this->dey_count_to_date($pass['valid_to'], 27) || $this->dey_count_to_date($pass['valid_to'], 26) || $this->dey_count_to_date($pass['valid_to'], 25) || $this->dey_count_to_date($pass['valid_to'], 24) || $this->dey_count_to_date($pass['valid_to'], 23) || $this->dey_count_to_date($pass['valid_to'], 22) || $this->dey_count_to_date($pass['valid_to'], 21))
+            && $this->dey_count_to_date($pass['valid_to'], 30)
+            //&& ($this->dey_count_to_date($pass['valid_to'], 30) || $this->dey_count_to_date($pass['valid_to'], 28) || $this->dey_count_to_date($pass['valid_to'], 27) || $this->dey_count_to_date($pass['valid_to'], 26) || $this->dey_count_to_date($pass['valid_to'], 25) || $this->dey_count_to_date($pass['valid_to'], 24) || $this->dey_count_to_date($pass['valid_to'], 23) || $this->dey_count_to_date($pass['valid_to'], 22) || $this->dey_count_to_date($pass['valid_to'], 21))
             && (empty($pass['cancel_date']))
             && ($this->check_event($evant_name, $pass['truck_num'], $pass['series'].$pass['pass_number'], pass_end_date:date("Y-m-d", strtotime($pass['valid_to'])) ));
     }
